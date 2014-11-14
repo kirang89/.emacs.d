@@ -1,0 +1,12 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: script
+# key: script
+# binding: direct-keybinding
+# --
+#!/usr/bin/env python
+
+def main():
+    pass
+
+if __name__ == '__main__':
+    main()

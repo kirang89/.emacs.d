@@ -1,0 +1,9 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: code
+# key: code
+# binding: direct-keybinding
+# --
+
+#+BEGIN_SRC $1
+$0
+#+END_SRC

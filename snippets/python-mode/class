@@ -1,0 +1,14 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: class
+# key: class
+# binding: direct-keybinding
+# --
+
+
+class Template():
+    """This is a template"""
+    def __init__(self):
+        pass
+
+    def __repr__(self):
+        return "<>"
