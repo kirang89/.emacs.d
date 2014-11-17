@@ -3,6 +3,9 @@
 (setq inhibit-splash-screen t)
 (setq inhibit-startup-message t)
 
+;; Set frame font
+;; (set-frame-font "Source Code Pro 10")
+
 (setq initial-frame-alist '(
    (font . "Source Code Pro-13:weight=regular")
 ))
