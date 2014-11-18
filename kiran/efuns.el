@@ -20,3 +20,20 @@
                (set-visited-file-name new-name)
                (set-buffer-modified-p nil)
                (message "File '%s' successfully renamed to '%s'" name (file-name-nondirectory new-name))))))))
+
+
+(define-key isearch-mode-map (kbd "C-d")
+  'fc/isearch-yank-symbol)
+(defun fc/isearch-yank-symbol ()
+  "Yank the symbol at point into the isearch minibuffer.
+
+C-w does something similar in isearch, but it only looks for
+the rest of the word. I want to look for the whole string. And
+symbol, not word, as I need this for programming the most."
+  (interactive)
+  (isearch-yank-string
+   (save-excursion
+     (when (and (not isearch-forward)
+                isearch-other-end)
+       (goto-char isearch-other-end))
+     (thing-at-point 'symbol))))
