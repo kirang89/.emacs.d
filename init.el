@@ -11,6 +11,8 @@
 (require 'init-markdown)
 (require 'init-org)
 (require 'init-yasnippet)
+(require 'init-shell)
+(require 'efuns)
 (require 'init-mu4e)
 (require 'init-news)
 
@@ -44,9 +46,6 @@
 ; require final newlines in files when they are saved
 (setq require-final-newline t)
 
-; always use spaces, not tabs, when indenting
-(setq indent-tabs-mode nil)
-
 ;; use shift to move around windows
 (windmove-default-keybindings 'shift)
 
@@ -67,6 +66,7 @@
 
 ; indents 4 chars
 (setq c-basic-offset 4)
+(setq standard-indent 4)
 
 ; and 4 char wide for TAB
 (setq tab-width 4)
@@ -81,7 +81,7 @@
 ;; update the buffuer if a file has change on disk
 (global-auto-revert-mode)
 
-;; trailing whitespace is unnecessary
+;; trailing whitespace on file save
 (add-hook 'before-save-hook (lambda () (delete-trailing-whitespace)))
 
 ;; Create intermediate directories
@@ -123,6 +123,9 @@ Assumes that the frame is only split into two."
 ;; font
 ;;(set-face-font 'default "Consolas-13.0:antialias=subpixel")
 
+;; Maximum Colors
+(setq font-lock-maximum-decoration t)
+
 ;; expand-region
 (require 'expand-region)
 (global-set-key (kbd "C-;") 'er/expand-region)
@@ -135,19 +138,6 @@ Assumes that the frame is only split into two."
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
-
-;; set zsh as shell in emacs
-(setenv "ESHELL" "/bin/zsh")
-(setenv "SHELL" "/bin/zsh")
-
-;; bash completion for emacs shell
-(autoload 'bash-completion-dynamic-complete
-  "bash-completion"
-  "BASH completion hook")
-(add-hook 'shell-dynamic-complete-functions
-  'bash-completion-dynamic-complete)
-(add-hook 'shell-command-complete-functions
-  'bash-completion-dynamic-complete)
 
 ;; git-awesome-mode
 (require 'magit)
@@ -162,20 +152,6 @@ Assumes that the frame is only split into two."
 (global-set-key (kbd "<C-S-down>")   'buf-move-down)
 (global-set-key (kbd "<C-S-left>")   'buf-move-left)
 (global-set-key (kbd "<C-S-right>")  'buf-move-right)
-
-;; Function to kill buffer and delete file connected to it
-(defun delete-this-buffer-and-file ()
-  "Removes file connected to current buffer and kills buffer."
-  (interactive)
-  (let ((filename (buffer-file-name))
-        (buffer (current-buffer))
-        (name (buffer-name)))
-    (if (not (and filename (file-exists-p filename)))
-        (error "Buffer '%s' is not visiting a file!" name)
-      (when (yes-or-no-p "Are you sure you want to remove this file? ")
-        (delete-file filename)
-        (kill-buffer buffer)
-        (message "File '%s' successfully removed" filename)))))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
