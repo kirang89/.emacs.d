@@ -34,7 +34,7 @@
 ;; keybindings for dictionary
 (global-set-key "\C-cs" 'dictionary-search)
 
-
+(global-set-key (kbd "C-x f") 'find-file-in-repository)
 
 (provide 'init-kbd)
 ;;; init-kbd.el ends here
