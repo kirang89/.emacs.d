@@ -24,6 +24,9 @@
 ; don't show the scroll bar
 (scroll-bar-mode -1)
 
+; add any custom themes
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+
 ;; syntax highlighting by default
 (global-font-lock-mode 1)
 
@@ -40,7 +43,7 @@
 
 ; display line numbers to the right of the window
 (global-linum-mode t)
-(setq linum-format " %d")
+(setq linum-format "%3d")
 
 ;; powerline
 ;;(require 'powerline)
