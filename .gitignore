@@ -4,5 +4,8 @@ auto-save-list
 eshell
 elpa
 tramp
+url
+
 .mc-lists.el
 .python-environments
+.cask

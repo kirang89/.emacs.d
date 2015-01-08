@@ -12,5 +12,7 @@
 (add-hook 'shell-command-complete-functions
   'bash-completion-dynamic-complete)
 
+(setenv "PAGER" "/bin/cat")
+
 (provide 'init-shell)
 ;;; init-shell.el ends here

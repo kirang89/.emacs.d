@@ -3,15 +3,17 @@
 (setq inhibit-splash-screen t)
 (setq inhibit-startup-message t)
 
+;;(load-theme 'monokai t)
+
 ;; Set frame font
 ;; (set-frame-font "Source Code Pro 10")
 
 (setq initial-frame-alist '(
-   (font . "Source Code Pro-13:weight=regular")
+   (font . "Consolas-14:weight=regular")
 ))
 
 (setq default-frame-alist '(
-   (font . "Source Code Pro-13:weight=regular")
+   (font . "Consolas-14:weight=regular")
 ))
 
 ; don't show the menu bar
