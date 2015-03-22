@@ -9,11 +9,11 @@
 ;; (set-frame-font "Source Code Pro 10")
 
 (setq initial-frame-alist '(
-   (font . "Consolas-14:weight=regular")
+   (font . "Inconsolata-16:weight=regular")
 ))
 
 (setq default-frame-alist '(
-   (font . "Consolas-14:weight=regular")
+   (font . "Inconsolata-16:weight=regular")
 ))
 
 ; don't show the menu bar
@@ -29,11 +29,16 @@
 ; add any custom themes
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 
-;; syntax highlighting by default
+;; Syntax Highlighting
+(require 'font-lock)
+(setq font-lock-maximum-decoration t)
 (global-font-lock-mode 1)
 
 ; set cursor color
 (set-cursor-color "#636363")
+
+; Highlight current line containing the cursor
+(global-hl-line-mode -1)
 
 ;;(setq mac-allow-anti-aliasing nil)
 
@@ -45,12 +50,20 @@
 
 ; display line numbers to the right of the window
 (global-linum-mode t)
-(setq linum-format "%3d")
+(setq linum-format "%3d ")
+
+;; set unique names for two similar buffers
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward)
 
 ;; powerline
 ;;(require 'powerline)
 ;;(powerline-default-theme)
 ;;(powerline-center-theme)
+
+;; (add-hook 'window-configuration-change-hook
+;;           (lambda ()
+;;             (set-window-margins (car (get-buffer-window-list (current-buffer) nil t)) 2 2)))
 
 (provide 'init-looks)
 ;;; init-looks.el ends here
