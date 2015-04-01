@@ -1,7 +1,6 @@
-
-;
-; Some custom functions
-;
+;;
+;; Some custom functions
+;;
 
 ;; Rename buffer as well as the file associated with it
 (defun rename-this-buffer-and-file ()
