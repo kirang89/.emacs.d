@@ -19,5 +19,11 @@
 (setq org-directory "~/Box Sync/org-notes")
 (setq org-src-fontify-natively t)
 
+;; Retrieve agenda from this directory
+(setq org-agenda-files '("~/Box Sync/org-notes/agenda.org"))
+
+;; Week starts on Monday
+(setq org-agenda-start-on-weekday 0)
+
 (provide 'init-org)
 ;;; init-org ends here
