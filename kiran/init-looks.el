@@ -3,18 +3,23 @@
 (setq inhibit-splash-screen t)
 (setq inhibit-startup-message t)
 
-;;(load-theme 'monokai t)
+;; Load theme
+;;(load-theme 'zenburn t)
 
 ;; Set frame font
-;; (set-frame-font "Source Code Pro 10")
+(set-frame-font "M+ 2m 15")
 
-(setq initial-frame-alist '(
-   (font . "Inconsolata-16:weight=regular")
-))
+;; (setq initial-frame-alist '(
+;;    (font . "Inconsolata-15:weight=regular")
+;; ))
 
-(setq default-frame-alist '(
-   (font . "Inconsolata-16:weight=regular")
-))
+;; (setq default-frame-alist '(
+;;    (font . "Inconsolata-15:weight=regular")
+;; ))
+
+;; Uncomment this to disable font antialiasing
+;;(setq mac-allow-anti-aliasing nil)
+
 
 ; don't show the menu bar
 (menu-bar-mode nil)
@@ -40,8 +45,6 @@
 ; Highlight current line containing the cursor
 (global-hl-line-mode -1)
 
-;;(setq mac-allow-anti-aliasing nil)
-
 ;; default frame size
 (add-to-list 'default-frame-alist '(left . 80))
 (add-to-list 'default-frame-alist '(top . 0))
@@ -55,11 +58,6 @@
 ;; set unique names for two similar buffers
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
-
-;; powerline
-;;(require 'powerline)
-;;(powerline-default-theme)
-;;(powerline-center-theme)
 
 ;; (add-hook 'window-configuration-change-hook
 ;;           (lambda ()
