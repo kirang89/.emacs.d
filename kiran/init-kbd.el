@@ -19,7 +19,7 @@
 ;;(global-set-key (kbd "C-c l") 'kill-whole-line)
 
 ;; highlight current line
-;(global-hl-line-mode 0)
+(global-hl-line-mode 1)
 ;(set-face-background 'hl-line "#9998aa")
 ;; (require 'highlight-current-line)
 ;; (highlight-current-line-on t)
@@ -35,6 +35,10 @@
 (global-set-key "\C-cs" 'dictionary-search)
 
 (global-set-key (kbd "C-x f") 'find-file-in-repository)
+
+(global-set-key (kbd "C-c C-a") 'org-agenda)
+
+(global-set-key (kbd "C-c C-g") 'magit-status)
 
 (provide 'init-kbd)
 ;;; init-kbd.el ends here
