@@ -40,5 +40,7 @@
 
 (global-set-key (kbd "C-c C-g") 'magit-status)
 
+(global-set-key (kbd "C-c }") 'mc/mark-next-like-this)
+
 (provide 'init-kbd)
 ;;; init-kbd.el ends here
