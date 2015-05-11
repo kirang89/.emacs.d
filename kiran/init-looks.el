@@ -7,7 +7,8 @@
 ;;(load-theme 'zenburn t)
 
 ;; Set frame font
-(set-frame-font "M+ 2m 15")
+(set-frame-font "Office Code Pro 15")
+;;(set-frame-font "M+ 2m 15")
 
 ;; (setq initial-frame-alist '(
 ;;    (font . "Inconsolata-15:weight=regular")
