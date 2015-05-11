@@ -244,6 +244,8 @@
  '(main-line-separator-style (quote chamfer))
  '(markdown-command "/usr/local/bin/pandoc")
  '(menu-bar-mode nil)
+ '(org-hide-leading-stars t)
+ '(org-todo-keywords (quote ((sequence "TODO" "DONE"))))
  '(pallet-mode t)
  '(powerline-color1 "#1E1E1E")
  '(powerline-color2 "#111111")
