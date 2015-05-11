@@ -11,8 +11,6 @@
 
 (defvar required-packages
   '(ace-jump-mode ample-theme autopair bash-completion
-		  color-theme-github color-theme-railscasts
-		  color-theme-sanityinc-tomorrow color-theme-solarized color-theme
 		  cyberpunk-theme dictionary connection elfeed emmet-mode
 		  expand-region flycheck dash fullscreen-mode highlight-current-line
 		  ipython jedi auto-complete epc ctable concurrent leuven-theme link
