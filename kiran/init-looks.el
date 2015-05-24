@@ -7,8 +7,13 @@
 ;;(load-theme 'zenburn t)
 
 ;; Set frame font
-(set-frame-font "Office Code Pro 15")
+;;======= Font Collection for quick switch ===========
+;;(set-frame-font "Office Code Pro 15")
 ;;(set-frame-font "M+ 2m 15")
+;;(set-frame-font "Source Code Pro 15")
+;;(set-frame-font "DejaVu Sans Mono 15")
+(set-frame-font "Fira Code 15")
+;;====================================================
 
 ;; (setq initial-frame-alist '(
 ;;    (font . "Inconsolata-15:weight=regular")
