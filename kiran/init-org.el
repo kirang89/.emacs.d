@@ -13,11 +13,17 @@
 
 ;; org mode
 (require 'org)
+
 ;; load org-mode markdown export
 (eval-after-load "org"
   '(require 'ox-md nil t))
+
 (setq org-directory "~/Box Sync/org-notes")
+
 (setq org-src-fontify-natively t)
+
+;; Spellcheck my org mode files.
+(add-hook 'org-mode-hook 'flyspell-mode)
 
 ;; Retrieve agenda from this directory
 (setq org-agenda-files '("~/Box Sync/org-notes/agenda.org"))
