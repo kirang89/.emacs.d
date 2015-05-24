@@ -7,14 +7,6 @@
 ;; Autoload stuff that I don't require urgently
 ;;(add-to-list 'auto-mode-alist '("\\.md\\" . markdown-mode))
 
-;;(require 'cask)
-;;(cask-initialize)
-
-;; Keeps ~Cask~ file in sync with the packages
-;; that you install/uninstall via ~M-x list-packages~
-;; https://github.com/rdallasgray/pallet
-;;(require 'pallet)
-
 (require 'init-looks)
 (require 'init-kbd)
 (require 'init-packages)
@@ -161,6 +153,14 @@
 ;;; Experimental Stuff
 ;;; =====================================
 
+;;(require 'cask)
+;;(cask-initialize)
+
+;; Keeps ~Cask~ file in sync with the packages
+;; that you install/uninstall via ~M-x list-packages~
+;; https://github.com/rdallasgray/pallet
+;;(require 'pallet)
+
 (require 'flx-ido)
 (flx-ido-mode 1)
 (setq ido-enable-flex-matching t)
@@ -178,7 +178,12 @@
 
 (key-chord-mode t)
 (key-chord-define-global "jj" 'ace-jump-mode)
+(key-chord-define-global "yy"
+			 (lambda ()
+			   (interactive)
+			   (find-file "~/.emacs.d/init.el")))
 
+(global-set-key (kbd "C-h C-m") 'discover-my-major)
 
 ;;; =====================================
 

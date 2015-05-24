@@ -8,7 +8,7 @@
 (setenv "PYTHONPATH" "/usr/local/lib/python2.7/site-packages:")
 
 ;(add-hook 'python-mode-hook 'autopair-mode)
-(add-hook 'python-mode-hook 'yas-minor-mode)
+;(add-hook 'python-mode-hook 'yas-minor-mode)
 (add-hook 'python-mode-hook 'auto-complete-mode)
 (add-hook 'py-shell-hook '(lambda () (linum-mode -1)))
 
@@ -28,17 +28,15 @@
 
 ;;setting up iPython as interpreter
 ;;(require 'ipython)
-(setq
- python-shell-interpreter "ipython"
- python-shell-interpreter-args "--colors=Linux"
- python-shell-prompt-regexp "In \\[[0-9]+\\]: "
- python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
- python-shell-completion-setup-code
-   "from IPython.core.completerlib import module_completion"
- python-shell-completion-module-string-code
-   "';'.join(module_completion('''%s'''))\n"
- python-shell-completion-string-code
-   "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
+(setq python-shell-interpreter "ipython"
+      python-shell-interpreter-args ""
+      python-shell-prompt-regexp "In \\[[0-9]+\\]: "
+      python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
+      python-shell-completion-setup-code
+      "from IPython.core.completerlib import module_completion"
+      python-shell-completion-module-string-code ""
+      python-shell-completion-string-code
+      "';'.join(__IP.complete('''%s'''))\n")
 
 ;;Fix for NameError when launching ipython
 (setq py-python-command-args '("--colors=linux"))
@@ -60,8 +58,8 @@
 ;; Make python shell use utf-8 encoding
 (setenv "LC_CTYPE" "UTF-8")
 
-(require 'nose)
-(defvar nose-use-verbose nil)
+;;(require 'nose)
+;;(defvar nose-use-verbose nil)
 
 (provide 'init-python)
 ;;; init-python.el ends here
