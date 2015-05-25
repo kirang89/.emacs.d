@@ -16,8 +16,8 @@
 ;;(require 'init-yasnippet)
 (require 'init-shell)
 (require 'efuns)
-(require 'init-mu4e)
-(require 'init-news)
+;;(require 'init-mu4e)
+;;(require 'init-news)
 
 ;; Prefer unicode encoding everywhere
 (prefer-coding-system 'utf-8)
@@ -184,6 +184,9 @@
 			   (find-file "~/.emacs.d/init.el")))
 
 (global-set-key (kbd "C-h C-m") 'discover-my-major)
+
+(require 'window-numbering)
+(window-numbering-mode t)
 
 ;;; =====================================
 
