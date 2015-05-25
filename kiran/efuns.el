@@ -1,10 +1,12 @@
-;;
-;; Some custom functions
-;;
+;;; efuns.el --- Utility Functions
+;;;
+;;; Commentary:
+;;; This file contains a list of useful functions
+;;;
+;;; Code:
 
-;; Rename buffer as well as the file associated with it
 (defun rename-this-buffer-and-file ()
-  "Renames current buffer and file it is visiting."
+  "Rename current buffer and file it is visiting."
   (interactive)
   (let ((name (buffer-name))
         (filename (buffer-file-name)))
@@ -18,12 +20,13 @@
                (rename-buffer new-name)
                (set-visited-file-name new-name)
                (set-buffer-modified-p nil)
-               (message "File '%s' successfully renamed to '%s'" name (file-name-nondirectory new-name))))))))
+               (message "File '%s' successfully renamed to '%s'"
+			name
+			(file-name-nondirectory new-name))))))))
 
 
-;; Function to kill buffer and delete file connected to it
 (defun delete-this-buffer-and-file ()
-  "Removes file connected to current buffer and kills buffer."
+  "Remove file connected to current buffer and kill buffer."
   (interactive)
   (let ((filename (buffer-file-name))
         (buffer (current-buffer))
@@ -54,12 +57,11 @@ symbol, not word, as I need this for programming the most."
 
 
 (defun timestamp ()
-  "Spit out the current time"
+  "Spit out the current time."
   (interactive)
   (insert (format-time-string "%Y-%m-%d")))
 
 
-;; toggle frame split
 (defun toggle-frame-split ()
   "If the frame is split vertically, split it horizontally or vice versa.
 Assumes that the frame is only split into two."
