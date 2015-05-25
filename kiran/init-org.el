@@ -31,5 +31,10 @@
 ;; Week starts on Monday
 (setq org-agenda-start-on-weekday 0)
 
+(defun org-archive-tasks ()
+  "Archive DONE tasks in org-mode."
+  (interactive)
+  (org-map-entries 'org-archive-subtree "/DONE" 'file))
+
 (provide 'init-org)
 ;;; init-org ends here
