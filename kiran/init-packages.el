@@ -11,12 +11,12 @@
 
 (defvar required-packages
   '(ace-jump-mode ample-theme autopair bash-completion
-		  cyberpunk-theme dictionary connection elfeed emmet-mode
-		  expand-region flycheck dash fullscreen-mode highlight-current-line
+		  cyberpunk-theme dictionary connection emmet-mode
+		  expand-region flycheck fullscreen-mode highlight-current-line
 		  ipython jedi auto-complete epc ctable concurrent leuven-theme link
 		  magit git-rebase-mode git-commit-mode markdown-mode multiple-cursors
 		  org pkg-info epl popup powerline python-environment deferred
-		  python-mode sublime-themes tangotango-theme ujelly-theme yasnippet)
+		  python-mode tangotango-theme ujelly-theme yasnippet)
   "Packages to be installed upon launch")
 
 (dolist (package required-packages)
