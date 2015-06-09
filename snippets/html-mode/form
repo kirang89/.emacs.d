@@ -1,0 +1,8 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: form
+# key: frm
+# binding: direct-keybinding
+# --
+<form method="$1" id="$2" action="$3">
+  $0
+</form>

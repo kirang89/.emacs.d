@@ -1,0 +1,16 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: docstrings
+# key: bdc
+# binding: direct-keybinding
+# --
+"""
+    $2
+
+    Arguments:
+    ----------
+	- $1
+
+    Returns:
+    --------
+        $0
+"""

@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: author
+# key: au
+# binding: direct-keybinding
+# --
+#+Author: $0

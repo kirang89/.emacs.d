@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: selfassign
+# key: sn
+# binding: direct-keybinding
+# --
+self.$1 = $1

@@ -1,0 +1,14 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: dec
+# key: dec
+# binding: direct-keybinding
+# --
+def ${1}(func):
+    $2
+    def _$1(*args, **kwargs):
+        $3
+        ret = func(*args, **kwargs)
+        $4
+        return ret
+
+    return _$1

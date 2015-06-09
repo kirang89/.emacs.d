@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: list
+# key: li
+# binding: direct-keybinding
+# --
+[$1 for $1 in ${2}]

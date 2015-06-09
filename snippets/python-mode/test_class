@@ -1,0 +1,12 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: test_class
+# key: tcl
+# binding: direct-keybinding
+# --
+class $1(${2:unittest.TestCase}):
+    render_templates = ${3:False}
+    def setUp(self):
+    	${4:pass}
+
+    def tearDown(self):
+        ${0:pass}

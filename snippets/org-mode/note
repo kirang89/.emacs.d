@@ -1,0 +1,9 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: note
+# key: note
+# binding: direct-keybinding
+# --
+#+TITLE: $1
+#+AUTHOR: ${2:Kiran Gangadharan}
+#+STARTUP: content
+#+DATE: `(timestamp)`$0

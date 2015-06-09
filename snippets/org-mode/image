@@ -1,0 +1,11 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: image
+# key: img_
+# binding: direct-keybinding
+# --
+<img src="$1"
+ alt="$2" align="${3:left}"
+ title="$4"
+ class="img"
+</img>
+$0

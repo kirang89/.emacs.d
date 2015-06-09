@@ -1,0 +1,11 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: cls
+# key: cls
+# binding: direct-keybinding
+# --
+class $1(object):
+    def __init__(self):
+        $2
+
+    def __repr__(self)
+    	return "<$1>"
