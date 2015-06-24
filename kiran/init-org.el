@@ -1,4 +1,7 @@
 
+;; org mode
+(require 'org)
+
 (defface org-block-begin-line
   '((t (:underline "#8b5a2b" :foreground "#8b7355" :background "#8b7355")))
   "Face used for the line delimiting the begin of source blocks.")
@@ -11,15 +14,13 @@
   '((t (:overline "#8b5a2b" :foreground "#8b7355" :background "#8b7355")))
   "Face used for the line delimiting the end of source blocks.")
 
-;; org mode
-(require 'org)
-
 ;; load org-mode markdown export
 (eval-after-load "org"
   '(require 'ox-md nil t))
 
 (setq org-directory "~/Box Sync/org-notes")
 
+;; Make code pretty
 (setq org-src-fontify-natively t)
 
 ;; Spellcheck my org mode files.
@@ -35,6 +36,30 @@
   "Archive DONE tasks in org-mode."
   (interactive)
   (org-map-entries 'org-archive-subtree "/DONE" 'file))
+
+;; Remove html postamble
+(setq org-html-postamble nil)
+
+;; Add to the exported html's header
+(setq org-html-head-extra "
+   <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic,700italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+   <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:400,700' rel='stylesheet' type='text/css'>
+   <style type='text/css'>
+      body {
+         font-family: 'Source Sans Pro', sans-serif;
+      }
+      pre, code {
+         font-family: 'Source Code Pro', monospace;
+      }
+   </style>")
+
+
+;; Activate babel support for specified languages
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((python . t)
+   (scheme . t)
+   (sh . t)))
 
 (provide 'init-org)
 ;;; init-org ends here
