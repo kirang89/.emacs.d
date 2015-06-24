@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: assertNotIn
+# key: anin
+# binding: direct-keybinding
+# --
+self.assertNotIn($1, $0)
