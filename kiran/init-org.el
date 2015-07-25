@@ -14,6 +14,10 @@
   '((t (:overline "#8b5a2b" :foreground "#8b7355" :background "#8b7355")))
   "Face used for the line delimiting the end of source blocks.")
 
+;; Indent for clarity
+(setq org-startup-indented t)
+(setq org-indent-mode t)
+
 ;; load org-mode markdown export
 (eval-after-load "org"
   '(require 'ox-md nil t))
