@@ -5,7 +5,7 @@
 ;;;
 ;;; Code:
 
-(defun rename-this-buffer-and-file ()
+(defun kg/rename-this-buffer-and-file ()
   "Rename current buffer and file it is visiting."
   (interactive)
   (let ((name (buffer-name))
@@ -25,7 +25,7 @@
 			(file-name-nondirectory new-name))))))))
 
 
-(defun delete-this-buffer-and-file ()
+(defun kg/delete-this-buffer-and-file ()
   "Remove file connected to current buffer and kill buffer."
   (interactive)
   (let ((filename (buffer-file-name))
@@ -38,10 +38,12 @@
         (kill-buffer buffer)
         (message "File '%s' successfully removed" filename)))))
 
+
 ;; Search for symbol at point
-(define-key isearch-mode-map (kbd "C-d")
-  'fc/isearch-yank-symbol)
-(defun fc/isearch-yank-symbol ()
+(define-key isearch-mode-map (kbd "C-d") 'kg/isearch-yank-symbol)
+
+
+(defun kg/isearch-yank-symbol ()
   "Yank the symbol at point into the isearch minibuffer.
 
 C-w does something similar in isearch, but it only looks for
@@ -56,13 +58,13 @@ symbol, not word, as I need this for programming the most."
      (thing-at-point 'symbol))))
 
 
-(defun timestamp ()
+(defun kg/timestamp ()
   "Spit out the current time."
   (interactive)
   (insert (format-time-string "%Y-%m-%d")))
 
 
-(defun toggle-frame-split ()
+(defun kg/toggle-frame-split ()
   "If the frame is split vertically, split it horizontally or vice versa.
 Assumes that the frame is only split into two."
   (interactive)
@@ -74,13 +76,36 @@ Assumes that the frame is only split into two."
       (split-window-vertically)) ; gives us a split with the other window twice
     (switch-to-buffer nil))) ; restore the original window in this part of the frame
 
-(defun dired-open-file ()
+
+(defun kg/dired-open-file ()
   "In dired, open the file named on this line."
   (interactive)
   (let* ((file (dired-get-filename nil t)))
     (message "Opening %s..." file)
     (call-process "open" nil 0 nil file)
     (message "Opening %s done" file)))
+
+
+(defun kg/lisp-table-to-org-table (table &optional function)
+  "Convert a lisp table to `org-mode' syntax, applying FUNCTION to each of its elements.
+The elements should not have any more newlines in them after
+applying FUNCTION ; the default converts them to spaces. Return
+value is a string containg the unaligned `org-mode' table."
+  (unless (functionp function)
+    (setq function (lambda (x) (replace-regexp-in-string "\n" " " x))))
+  (mapconcat (lambda (x)                ; x is a line.
+               (concat "| " (mapconcat function x " | ") " |"))
+             table "\n"))
+
+
+(defun kg/csv-to-table (beg end)
+"Convert a csv file to an `org-mode' table.
+Requires 'pcsv' package to be installed."
+  (interactive "r")
+  (require 'pcsv)
+  (insert (yf/lisp-table-to-org-table (pcsv-parse-region beg end)))
+  (delete-region beg end)
+  (org-table-align))
 
 (provide 'efuns)
 ;;; efuns.el ends here
