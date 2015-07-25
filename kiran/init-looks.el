@@ -7,16 +7,19 @@
 ;;(load-theme 'zenburn t)
 
 ;; Set frame font
-;;======= Font Collection for quick switch ===========
-;;(set-frame-font "Office Code Pro 14")
-;;(set-frame-font "Inconsolata 13")
-;;(set-frame-font "M+ 1m 13")
-;;(set-frame-font "M+ 2m 15")
-;;(set-frame-font "Droid Sans Mono 13")
-;;(set-frame-font "Source Code Pro Light 13")
-;;(set-frame-font "DejaVu Sans Mono 13")
-(set-frame-font "Fira Code 13")
-;;(set-frame-font "Fira Code 17")
+
+;;;;;;;;;;;;;; Font Options ;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ;;(set-frame-font "Office Code Pro 14")  ;;
+;; ;;(set-frame-font "Inconsolata 13")      ;;
+;; ;;(set-frame-font "M+ 1m 13")            ;;
+;; ;;(set-frame-font "M+ 2m 15")            ;;
+;; ;;(set-frame-font "Droid Sans Mono 13")  ;;
+;; ;;(set-frame-font "DejaVu Sans Mono 13") ;;
+;; ;;(set-frame-font "Fira Code 15")        ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(set-frame-font "Source Code Pro 15")
 
 ;; Uncomment this to disable font antialiasing
 ;;(setq mac-allow-anti-aliasing nil)
@@ -30,6 +33,9 @@
 
 ; don't show the scroll bar
 (scroll-bar-mode -1)
+
+; Minimal fringe
+(fringe-mode 1)
 
 ; add any custom themes
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
