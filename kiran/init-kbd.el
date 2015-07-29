@@ -32,7 +32,10 @@
 (global-set-key (kbd "C-0") 'enlarge-window-horizontally)
 
 ;; keybindings for dictionary
-(global-set-key "\C-cs" 'dictionary-search)
+(add-hook 'text-mode-hook
+          (lambda () (local-set-key (kbd "C-c d") 'dictionary-lookup-definition)))
+(add-hook 'org-mode-hook
+          (lambda () (local-set-key (kbd "C-c d") 'dictionary-lookup-definition)))
 
 (global-set-key (kbd "C-x f") 'find-file-in-repository)
 
