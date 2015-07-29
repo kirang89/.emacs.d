@@ -6,4 +6,4 @@
 #+TITLE: $1
 #+AUTHOR: ${2:Kiran Gangadharan}
 #+STARTUP: content
-#+DATE: `(timestamp)`$0
+#+DATE: `(kg/timestamp)`$0
