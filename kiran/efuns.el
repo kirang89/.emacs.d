@@ -107,5 +107,12 @@ Requires 'pcsv' package to be installed."
   (delete-region beg end)
   (org-table-align))
 
+(defun kg/toggle-line-spacing ()
+  "Toggle line spacing between no extra space to extra half line height."
+  (interactive)
+  (if (eq line-spacing nil)
+      (setq-default line-spacing 0.5) ; add 0.5 height between lines
+    (setq-default line-spacing nil)))   ; no extra heigh between lines
+
 (provide 'efuns)
 ;;; efuns.el ends here
