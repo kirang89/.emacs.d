@@ -172,7 +172,14 @@
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
+;; Bind actions to repeated key presses!
 (key-chord-mode t)
+(key-chord-define-global "aa"
+			 (lambda ()
+			   (interactive)
+			   (find-file "~/Box Sync/org-notes/agenda.org")))
+(key-chord-define-global "bb" 'ido-switch-buffer)
+(key-chord-define-global "ff" 'ido-find-file)
 (key-chord-define-global "jj" 'avy-goto-word-or-subword-1)
 (key-chord-define-global "yy"
 			 (lambda ()
