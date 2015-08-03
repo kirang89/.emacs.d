@@ -206,6 +206,7 @@
 
 (autoload 'quack "quack" "Enhanced support for editing scheme files" t)
 
+(add-hook 'after-init-hook 'global-company-mode)
 
 ;; (require 'helm-config)
 ;; (helm-mode 1)
