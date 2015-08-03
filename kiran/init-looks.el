@@ -17,6 +17,8 @@
 ;; ;;(set-frame-font "Droid Sans Mono 13")  ;;
 ;; ;;(set-frame-font "DejaVu Sans Mono 13") ;;
 ;; ;;(set-frame-font "Fira Code 15")        ;;
+;; ;;(set-frame-font "Cutive Mono 17")      ;;
+;; ;;(set-frame-font "Input Mono 14")       ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (set-frame-font "Source Code Pro 15")
@@ -37,6 +39,9 @@
 ; Minimal fringe
 (fringe-mode 1)
 
+;; highlight current line
+(global-hl-line-mode 1)
+
 ; add any custom themes
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 
@@ -47,9 +52,6 @@
 
 ; set cursor color
 (set-cursor-color "#636363")
-
-; Highlight current line containing the cursor
-(global-hl-line-mode -1)
 
 ;; default frame size
 (add-to-list 'default-frame-alist '(left . 80))

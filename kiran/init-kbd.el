@@ -18,8 +18,6 @@
 
 ;;(global-set-key (kbd "C-c l") 'kill-whole-line)
 
-;; highlight current line
-(global-hl-line-mode 1)
 ;(set-face-background 'hl-line "#9998aa")
 ;; (require 'highlight-current-line)
 ;; (highlight-current-line-on t)
