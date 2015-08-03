@@ -30,9 +30,9 @@
 ;;(require 'init-news)
 
 ;; autocomplete
-(require 'auto-complete-config)
-(ac-config-default)
-(setq ac-ignore-case nil)
+;;(require 'auto-complete-config)
+;;(ac-config-default)
+;;(setq ac-ignore-case nil)
 ;;(add-to-list 'ac-modes 'python-mode)
 
 ;; Smart parenthesis
