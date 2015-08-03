@@ -1,8 +1,10 @@
+;; Author: Kiran Gangadharan
+
+;; Record the start time
+(setq *emacs-load-start* (current-time))
 
 ;; language
 (setq current-language-environment "English")
-
-;;(defvar *emacs-load-start* (current-time))
 
 ;; Prefer unicode encoding everywhere
 (prefer-coding-system 'utf-8)
@@ -353,6 +355,13 @@
 
 ;; Start emacs server
 (server-start)
+
+;; Write out a message indicating how long it took to process the init script
+(message "init.el loaded in %ds"
+         (destructuring-bind (hi lo ms ps) (current-time)
+           (- (+ hi lo)
+              (+ (first *emacs-load-start*)
+                 (second *emacs-load-start*)))))
 
 (provide `.emacs)
 
