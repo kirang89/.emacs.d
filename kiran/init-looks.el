@@ -67,5 +67,9 @@
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
 
+;; Clean up modeline a bit
+(line-number-mode)
+(size-indication-mode -1)
+
 (provide 'init-looks)
 ;;; init-looks.el ends here
