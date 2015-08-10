@@ -123,10 +123,6 @@
 ;; Toggle frame split (see efuns.el)
 (global-set-key (kbd "C-x |") 'toggle-frame-split)
 
-;; auto-complete
-(require 'auto-complete)
-(global-auto-complete-mode t)
-
 ;; expand-region
 (require 'expand-region)
 (global-set-key (kbd "C-;") 'er/expand-region)
