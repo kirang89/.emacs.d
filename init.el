@@ -15,6 +15,8 @@
 
 ;; do not make backup files
 (setq make-backup-files nil)
+;; Don't litter fs with backup files
+;;(setq backup-directory-alist '((".", "~/.saves")))
 
 (add-to-list 'load-path "~/.emacs.d/kiran/")
 
