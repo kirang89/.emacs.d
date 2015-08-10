@@ -32,10 +32,16 @@
 ;;(require 'init-news)
 
 ;; autocomplete
+(require 'auto-complete)
+(global-auto-complete-mode -1)
 ;;(require 'auto-complete-config)
 ;;(ac-config-default)
 ;;(setq ac-ignore-case nil)
 ;;(add-to-list 'ac-modes 'python-mode)
+
+;; Use company instead of auto-complete
+(require 'company)
+(global-company-mode)
 
 ;; Smart parenthesis
 (require 'smartparens-config)
