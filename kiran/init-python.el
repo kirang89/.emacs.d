@@ -12,24 +12,37 @@
 
 (company-quickhelp-mode 1)
 
+;; Decrease delay before autocompletion popup shows up
+(setq company-idle-delay .3)
+
+;; Remove blinking
+;;(setq company-echo-delay 0)
+
 ;;(elpy-clean-modeline)
 
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
-(add-hook 'python-mode-hook '(lambda () (setq python-indent 4)))
+(setq python-indent 4)
+;;(add-hook 'python-mode-hook '(lambda () (setq python-indent 4)))
 
 ; Set PYTHONPATH, because we don't load .bashrc
 (setenv "PYTHONPATH" "/usr/local/lib/python2.7/site-packages:")
 
 (add-hook 'python-mode-hook 'yas-minor-mode)
-;;(add-hook 'python-mode-hook 'auto-complete-mode)
-;;(add-hook 'py-shell-hook '(lambda () (linum-mode -1)))
+
+(defun kg/python-mode-hook ()
+  (add-to-list 'company-backends 'company-jedi))
+
+(add-hook 'python-mode-hook 'kg/python-mode-hook)
+
+;;(add-hook 'python-mode-hook 'projectile-mode)
 
 ;; jedi
-(require 'jedi)
-(add-hook 'python-mode-hook 'jedi:setup)
+;;(require 'jedi)
+;;(add-hook 'elpy-mode-hook 'jedi:setup)
+;;(add-hook 'python-mode-hook 'jedi:setup)
 ;;(add-hook 'python-mode-hook 'jedi:ac-setup)
-(setq jedi:complete-on-dot t)
+;;(setq jedi:complete-on-dot t)
 
 ;;setting up iPython as interpreter
 ;;(require 'ipython)
