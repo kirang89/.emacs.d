@@ -182,7 +182,7 @@
 			 (lambda ()
 			   (interactive)
 			   (find-file "~/Box Sync/org-notes/agenda.org")))
-(key-chord-define-global "bb" 'ido-switch-buffer)
+(key-chord-define-global "bb" #'helm-mini)
 (key-chord-define-global "ff" 'ido-find-file)
 (key-chord-define-global "jj" 'avy-goto-word-or-subword-1)
 (key-chord-define-global "yy"
@@ -208,18 +208,17 @@
 ;;(require 'autopair)
 ;;(autopair-global-mode)
 
-(autoload 'quack "quack" "Enhanced support for editing scheme files" t)
+;;(autoload 'quack "quack" "Enhanced support for editing scheme files" t)
 
-(add-hook 'after-init-hook 'global-company-mode)
-
-;; (require 'helm-config)
-;; (helm-mode 1)
-;; (setq helm-buffers-fuzzy-matching t)
-;; (global-set-key (kbd "C-x b")   #'helm-mini)
+(require 'helm-config)
+(helm-mode 1)
+(setq helm-buffers-fuzzy-matching t)
+(global-set-key (kbd "C-x b")   #'helm-mini)
 ;; (global-set-key (kbd "C-x C-b") #'helm-buffers-list)
-;; (global-set-key (kbd "C-x C-m") #'helm-M-x)
+(global-set-key (kbd "C-x C-m") #'helm-M-x)
 ;; (global-set-key (kbd "C-x C-f") #'helm-find-files)
 ;; (global-set-key (kbd "C-x C-r") #'helm-recentf)
+(global-set-key (kbd "M-y") #'helm-show-kill-ring)
 
 ;;; =====================================
 
