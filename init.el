@@ -43,7 +43,7 @@
 
 ;; Use company instead of auto-complete
 (require 'company)
-(global-company-mode)
+(add-hook 'after-init-hook 'global-company-mode)
 
 ;; Smart parenthesis
 (require 'smartparens-config)
