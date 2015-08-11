@@ -62,8 +62,8 @@
 (show-paren-mode t)
 
 ;; powerline
-;; (require 'powerline)
-;; (powerline-default-theme)
+(require 'powerline)
+(powerline-default-theme)
 ;; (powerline-revert)
 
 ;; require final newlines in files when they are saved
