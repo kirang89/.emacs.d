@@ -5,6 +5,7 @@
 (setq py-electric-colon-active t)
 
 ;; Elpy setup
+(package-initialize)
 (elpy-enable)
 (elpy-use-ipython)
 (setq elpy-rpc-backend "jedi")
