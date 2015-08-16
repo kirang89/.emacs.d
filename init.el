@@ -30,6 +30,7 @@
 (require 'init-shell)
 (require 'efuns)
 (require 'init-magit)
+(require 'init-modeline)
 ;;(require 'init-mu4e)
 ;;(require 'init-news)
 
@@ -60,11 +61,6 @@
 ; highlight parentheses when the cursor is next to them
 (require 'paren)
 (show-paren-mode t)
-
-;; powerline
-(require 'powerline)
-(powerline-default-theme)
-;; (powerline-revert)
 
 ;; require final newlines in files when they are saved
 (setq require-final-newline t)
