@@ -218,6 +218,10 @@
 ;; (global-set-key (kbd "C-x C-f") #'helm-find-files)
 ;; (global-set-key (kbd "C-x C-r") #'helm-recentf)
 
+;; Join current line to previous and fix whitespace at join
+(global-set-key (kbd "M-j")
+                (lambda () (interactive) (join-line -1)))
+
 ;;; =================================================================
 
 (custom-set-variables
