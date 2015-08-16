@@ -76,5 +76,9 @@
 (autoload 'nose "nose" "Nose mode" t)
 (defvar nose-use-verbose nil)
 
+;; (require 'helm)
+;; (add-hook 'python-mode-hook
+;;           (lambda () (local-set-key (kbd "C-c f") #'helm-semantic-or-imenu)))
+
 (provide 'init-python)
 ;;; init-python.el ends here
