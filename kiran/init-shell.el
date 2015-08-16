@@ -43,5 +43,11 @@ file to edit."
          (file (car (s-split "\n" files))))
     (find-file file)))
 
+(defun eshell/clear ()
+    "clear the eshell buffer."
+    (interactive)
+    (let ((inhibit-read-only t))
+      (erase-buffer)))
+
 (provide 'init-shell)
 ;;; init-shell.el ends here
