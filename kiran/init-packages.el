@@ -10,13 +10,75 @@
   (package-refresh-contents))
 
 (defvar required-packages
-  '(ace-jump-mode ample-theme autopair bash-completion
-		  cyberpunk-theme dictionary connection emmet-mode
-		  expand-region flycheck fullscreen-mode highlight-current-line
-		  ipython jedi auto-complete epc ctable concurrent leuven-theme link
-		  magit git-rebase-mode git-commit-mode markdown-mode multiple-cursors
-		  org pkg-info epl popup powerline python-environment deferred
-		  python-mode tangotango-theme ujelly-theme yasnippet)
+  '(ace-jump-mode
+    ace-window
+    ag
+    autopair
+    avy
+    bash-completion
+    company
+    company-jedi
+    company-quickhelp
+    company-restclient
+    company-web
+    concurrent
+    connection
+    ctable
+    deferred
+    dictionary
+    diminish
+    dired-details
+    discover-my-major
+    elfeed
+    emmet-mode
+    epc
+    epl
+    expand-region
+    find-file-in-project
+    flx
+    flx-ido
+    flycheck
+    fullscreen-mode
+    gh
+    gist
+    git-commit-mode
+    git-rebase-mode
+    helm
+    highlight-current-line
+    ido-vertical-mode
+    jedi-core
+    json-reformat
+    json-snatcher
+    key-chord
+    leuven-theme
+    link
+    magit
+    magit-popup
+    markdown-mode
+    multiple-cursors
+    org
+    org-bullets
+    pkg-info
+    popup
+    popup
+    pos-tip
+    powerline
+    pydoc
+    pyvenv
+    racket-mode
+    restclient
+    smartparens
+    subatomic-theme
+    sx
+    ujelly-theme
+    web-beautify
+    web-completion-data
+    web-mode
+    websocket
+    window-numbering
+    writegood-mode
+    yasnippet
+    zenburn-theme)
   "Packages to be installed upon launch")
 
 (dolist (package required-packages)
