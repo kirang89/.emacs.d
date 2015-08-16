@@ -10,20 +10,22 @@
 
 ;;;;;;;;;;;;;; Font Options ;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ;;(set-frame-font "Office Code Pro 14")  ;;
-;; ;;(set-frame-font "Inconsolata 13")      ;;
-;; ;;(set-frame-font "M+ 1m 13")            ;;
-;; ;;(set-frame-font "M+ 2m 15")            ;;
-;; ;;(set-frame-font "Droid Sans Mono 13")  ;;
-;; ;;(set-frame-font "DejaVu Sans Mono 13") ;;
-;; ;;(set-frame-font "Fira Code 15")        ;;
-;; ;;(set-frame-font "Cutive Mono 17")      ;;
-;; ;;(set-frame-font "Input Mono 14")       ;;
+;;(set-frame-font "Office Code Pro 14")     ;;
+;;(set-frame-font "Inconsolata 17")         ;;
+;;(set-frame-font "M+ 1m 13")               ;;
+;;(set-frame-font "M+ 2m 15")               ;;
+;;(set-frame-font "Droid Sans Mono 13")     ;;
+;;(set-frame-font "DejaVu Sans Mono 13")    ;;
+;;(set-frame-font "Fira Code 15")           ;;
+;;(set-frame-font "Cutive Mono 17")         ;;
+;;(set-frame-font "Input Mono 14")          ;;
+;;(set-frame-font "Cousine 12")             ;;
+;;(set-frame-font "Roboto Mono 13")         ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (set-frame-font "Source Code Pro 15")
 
-;; Uncomment this to disable font antialiasing
+;; Disable font antialiasing
 ;;(setq mac-allow-anti-aliasing nil)
 
 ; don't show the menu bar
