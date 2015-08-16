@@ -51,6 +51,8 @@
    <style type='text/css'>
       body {
          font-family: 'Source Sans Pro', sans-serif;
+         padding-left: '60px';
+         padding-right: '60px';
       }
       pre, code {
          font-family: 'Source Code Pro', monospace;
@@ -64,6 +66,12 @@
  '((python . t)
    (scheme . t)
    (sh . t)))
+
+;; Use unicode chars instead of regular bullets
+(require 'org-bullets)
+(add-hook 'org-mode-hook
+	  (lambda () (org-bullets-mode 1)))
+
 
 (provide 'init-org)
 ;;; init-org ends here

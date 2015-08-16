@@ -58,6 +58,16 @@
 (require 'ido-vertical-mode)
 (ido-vertical-mode 1)
 
+;; ido with fuzzy search
+(require 'flx-ido)
+(flx-ido-mode 1)
+(setq ido-enable-flex-matching t)
+(add-to-list 'ido-ignore-files "\\.pyc")
+(add-to-list 'ido-ignore-files ".DS_STORE")
+(setq ido-use-faces nil)
+;(setq flx-ido-use-faces nil)
+
+
 ; highlight parentheses when the cursor is next to them
 (require 'paren)
 (show-paren-mode t)
@@ -145,23 +155,14 @@
 (require 'dired-details)
 (dired-details-install)
 
-;;; =====================================
-;;; Experimental Stuff
-;;; =====================================
+;; nifty documentation at point for lisp files
+(add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
+(add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
 
-;;(require 'cask)
-;;(cask-initialize)
-
-;; Keeps ~Cask~ file in sync with the packages
-;; that you install/uninstall via ~M-x list-packages~
-;; https://github.com/rdallasgray/pallet
-;;(require 'pallet)
-
-(require 'flx-ido)
-(flx-ido-mode 1)
-(setq ido-enable-flex-matching t)
-(setq ido-use-faces nil)
-;(setq flx-ido-use-faces nil)
+;; Requires aspell to be installed
+;; Install on OSX by running `brew install aspell --with-lang-en`
+(autoload 'flyspell-mode "flyspell" "Spell checker" t)
+(setq-default ispell-program-name "aspell")
 
 ;; multiple cursors!
 ;; To quit mc mode hit C-g or RET
@@ -186,25 +187,24 @@
 			   (interactive)
 			   (find-file "~/.emacs.d/init.el")))
 
+;; Clean view of major mode keybindings
 (global-set-key (kbd "C-h C-m") 'discover-my-major)
 
-(require 'window-numbering)
-(window-numbering-mode t)
+;;; =====================================
+;;; Experimental Stuff
+;;; =====================================
 
-(require 'org-bullets)
-(add-hook 'org-mode-hook
-	  (lambda () (org-bullets-mode 1)))
+;;(require 'cask)
+;;(cask-initialize)
 
-;; Requires aspell to be installed
-;; Install on OSX by running `brew install aspell --with-lang-en`
-(autoload 'flyspell-mode "flyspell" "Spell checker" t)
-(setq-default ispell-program-name "aspell")
+;; Keeps ~Cask~ file in sync with the packages
+;; that you install/uninstall via ~M-x list-packages~
+;; https://github.com/rdallasgray/pallet
+;;(require 'pallet)
 
 ;; autopair
 ;;(require 'autopair)
 ;;(autopair-global-mode)
-
-;;(autoload 'quack "quack" "Enhanced support for editing scheme files" t)
 
 (require 'helm-config)
 (helm-mode 1)

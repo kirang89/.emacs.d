@@ -73,5 +73,9 @@
 (line-number-mode)
 (size-indication-mode -1)
 
+;; Number each buffer for easy switching with M-<no>
+(require 'window-numbering)
+(window-numbering-mode t)
+
 (provide 'init-looks)
 ;;; init-looks.el ends here
