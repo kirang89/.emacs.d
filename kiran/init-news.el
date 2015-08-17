@@ -31,9 +31,10 @@
 	    ;;"http://www.guardian.co.uk/science/series/science/podcast.xml"
 	    "http://feeds.feedburner.com/PyMOTW"
 	    "http://techspot.zzzeek.org/feed/index.xml"
-	    "http://alexgaynor.net/feeds/latest/"
-	    "http://eli.thegreenplace.net/feed/"
+	    "https://alexgaynor.net/feeds/latest/"
+        "http://eli.thegreenplace.net/feeds/all.atom.xml"
 	    "http://lucumr.pocoo.org/feed.atom"
+        "http://matt.might.net/articles/feed.rss"
 	    ;;"http://www.joelonsoftware.com/rss.xml"
 	    ;;"http://erratasec.blogspot.com/feeds/posts/default"
 	    ;;"http://feeds.feedburner.com/nosql"
@@ -44,7 +45,10 @@
 	    ;;"http://apod.nasa.gov/apod.rss"
         "https://feeds.feedburner.com/zenhabits"
         "http://planet.emacsen.org/atom.xml"
+        ("https://xkcd.com/atom.xml" xkcd)
         ))
+
+(setf url-queue-timeout 30)
 
 ;; Entries older than 2 weeks are marked as read
 (add-hook 'elfeed-new-entry-hook
