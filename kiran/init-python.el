@@ -10,14 +10,6 @@
 (elpy-use-ipython)
 (setq elpy-rpc-backend "jedi")
 
-(company-quickhelp-mode 1)
-
-;; Decrease delay before autocompletion popup shows up
-(setq company-idle-delay .3)
-
-;; Remove blinking
-;;(setq company-echo-delay 0)
-
 ;;(elpy-clean-modeline)
 
 (setq-default indent-tabs-mode nil)

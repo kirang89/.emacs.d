@@ -23,6 +23,7 @@
 (require 'init-looks)
 (require 'init-kbd)
 (require 'init-packages)
+(require 'init-company)
 (require 'init-python)
 (require 'init-markdown)
 (require 'init-org)
@@ -41,10 +42,6 @@
 ;;(ac-config-default)
 ;;(setq ac-ignore-case nil)
 ;;(add-to-list 'ac-modes 'python-mode)
-
-;; Use company instead of auto-complete
-(require 'company)
-(add-hook 'after-init-hook 'global-company-mode)
 
 ;; Smart parenthesis
 (require 'smartparens-config)
