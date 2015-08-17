@@ -33,7 +33,7 @@
 (require 'init-magit)
 (require 'init-modeline)
 ;;(require 'init-mu4e)
-;;(require 'init-news)
+(require 'init-news)
 
 ;; autocomplete
 (require 'auto-complete)
