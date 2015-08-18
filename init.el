@@ -219,6 +219,13 @@
 (global-set-key (kbd "M-j")
                 (lambda () (interactive) (join-line -1)))
 
+;; Always newline-and-indent
+(define-key global-map (kbd "RET") 'newline-and-indent)
+
+;; Default formatting style for C based modes
+(setq c-default-style "java")
+(setq-default c-basic-offset 2)
+
 ;;; =================================================================
 
 (custom-set-variables
