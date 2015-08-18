@@ -37,10 +37,6 @@
 
 (global-set-key (kbd "C-x f") 'find-file-in-repository)
 
-(global-set-key (kbd "C-c C-a") 'org-agenda)
-
-(global-set-key (kbd "C-c C-g") 'magit-status)
-
 (global-set-key (kbd "C-c }") 'mc/mark-next-like-this)
 
 (provide 'init-kbd)

@@ -73,5 +73,7 @@
 	  (lambda () (org-bullets-mode 1)))
 
 
+(global-set-key (kbd "C-c C-a") 'org-agenda)
+
 (provide 'init-org)
 ;;; init-org ends here

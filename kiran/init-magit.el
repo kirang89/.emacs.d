@@ -9,5 +9,7 @@
 
 (add-hook 'magit-status-mode-hook 'disable-magit-highlight-in-buffer)
 
+(global-set-key (kbd "C-c C-g") 'magit-status)
+
 (provide 'init-magit)
 ;;; init-magit ends here
