@@ -14,3 +14,5 @@
 
 ;; Remove blinking
 ;;(setq company-echo-delay 0)
+
+(provide 'init-company)
