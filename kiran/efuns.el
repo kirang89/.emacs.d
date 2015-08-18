@@ -114,5 +114,41 @@ Requires 'pcsv' package to be installed."
       (setq-default line-spacing 0.5) ; add 0.5 height between lines
     (setq-default line-spacing nil)))   ; no extra heigh between lines
 
+;; Source: http://www.emacswiki.org/emacs/DuplicateStartOfLineOrRegion
+(defun kg/duplicate-start-of-line-or-region ()
+  "Duplicate start of line or region"
+  (interactive)
+  (if mark-active
+      (kg/duplicate-region)
+    (kg/duplicate-start-of-line)))
+
+(defun kg/duplicate-start-of-line ()
+  (let ((text (buffer-substring (point)
+                                (beginning-of-thing 'line))))
+    (forward-line)
+    (push-mark)
+    (insert text)
+    (open-line 1)))
+
+(defun kg/duplicate-region ()
+  (let* ((end (region-end))
+         (text (buffer-substring (region-beginning)
+                                 end)))
+    (goto-char end)
+    (insert text)
+    (push-mark end)
+    (setq deactivate-mark nil)
+    (exchange-point-and-mark)))
+
+(global-set-key [(meta shift down)] 'kg/duplicate-start-of-line-or-region)
+
+;; (require 'helm)
+;; (defun kg/helm-find-files-navigate-forward (orig-fun &rest args)
+;;   (if (file-directory-p (helm-get-selection))
+;;       (apply orig-fun args)
+;;     (helm-maybe-exit-minibuffer)))
+;; (advice-add 'helm-execute-persistent-action :around #'kg/helm-find-files-navigate-forward)
+;; (define-key helm-find-files-map (kbd "<return>") 'helm-execute-persistent-action)
+
 (provide 'efuns)
 ;;; efuns.el ends here
