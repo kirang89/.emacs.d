@@ -34,6 +34,7 @@
 (require 'init-modeline)
 ;;(require 'init-mu4e)
 (require 'init-news)
+(require 'init-web)
 
 ;; autocomplete
 (require 'auto-complete)
