@@ -12,6 +12,15 @@
 
 (require 'diminish)
 
-;;(eval-after-load "helm" '(diminish 'helm-mode))
-;;(eval-after-load "fundamental" '(diminish 'fundamental-mode))
+;; (eval-after-load "helm" '(diminish 'helm-mode))
+;; (eval-after-load "fundamental" '(diminish 'fundamental-mode))
 (eval-after-load "abbrev" '(diminish 'abbrev-mode))
+(eval-after-load "yasnippet" '(diminish 'yas-minor-mode))
+(eval-after-load "eldoc" '(diminish 'eldoc-mode))
+(eval-after-load "company" '(diminish 'company-mode))
+;; (eval-after-load "projectile" '(diminish 'projectile-mode))
+
+(defadvice emacs-lisp-mode (after elisp-rename-modeline activate)
+  (setq mode-name "ELisp"))
+
+(provide 'init-modeline)
