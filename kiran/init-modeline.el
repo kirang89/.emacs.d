@@ -10,8 +10,12 @@
 (powerline-default-theme)
 ;; (powerline-revert)
 
-(require 'diminish)
+;; Remove modeline border
+(set-face-attribute 'mode-line nil
+                    :box nil)
 
+
+(require 'diminish)
 ;; (eval-after-load "helm" '(diminish 'helm-mode))
 ;; (eval-after-load "fundamental" '(diminish 'fundamental-mode))
 (eval-after-load "abbrev" '(diminish 'abbrev-mode))
