@@ -3,6 +3,12 @@
 (setq inhibit-splash-screen t)
 (setq inhibit-startup-message t)
 
+;; empty scratch
+
+(setq initial-scratch-message ";; The Hacker Ethic held that every program should be as good as you could make
+;; it(or better), infinitely flexible, admired for it’s brilliance of concept
+;; and execution and designed to extend it’s user’s powers")
+
 ;; Load theme
 ;;(load-theme 'zenburn t)
 
