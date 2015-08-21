@@ -8,17 +8,19 @@
 (global-set-key "\C-w" 'backward-kill-word)
 (global-set-key "\C-x\C-k" 'kill-region)
 ;;(global-set-key "\C-c\C-k" 'kill-region)
+(global-set-key (kbd "C-c l") 'kill-whole-line)
+
+(require 'efuns)
+(global-set-key (kbd "C-c C-k") 'kg/quick-copy-line)
 
 ;; Only ask for confirmation if buffer has been modified
 (global-set-key [(control x) (k)] 'kill-this-buffer)
 
 ;; navigation
-;;(global-set-key (kbd "C-c ;") 'next-buffer)
-;(global-set-key (kbd "C-c :") 'previous-buffer)
+;; (global-set-key (kbd "C-c ;") 'next-buffer)
+;; (global-set-key (kbd "C-c :") 'previous-buffer)
 
-;;(global-set-key (kbd "C-c l") 'kill-whole-line)
-
-;(set-face-background 'hl-line "#9998aa")
+;; (set-face-background 'hl-line "#9998aa")
 ;; (require 'highlight-current-line)
 ;; (highlight-current-line-on t)
 ;; (set-face-background 'highlight-current-line-face "#3D3D3D")
@@ -28,6 +30,8 @@
 (global-set-key (kbd "C-=") 'enlarge-window)
 (global-set-key (kbd "C-9") 'shrink-window-horizontally)
 (global-set-key (kbd "C-0") 'enlarge-window-horizontally)
+(global-set-key (kbd "<f5>") 'fullscreen-mode-fullscreen-toggle)
+
 
 ;; keybindings for dictionary
 (add-hook 'text-mode-hook
