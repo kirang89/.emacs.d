@@ -150,5 +150,19 @@ Requires 'pcsv' package to be installed."
 ;; (advice-add 'helm-execute-persistent-action :around #'kg/helm-find-files-navigate-forward)
 ;; (define-key helm-find-files-map (kbd "<return>") 'helm-execute-persistent-action)
 
+(defun kg/quick-copy-line ()
+      "Copy the whole line that point is on and move to the beginning of the next line.
+    Consecutive calls to this command append each line to the
+    kill-ring."
+      (interactive)
+      (let ((beg (line-beginning-position 1))
+            (end (line-beginning-position 2)))
+        (if (eq last-command 'quick-copy-line)
+            (kill-append (buffer-substring beg end) (< end beg))
+          (kill-new (buffer-substring beg end))))
+      (beginning-of-line 2))
+
+
+
 (provide 'efuns)
 ;;; efuns.el ends here
