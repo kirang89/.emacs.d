@@ -75,5 +75,22 @@
 ;; (add-hook 'python-mode-hook
 ;;           (lambda () (local-set-key (kbd "C-c f") #'helm-semantic-or-imenu)))
 
+(defcustom python-autopep8-path (executable-find "autopep8")
+  "autopep8 executable path."
+  :group 'python
+  :type 'string)
+
+(defun python-autopep8 ()
+  "Automatically formats Python code to conform to the PEP 8 style guide.
+$ autopep8 --in-place --aggressive --aggressive <filename>"
+  (interactive)
+  (when (eq major-mode 'python-mode)
+    (shell-command
+     (format "%s --in-place --aggressive %s" python-autopep8-path
+             (shell-quote-argument (buffer-file-name))))
+    (revert-buffer t t t)))
+
+;; (bind-key "C-c C-a" 'python-auto-format)
+
 (provide 'init-python)
 ;;; init-python.el ends here
