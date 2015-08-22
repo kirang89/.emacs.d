@@ -23,6 +23,9 @@
 (require 'init-looks)
 (require 'init-kbd)
 (require 'init-packages)
+(require 'init-ido)
+(require 'init-helm)
+(require 'init-keychord)
 (require 'init-company)
 (require 'init-python)
 (require 'init-markdown)
@@ -47,24 +50,6 @@
 ;; Smart parenthesis
 (require 'smartparens-config)
 (smartparens-global-mode)
-
-;; Enable ido (Interactively Do Things) mode
-(require 'ido)
-(ido-mode t)
-
-;; ido vertical mode
-(require 'ido-vertical-mode)
-(ido-vertical-mode 1)
-
-;; ido with fuzzy search
-(require 'flx-ido)
-(flx-ido-mode 1)
-(setq ido-enable-flex-matching t)
-(add-to-list 'ido-ignore-files "\\.pyc")
-(add-to-list 'ido-ignore-files ".DS_STORE")
-(setq ido-use-faces nil)
-;(setq flx-ido-use-faces nil)
-
 
 ; highlight parentheses when the cursor is next to them
 (require 'paren)
@@ -171,20 +156,6 @@
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
-;; Bind actions to repeated key presses!
-(key-chord-mode t)
-(key-chord-define-global "aa"
-			 (lambda ()
-			   (interactive)
-			   (find-file "~/Box Sync/org-notes/agenda.org")))
-(key-chord-define-global "bb" #'helm-mini)
-(key-chord-define-global "ff" 'ido-find-file)
-(key-chord-define-global "jj" 'avy-goto-word-or-subword-1)
-(key-chord-define-global "yy"
-			 (lambda ()
-			   (interactive)
-			   (find-file "~/.emacs.d/init.el")))
-
 ;; Clean view of major mode keybindings
 (global-set-key (kbd "C-h C-m") 'discover-my-major)
 
@@ -203,18 +174,6 @@
 ;; autopair
 ;;(require 'autopair)
 ;;(autopair-global-mode)
-
-(require 'helm-config)
-(helm-mode 1)
-(setq helm-buffers-fuzzy-matching t)
-
-;; (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
-(global-set-key (kbd "C-x b") #'helm-mini)
-(global-set-key (kbd "M-x") #'helm-M-x)
-(global-set-key (kbd "M-y") #'helm-show-kill-ring)
-;; (global-set-key (kbd "C-x C-b") #'helm-buffers-list)
-;; (global-set-key (kbd "C-x C-f") #'helm-find-files)
-;; (global-set-key (kbd "C-x C-r") #'helm-recentf)
 
 ;; Join current line to previous and fix whitespace at join
 (global-set-key (kbd "M-j")
