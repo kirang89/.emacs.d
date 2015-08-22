@@ -28,7 +28,12 @@
 (add-hook 'python-mode-hook 'kg/python-mode-hook)
 (add-hook 'python-mode-hook 'turn-on-eldoc-mode)
 ;;(add-hook 'python-mode-hook 'projectile-mode)
-
+(add-hook 'python-mode-hook (lambda ()
+                              (require 'sphinx-doc)
+                              (sphinx-doc-mode t)))
+(add-hook 'python-mode-hook (lambda ()
+                              (require 'indent-guide)
+                              (indent-guide-mode t)))
 ;; jedi
 ;;(require 'jedi)
 ;;(add-hook 'elpy-mode-hook 'jedi:setup)
