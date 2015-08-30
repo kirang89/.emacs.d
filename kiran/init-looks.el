@@ -9,6 +9,8 @@
 ;; it(or better), infinitely flexible, admired for it’s brilliance of concept
 ;; and execution and designed to extend it’s user’s powers")
 
+(setq frame-title-format '("Emacs: %b (%m)"))
+
 ;; Load theme
 ;;(load-theme 'zenburn t)
 
