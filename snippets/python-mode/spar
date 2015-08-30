@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: sparam
+# key: spar
+# binding: direct-keybinding
+# --
+:param $1 $2:$0

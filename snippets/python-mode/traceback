@@ -1,0 +1,7 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: traceback
+# key: tbk
+# binding: direct-keybinding
+# --
+import traceback
+traceback.print_exc()
