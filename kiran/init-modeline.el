@@ -10,10 +10,16 @@
 (powerline-default-theme)
 ;; (powerline-revert)
 
+(line-number-mode t)
+(column-number-mode -1)
+
 ;; Remove modeline border
 (set-face-attribute 'mode-line nil
                     :box nil)
-
+(set-face-attribute 'mode-line-inactive nil
+                    :box nil)
+(set-face-attribute 'mode-line-highlight nil
+                    :box nil)
 
 (require 'diminish)
 ;; (eval-after-load "helm" '(diminish 'helm-mode))
@@ -24,6 +30,8 @@
 ;; (eval-after-load "projectile" '(diminish 'projectile-mode))
 (eval-after-load "flyspell" '(diminish 'flyspell-mode))
 (eval-after-load "sphinx-doc" '(diminish 'sphinx-doc-mode))
+(eval-after-load "elpy" '(diminish 'elpy-mode))
+;;(eval-after-load "org-indent" '(diminish 'org-indent-mode)
 ;;(eval-after-load "paredit" '(diminish 'paredit-mode))
 
 (defadvice emacs-lisp-mode (after elisp-rename-modeline activate)
