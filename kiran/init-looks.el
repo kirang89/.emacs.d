@@ -85,6 +85,8 @@
 (size-indication-mode -1)
 
 ;; Number each buffer for easy switching with M-<no>
+(add-to-list 'load-path
+             "/Users/kiran/.emacs.d/elpa/window-numbering-20150228.1247")
 (require 'window-numbering)
 (window-numbering-mode t)
 
