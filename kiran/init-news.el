@@ -7,13 +7,14 @@
 (setq elfeed-feeds
       '("http://feeds.feedburner.com/HighScalability"
 	    "http://www.allthingsdistributed.com/atom.xml"
-	   ;; "http://blog.cryptographyengineering.com/feeds/posts/default"
+	    ;; "http://blog.cryptographyengineering.com/feeds/posts/default"
 	    "http://prog21.dadgum.com/atom.xml"
 	    "http://feeds.feedburner.com/codinghorror/"
 	    "http://mechanical-sympathy.blogspot.com/feeds/posts/default"
 	    "http://scale-out-blog.blogspot.com/feeds/posts/default"
-	   ;; "http://queue.acm.org/rss/feeds/concurrency.xml"
-	    "http://highlyscalable.wordpress.com/feed/"
+	    ;; "http://queue.acm.org/rss/feeds/concurrency.xml"
+	    ;; "http://highlyscalable.wordpress.com/feed/"
+        "https://feeds.feedburner.com/wordpress/dfRp"
 	    "http://scalingsystems.com/feed/"
 	    ;;"http://muratbuffalo.blogspot.com/feeds/posts/default"
 	    ;;"http://feeds.feedburner.com/pbailis"
@@ -23,17 +24,17 @@
 	    "http://www.codesimplicity.com/feed/"
 	    ;;"http://blog.bittorrent.com/category/engineering/feed/"
 	    "http://serversforhackers.com/feed.xml"
-	    "http://www.norvig.com/rss-feed.xml"
+	    ("http://www.norvig.com/rss-feed.xml" python)
 	    "http://lambda-the-ultimate.org/rss.xml"
 	    ;;"http://www.johndcook.com/blog/feed/"
 	    ;;"http://feeds.feedburner.com/tom-preston-werner"
 	    ;;"http://feeds.feedburner.com/ScottHanselman"
 	    ;;"http://www.guardian.co.uk/science/series/science/podcast.xml"
 	    "http://feeds.feedburner.com/PyMOTW"
-	    "http://techspot.zzzeek.org/feed/index.xml"
-	    "https://alexgaynor.net/feeds/latest/"
-        "http://eli.thegreenplace.net/feeds/all.atom.xml"
-	    "http://lucumr.pocoo.org/feed.atom"
+	    ("http://techspot.zzzeek.org/feed/index.xml" python)
+	    ;;"https://alexgaynor.net/feeds/latest/"
+        ("http://eli.thegreenplace.net/feeds/all.atom.xml" python)
+        ("https://feeds.feedburner.com/ArminRonachersThoughtsAndWritings" python)
         "http://matt.might.net/articles/feed.rss"
 	    ;;"http://www.joelonsoftware.com/rss.xml"
 	    ;;"http://erratasec.blogspot.com/feeds/posts/default"
@@ -44,16 +45,22 @@
 	    ;;"http://feeds.feedburner.com/ViralVideoChart",
 	    ;;"http://apod.nasa.gov/apod.rss"
         "https://feeds.feedburner.com/zenhabits"
-        "http://planet.emacsen.org/atom.xml"
+        ("http://planet.emacsen.org/atom.xml" emacs)
         ("https://xkcd.com/atom.xml" xkcd)
+        ("http://kracekumar.com/rss" python)
+        ("http://emacsrocks.com/atom.xml" emacs)
+        ("http://whattheemacsd.com/atom.xml" emacs)
+        ("http://planetpython.org/rss20.xml" python)
+        ("http://emacsninja.com/feed.atom" emacs)
+        ("https://feeds.feedburner.com/GustavoDuarte")
         ))
 
-(setf url-queue-timeout 30)
+(setf url-queue-timeout 45)
 
 ;; Entries older than 2 weeks are marked as read
-(add-hook 'elfeed-new-entry-hook
-          (elfeed-make-tagger :before "2 weeks ago"
-                              :remove 'unread))
+;; (add-hook 'elfeed-new-entry-hook
+;;           (elfeed-make-tagger :before "2 weeks ago"
+;;                               :remove 'unread))
 
 (provide 'init-news)
 ;;; init-news.el ends here
