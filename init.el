@@ -13,6 +13,8 @@
 ;; Changes all yes/no questions to y/n type
 (fset 'yes-or-no-p 'y-or-n-p)
 
+(setq confirm-kill-emacs #'y-or-n-p)
+
 ;; do not make backup files
 (setq make-backup-files nil)
 ;; Don't litter fs with backup files
