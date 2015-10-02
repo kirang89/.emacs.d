@@ -142,14 +142,6 @@ Requires 'pcsv' package to be installed."
 
 (global-set-key [(meta shift down)] 'kg/duplicate-start-of-line-or-region)
 
-;; (require 'helm)
-;; (defun kg/helm-find-files-navigate-forward (orig-fun &rest args)
-;;   (if (file-directory-p (helm-get-selection))
-;;       (apply orig-fun args)
-;;     (helm-maybe-exit-minibuffer)))
-;; (advice-add 'helm-execute-persistent-action :around #'kg/helm-find-files-navigate-forward)
-;; (define-key helm-find-files-map (kbd "<return>") 'helm-execute-persistent-action)
-
 (defun kg/quick-copy-line ()
       "Copy the whole line that point is on and move to the beginning of the next line.
     Consecutive calls to this command append each line to the
