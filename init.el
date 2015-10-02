@@ -55,10 +55,6 @@
 ;; autocomplete
 (require 'auto-complete)
 (global-auto-complete-mode -1)
-;;(require 'auto-complete-config)
-;;(ac-config-default)
-;;(setq ac-ignore-case nil)
-;;(add-to-list 'ac-modes 'python-mode)
 
 ;; Smart parenthesis
 (require 'smartparens-config)
@@ -72,7 +68,7 @@
 (setq require-final-newline t)
 
 ;; use shift to move around windows
-(windmove-default-keybindings 'shift)
+;; (windmove-default-keybindings 'shift)
 
 ;; turn beep off
 (setq visible-bell nil)
@@ -99,7 +95,7 @@
 ;; use spaces instead of tabs
 (setq indent-tabs-mode nil)
 
-;; update the buffuer if a file has change on disk
+;; update the buffer if a file has change on disk
 (global-auto-revert-mode)
 
 ;; delete trailing whitespace on file save
@@ -144,14 +140,14 @@
 ;(require 'xscheme)
 ;(setenv "MITSCHEME_LIBRARY_PATH" "/usr/local/lib/mit-scheme-x86-64")
 
-(add-to-list 'auto-mode-alist '("\\.pp\\'" . pascal-mode))
+;; (add-to-list 'auto-mode-alist '("\\.pp\\'" . pascal-mode))
 (add-to-list 'auto-mode-alist '("\\.json\\'" . json-mode))
 
 ;;; Make files and folders in dired-mode neater
 (require 'dired-details)
 (dired-details-install)
 
-;; nifty documentation at point for lisp files
+;; Documentation at point for lisp files
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
 (add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
 
@@ -215,20 +211,3 @@
 (provide `.emacs)
 
 ;;; init.el ends here
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(mode-line ((t (:background "#232533" :foreground "#ffffff" :box (:line-width 1 :style released-button) :weight normal))))
- '(org-block ((t (:inherit shadow))))
- '(org-block-background ((t (:background "#2e3043"))))
- '(org-code ((t (:inherit shadow))))
- '(org-done ((t (:foreground "#a9dc69" :slant italic :weight bold))))
- '(org-level-1 ((t (:inherit outline-1 :height 1.4))))
- '(org-level-2 ((t (:inherit outline-2 :height 1.2))))
- '(org-level-3 ((t (:inherit outline-3 :height 1.0))))
- '(org-link ((t (:inherit link :weight normal))))
- '(org-list-dt ((t (:weight normal))))
- '(org-tag ((t (:weight light))))
- '(org-todo ((t (:foreground "#feccd4" :weight bold)))))
