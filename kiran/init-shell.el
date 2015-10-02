@@ -28,6 +28,11 @@
       eshell-cmpl-dir-ignore "\\`\\(\\.\\.?\\|CVS\\|\\.svn\\|\\.git\\)/\\'"
       eshell-hist-ignoredups t)
 
+;; scroll to the bottom
+(setq eshell-scroll-to-bottom-on-output t)
+(setq eshell-scroll-show-maximum-output t)
+;; (add-to-list 'eshell-output-filter-functions
+;;              'eshell-postoutput-scroll-to-bottom)
 
 ;; git status
 (defun eshell/gst (&rest args)
