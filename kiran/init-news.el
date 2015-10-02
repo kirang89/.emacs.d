@@ -46,13 +46,15 @@
 	    ;;"http://apod.nasa.gov/apod.rss"
         "https://feeds.feedburner.com/zenhabits"
         ("http://planet.emacsen.org/atom.xml" emacs)
-        ("https://xkcd.com/atom.xml" xkcd)
+        ("https://xkcd.com/atom.xml" comic)
         ("http://kracekumar.com/rss" python)
         ("http://emacsrocks.com/atom.xml" emacs)
         ("http://whattheemacsd.com/atom.xml" emacs)
         ("http://planetpython.org/rss20.xml" python)
         ("http://emacsninja.com/feed.atom" emacs)
         ("https://feeds.feedburner.com/GustavoDuarte")
+        ("https://feeds.feedburner.com/oatmealfeed" comic)
+        ("http://www.commitstrip.com/en/feed/" comic)
         ))
 
 (setf url-queue-timeout 45)
