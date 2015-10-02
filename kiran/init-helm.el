@@ -5,6 +5,11 @@
 (helm-mode 1)
 (setq helm-buffers-fuzzy-matching t)
 
+(helm-autoresize-mode -1)
+
+;; open Helm window in the current window where point is in
+(setq helm-split-window-in-side-p t)
+
 ;; (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
 (global-set-key (kbd "C-x b") #'helm-mini)
 (global-set-key (kbd "M-x") #'helm-M-x)
