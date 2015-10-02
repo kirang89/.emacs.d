@@ -34,31 +34,10 @@
 (add-hook 'python-mode-hook (lambda ()
                               (require 'indent-guide)
                               (indent-guide-mode t)))
-;; jedi
-;;(require 'jedi)
-;;(add-hook 'elpy-mode-hook 'jedi:setup)
-;;(add-hook 'python-mode-hook 'jedi:setup)
-;;(add-hook 'python-mode-hook 'jedi:ac-setup)
-;;(setq jedi:complete-on-dot t)
-
-;;setting up iPython as interpreter
-;;(require 'ipython)
-;;(autoload 'ipython "ipython" "iPython" t)
-;; (setq python-shell-interpreter "ipython"
-;;       python-shell-interpreter-args "--classic"
-;;       python-shell-prompt-regexp ">>> "
-;;       python-shell-prompt-output-regexp ""
-;;       python-shell-completion-setup-code "from IPython.core.completerlib import module_completion"
-;;       python-shell-completion-module-string-code "';'.join(module_completion('''%s'''))\n"
-;;       python-shell-completion-string-code "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
-
-;;Fix for NameError when launching ipython
-;;(setq py-python-command-args '("--colors=linux"))
 
 (setq py-force-py-shell-name-p t)
 ;; switch to the interpreter after executing code
 (setq py-shell-switch-buffers-on-execute-p t)
-;; (setq py-switch-buffers-on-execute-p t)
 
 ;; don't split windows
 ;;(setq py-split-windows-on-execute-p t)
