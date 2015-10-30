@@ -154,10 +154,8 @@ Requires 'pcsv' package to be installed."
           (kill-new (buffer-substring beg end))))
       (beginning-of-line 2))
 
-
 (defun beginning-of-line-dwim ()
-  "Toggles between moving point to the first non-whitespace character, and
-the start of the line."
+  "Toggle between moving point to the first non-whitespace character, and the start of the line."
   (interactive)
   (let ((start-position (point)))
     ;; Move to the first non-whitespace character.
