@@ -15,6 +15,7 @@
 
 (line-number-mode t)
 (column-number-mode -1)
+(size-indication-mode -1)
 
 ;; Remove modeline border
 (set-face-attribute 'mode-line nil
