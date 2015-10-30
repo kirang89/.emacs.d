@@ -1,10 +1,12 @@
 
 ;; Read mail from emacs
 (require 'mu4e)
+(require 'org-mu4e)
+
 (setq mu4e-maildir "~/.Mail"
-      mu4e-drafts-folder "/[Gmail].Drafts"
-      mu4e-sent-folder   "/[Gmail].Sent Mail"
-      mu4e-attachment-dir "~/Downloads"
+      mu4e-drafts-folder "/me@kirang.in/INBOX.Drafts"
+      mu4e-sent-folder   "/me@kirang.in/INBOX.Sent Items"
+      mu4e-attachment-dir "/me@kirang.in/Attachments"
       mu4e-confirm-quit nil
       mu4e-headers-skip-duplicates t
       mu4e-headers-leave-behavior 'apply
@@ -15,15 +17,24 @@
       mu4e-update-interval 600
 )
 
+;; the headers to show in the headers list -- a pair of a field
+;; and its width, with `nil' meaning 'unlimited'
+;; (better only use that for the last field.
+(setq mu4e-headers-fields
+    '( (:date          .  10)    ;; alternatively, use :human-date
+       (:from          .  20)
+       (:subject       .  nil))) ;; alternatively, use :thread-subject
+
 ;; shortcuts
-(setq mu4e-maildir-shortcuts
-    '( ("/INBOX"               . ?i)
-       ("/[Gmail].Sent Mail"   . ?s)))
+;; (setq mu4e-maildir-shortcuts
+;;     '( ("/INBOX"               . ?i)
+;;        ("/[Gmail].Sent Mail"   . ?s)))
 
 ;; something about ourselves
 (setq
-   user-mail-address "kiran.daredevil@gmail.com"
+   user-mail-address "me@kirang.in"
    user-full-name  "Kiran Gangadharan"
+   mu4e-reply-to-address "me@kirang.in"
    mu4e-compose-signature
     (concat
       "Cheers,\n"
@@ -31,15 +42,25 @@
       "http://kirang.in\n"))
 
 ;; configuration for sending mail
+(require 'smtpmail)
 (setq message-send-mail-function 'smtpmail-send-it
      smtpmail-stream-type 'starttls
-     smtpmail-default-smtp-server "smtp.gmail.com"
-     smtpmail-smtp-server "smtp.gmail.com"
-     smtpmail-smtp-service 587)
+     smtpmail-default-smtp-server "mail.messagingengine.com"
+     smtpmail-smtp-server "mail.messagingengine.com"
+     smtpmail-smtp-service 465)
+
+;; don't keep message buffers around
+(setq message-kill-buffer-on-exit t)
+
+;; show images
+(setq mu4e-show-images t)
 
 ;; use imagemagick, if available
 (when (fboundp 'imagemagick-register-types)
   (imagemagick-register-types))
+
+;; convert org mode to HTML automatically
+(setq org-mu4e-convert-to-html t)
 
 ;; convert html emails properly
 ;; Possible options:
@@ -64,5 +85,15 @@
 (add-to-list 'mu4e-view-actions
   '("ViewInBrowser" . mu4e-action-view-in-browser) t)
 
+;; don't save message to Sent Messages, Gmail/IMAP takes care of this
+(setq mu4e-sent-messages-behavior 'delete)
+
+(defalias 'org-mail 'org-mu4e-compose-org-mode)
+
+;; Resources
+;; http://kirang.in/2014/11/13/emacs-as-email-client-with-offlineimap-and-mu4e-on-osx/
+;; http://www.brool.com/index.php/using-mu4e
+;; http://vxlabs.com/2015/01/28/sending-emails-with-math-and-source-code/
+;; http://www.macs.hw.ac.uk/~rs46/posts/2014-01-13-mu4e-email-client.html
 (provide 'init-mu4e)
 ;;; init-mu4e.el ends here
