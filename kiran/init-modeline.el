@@ -6,8 +6,11 @@
 ;;(set-face-attribute 'mode-line nil :font "Source Code Pro-13")
 
 ;; powerline
-(require 'powerline)
-(powerline-default-theme)
+;; (require 'powerline)
+;; (powerline-center-theme)
+
+;; (setq powerline-default-separator (quote arrow-fade))
+
 ;; (powerline-revert)
 
 (line-number-mode t)

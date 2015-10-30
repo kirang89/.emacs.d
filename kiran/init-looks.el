@@ -60,14 +60,14 @@
 (setq font-lock-maximum-decoration t)
 (global-font-lock-mode 1)
 
-; set cursor color
-(set-cursor-color "#636363")
+;; set cursor color
+;;(set-cursor-color "#636363")
 
 ;; default frame size
-(add-to-list 'default-frame-alist '(left . 80))
-(add-to-list 'default-frame-alist '(top . 0))
-(add-to-list 'default-frame-alist '(height . 50))
-(add-to-list 'default-frame-alist '(width . 90))
+;; (add-to-list 'default-frame-alist '(left . 80))
+;; (add-to-list 'default-frame-alist '(top . 0))
+;; (add-to-list 'default-frame-alist '(height . 50))
+;; (add-to-list 'default-frame-alist '(width . 90))
 
 ;; M-q should fill at 80 chars, not 75
 (setq fill-column 80)
