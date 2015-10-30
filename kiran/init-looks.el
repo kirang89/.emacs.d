@@ -69,8 +69,8 @@
 ;; (add-to-list 'default-frame-alist '(height . 50))
 ;; (add-to-list 'default-frame-alist '(width . 90))
 
-;; M-q should fill at 80 chars, not 75
-(setq fill-column 80)
+;; M-q should fill at 80 chars, not 70
+(setq-default fill-column 80)
 
 ; display line numbers to the right of the window
 ;;(global-linum-mode -1)
