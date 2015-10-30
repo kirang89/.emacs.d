@@ -75,5 +75,7 @@
 
 (global-set-key (kbd "C-c C-a") 'org-agenda)
 
+(setq-default org-download-image-dir "~/Box Sync/org-notes/resources")
+
 (provide 'init-org)
 ;;; init-org ends here
