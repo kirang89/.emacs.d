@@ -143,9 +143,8 @@ Requires 'pcsv' package to be installed."
 (global-set-key [(meta shift down)] 'kg/duplicate-start-of-line-or-region)
 
 (defun kg/quick-copy-line ()
-      "Copy the whole line that point is on and move to the beginning of the next line.
-    Consecutive calls to this command append each line to the
-    kill-ring."
+  "Copy the whole line that point is on and move to the beginning of the next line.
+Consecutive calls to this command append each line to the kill-ring."
       (interactive)
       (let ((beg (line-beginning-position 1))
             (end (line-beginning-position 2)))
