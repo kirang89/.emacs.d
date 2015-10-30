@@ -37,6 +37,7 @@
 (require 'init-keychord)
 (require 'init-company)
 (require 'init-python)
+(require 'init-clojure)
 (require 'init-markdown)
 (require 'init-org)
 (require 'init-yasnippet)
