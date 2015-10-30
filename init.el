@@ -168,6 +168,9 @@
 ;; Clean view of major mode keybindings
 (global-set-key (kbd "C-h C-m") 'discover-my-major)
 
+;; Mode for distraction free writing
+(autoload 'darkroom "darkroom" "Darkroom mode" t)
+
 ;;; =====================================
 ;;; Experimental Stuff
 ;;; =====================================
