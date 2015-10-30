@@ -26,10 +26,8 @@
 	    "http://serversforhackers.com/feed.xml"
 	    ("http://www.norvig.com/rss-feed.xml" python)
 	    "http://lambda-the-ultimate.org/rss.xml"
-	    ;;"http://www.johndcook.com/blog/feed/"
 	    ;;"http://feeds.feedburner.com/tom-preston-werner"
 	    ;;"http://feeds.feedburner.com/ScottHanselman"
-	    ;;"http://www.guardian.co.uk/science/series/science/podcast.xml"
 	    "http://feeds.feedburner.com/PyMOTW"
 	    ("http://techspot.zzzeek.org/feed/index.xml" python)
 	    ;;"https://alexgaynor.net/feeds/latest/"
@@ -40,9 +38,6 @@
 	    ;;"http://erratasec.blogspot.com/feeds/posts/default"
 	    ;;"http://feeds.feedburner.com/nosql"
 	    ;;"http://www.webperformancematters.com/journal/atom.xml"
-	    ;;"http://www.theguardian.com/technology/rss"
-	    ;;"http://youtube.com/rss/global/top_viewed_today.rss"
-	    ;;"http://feeds.feedburner.com/ViralVideoChart",
 	    ;;"http://apod.nasa.gov/apod.rss"
         "https://feeds.feedburner.com/zenhabits"
         ("http://planet.emacsen.org/atom.xml" emacs)
@@ -55,6 +50,7 @@
         ("https://feeds.feedburner.com/GustavoDuarte")
         ("https://feeds.feedburner.com/oatmealfeed" comic)
         ("http://www.commitstrip.com/en/feed/" comic)
+        ("http://feeds.feedburner.com/space/Nugs" space)
         ))
 
 (setf url-queue-timeout 45)
