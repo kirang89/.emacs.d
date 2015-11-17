@@ -9,6 +9,8 @@
 ;; Java classes (e.g. JavaClassName)
 (add-hook 'clojure-mode-hook 'subword-mode)
 
+(add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
+
 ;; A little more syntax highlighting
 (require 'clojure-mode-extra-font-locking)
 
