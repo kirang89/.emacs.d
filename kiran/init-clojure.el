@@ -50,4 +50,8 @@
 ;; enable paredit in your REPL
 (add-hook 'cider-repl-mode-hook 'paredit-mode)
 
+(add-hook 'clojure-mode-hook
+          (lambda () (local-set-key (kbd "C-c C-s") 'paredit-wrap-round)))
+
 (provide 'init-clojure)
+;;; init-clojure.el ends here
