@@ -5,7 +5,7 @@
 ;;(setq-default elfeed-search-filter "-junk @1-week-ago +unread")
 
 (setq elfeed-feeds
-      '("http://feeds.feedburner.com/HighScalability"
+      '(("http://feeds.feedburner.com/HighScalability" scalability)
 	    "http://www.allthingsdistributed.com/atom.xml"
 	    ;; "http://blog.cryptographyengineering.com/feeds/posts/default"
 	    "http://prog21.dadgum.com/atom.xml"
@@ -15,7 +15,7 @@
 	    ;; "http://queue.acm.org/rss/feeds/concurrency.xml"
 	    ;; "http://highlyscalable.wordpress.com/feed/"
         "https://feeds.feedburner.com/wordpress/dfRp"
-	    "http://scalingsystems.com/feed/"
+	    ("http://scalingsystems.com/feed/" scalability)
 	    ;;"http://muratbuffalo.blogspot.com/feeds/posts/default"
 	    ;;"http://feeds.feedburner.com/pbailis"
 	    ;;"http://the-paper-trail.org/blog/feed/"
@@ -51,6 +51,10 @@
         ("https://feeds.feedburner.com/oatmealfeed" comic)
         ("http://www.commitstrip.com/en/feed/" comic)
         ("http://feeds.feedburner.com/space/Nugs" space)
+        ("https://feeds.feedburner.com/SendMoreParamedics" clojure)
+        ("http://gigasquidsoftware.com/atom.xml" clojure)
+        ("http://feeds.feedburner.com/scaleyourcode/MkrS" scalability)
+        ("http://feeds.feedburner.com/curiosity/zISN" science)
         ))
 
 (setf url-queue-timeout 45)
