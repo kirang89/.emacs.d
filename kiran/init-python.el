@@ -47,8 +47,12 @@
 ;; Make python shell use utf-8 encoding
 (setenv "LC_CTYPE" "UTF-8")
 
-(autoload 'nose "nose" "Nose mode" t)
-(defvar nose-use-verbose nil)
+(add-hook 'python-mode-hook (lambda ()
+                              (require 'nose)
+                              (defvar nose-use-verbose nil)))
+
+(add-hook 'python-mode-hook
+          (lambda () (local-set-key (kbd "C-c t") 'elpy-test-nose-runner)))
 
 ;; (require 'helm)
 ;; (add-hook 'python-mode-hook
