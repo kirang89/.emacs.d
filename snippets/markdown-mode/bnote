@@ -1,0 +1,10 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: bnote
+# key: bnote
+# binding: direct-keybinding
+# --
+Title: $3
+Date: `(kg/timestamp)`
+Category: $2
+Tags: $1
+Slug: $0
