@@ -1,30 +1,26 @@
 
 ;; python-mode settings
-;;(require 'python-mode)
-;;(add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
 (setq py-electric-colon-active t)
 
 ;; Elpy setup
 (package-initialize)
 (elpy-enable)
-(elpy-use-ipython)
+;;(elpy-use-ipython)
 (setq elpy-rpc-backend "jedi")
 
-;;(elpy-clean-modeline)
+;; (elpy-clean-modeline)
 
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
-(setq python-indent 4)
-;;(add-hook 'python-mode-hook '(lambda () (setq python-indent 4)))
+(setq python-indent-offset 4)
 
 ; Set PYTHONPATH, because we don't load .bashrc
 (setenv "PYTHONPATH" "/usr/local/lib/python2.7/site-packages:")
 
-(add-hook 'python-mode-hook 'yas-minor-mode)
-
 (defun kg/python-mode-hook ()
   (add-to-list 'company-backends 'company-jedi))
 
+(add-hook 'python-mode-hook 'yas-minor-mode)
 (add-hook 'python-mode-hook 'kg/python-mode-hook)
 (add-hook 'python-mode-hook 'turn-on-eldoc-mode)
 ;;(add-hook 'python-mode-hook 'projectile-mode)
@@ -35,19 +31,18 @@
                               (require 'indent-guide)
                               (indent-guide-mode t)))
 
+(defvar py-force-py-shell-name-p)
 (setq py-force-py-shell-name-p t)
 ;; switch to the interpreter after executing code
+(defvar py-shell-switch-buffers-on-execute-p)
 (setq py-shell-switch-buffers-on-execute-p t)
 
 ;; don't split windows
 ;;(setq py-split-windows-on-execute-p t)
 
 ;; ;; try to automagically figure out indentation
+(defvar py-smart-indentation)
 (setq py-smart-indentation t)
-
-;; flycheck support
-;;(require 'flycheck)
-;;(add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; Make python shell use utf-8 encoding
 (setenv "LC_CTYPE" "UTF-8")
@@ -59,22 +54,6 @@
 ;; (add-hook 'python-mode-hook
 ;;           (lambda () (local-set-key (kbd "C-c f") #'helm-semantic-or-imenu)))
 
-(defcustom python-autopep8-path (executable-find "autopep8")
-  "autopep8 executable path."
-  :group 'python
-  :type 'string)
-
-(defun python-autopep8 ()
-  "Automatically formats Python code to conform to the PEP 8 style guide.
-$ autopep8 --in-place --aggressive --aggressive <filename>"
-  (interactive)
-  (when (eq major-mode 'python-mode)
-    (shell-command
-     (format "%s --in-place --aggressive %s" python-autopep8-path
-             (shell-quote-argument (buffer-file-name))))
-    (revert-buffer t t t)))
-
-;; (bind-key "C-c C-a" 'python-auto-format)
 
 (provide 'init-python)
 ;;; init-python.el ends here
