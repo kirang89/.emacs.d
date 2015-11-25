@@ -75,9 +75,20 @@
 ;; M-q should fill at 80 chars, not 70
 (setq-default fill-column 80)
 
-; display line numbers to the right of the window
-;;(global-linum-mode -1)
-;;(setq linum-format "%3d ")
+; display line numbers to the left of the window
+(global-linum-mode -1)
+;; (setq linum-format "%4d ")
+
+;; Show line numbers, dynamically with spaces on either side
+(defadvice linum-update-window (around linum-dynamic activate)
+  (let* ((w (length (number-to-string
+                     (count-lines (point-min) (point-max)))))
+         (linum-format (concat " %" (number-to-string w) "d ")))
+    ad-do-it))
+
+;; highlight current line number as well
+;; (require 'hlinum)
+;; (hlinum-activate)
 
 ;; set unique names for two similar buffers
 (require 'uniquify)
