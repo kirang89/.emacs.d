@@ -87,7 +87,27 @@
 
 (global-set-key (kbd "C-c C-a") 'org-agenda)
 
+;; The directory where images should be downloaded to, when dragged into
+;; an org buffer
 (setq-default org-download-image-dir "~/Box Sync/org-notes/resources")
+
+
+(setq org-default-notes-file (concat org-directory "/scratch1.txt"))
+
+;; Capture templates
+(setq org-capture-templates
+      '(
+        ("t" "Todo" entry
+         (file+headline (concat org-directory "/agenda.org") "Personal")
+         "*** TODO %?")
+
+        ("m" "Todo" entry
+         (file+headline (concat org-directory "/agenda.org") "Meetups")
+         "*** TODO %?\n SCHEDULED: %^{SCHEDULED: }t")
+
+        ("l" "Link" item
+         (file+datetree (concat org-directory "/linklog.org")))
+        ))
 
 (provide 'init-org)
 ;;; init-org ends here
