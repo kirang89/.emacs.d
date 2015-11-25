@@ -176,6 +176,9 @@
 
 (add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode))
 
+;; Turn on beacon mode globally
+(beacon-mode 1)
+
 ;;; =====================================
 ;;; Experimental Stuff
 ;;; =====================================
