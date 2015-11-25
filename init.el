@@ -174,6 +174,8 @@
 ;; Mode for distraction free writing
 (autoload 'darkroom "darkroom" "Darkroom mode" t)
 
+(add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode))
+
 ;;; =====================================
 ;;; Experimental Stuff
 ;;; =====================================
