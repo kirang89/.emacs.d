@@ -9,7 +9,10 @@
 ;; it(or better), infinitely flexible, admired for it’s brilliance of concept
 ;; and execution and designed to extend it’s user’s powers")
 
-(setq frame-title-format '("Emacs: %b (%m)"))
+(setq frame-title-format '("%b (%m)"))
+
+(when (not window-system)
+  (menu-bar-mode -1))
 
 ;; Load theme
 ;;(load-theme 'zenburn t)
@@ -50,7 +53,7 @@
 (fringe-mode 1)
 
 ;; highlight current line
-(global-hl-line-mode 1)
+(global-hl-line-mode -1)
 
 ; add any custom themes
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
@@ -83,6 +86,7 @@
 ;; Clean up modeline a bit
 (line-number-mode)
 (size-indication-mode -1)
+(column-number-mode -1)
 
 ;; Number each buffer for easy switching with M-<no>
 (add-to-list 'load-path
