@@ -34,12 +34,14 @@
 (eval-after-load "sphinx-doc" '(diminish 'sphinx-doc-mode))
 (eval-after-load "elpy" '(diminish 'elpy-mode))
 ;;(eval-after-load "org-indent" '(diminish 'org-indent-mode)
-;;(eval-after-load "paredit" '(diminish 'paredit-mode))
+(eval-after-load "paredit" '(diminish 'paredit-mode))
 (eval-after-load "smartparens" '(diminish 'smartparens-mode))
 (eval-after-load "flycheck" '(diminish 'flycheck-mode "FC"))
+(eval-after-load "cider" '(diminish 'cider-mode "Cdr"))
 
 
 (defadvice emacs-lisp-mode (after elisp-rename-modeline activate)
   (setq mode-name "ELisp"))
 
 (provide 'init-modeline)
+;;; init-modeline.el ends here
