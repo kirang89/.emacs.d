@@ -16,4 +16,8 @@
 ;; Remove blinking
 (setq company-echo-delay 0)
 
+;; weight by frequency
+(setq company-transformers '(company-sort-by-occurrence))
+
 (provide 'init-company)
+;;; init-company.el ends here
