@@ -70,8 +70,14 @@
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((python . t)
-   (scheme . t)
+   (clojure . t)
    (sh . t)))
+
+(setq org-babel-clojure-backend 'cider)
+(require 'cider)
+
+;; don't run stuff automatically on export
+(setq org-export-babel-evaluate nil)
 
 ;; Use unicode chars instead of regular bullets
 (require 'org-bullets)
