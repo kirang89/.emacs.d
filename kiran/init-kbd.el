@@ -43,5 +43,9 @@
 
 (global-set-key (kbd "C-c }") 'mc/mark-next-like-this)
 
+;; Join current line to previous and fix whitespace at join
+(global-set-key (kbd "M-j")
+                (lambda () (interactive) (join-line -1)))
+
 (provide 'init-kbd)
 ;;; init-kbd.el ends here

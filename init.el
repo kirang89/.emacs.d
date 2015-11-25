@@ -195,10 +195,6 @@
 ;;(require 'autopair)
 ;;(autopair-global-mode)
 
-;; Join current line to previous and fix whitespace at join
-(global-set-key (kbd "M-j")
-                (lambda () (interactive) (join-line -1)))
-
 ;; Always newline-and-indent
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
