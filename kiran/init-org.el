@@ -2,17 +2,30 @@
 ;; org mode
 (require 'org)
 
-(defface org-block-begin-line
-  '((t (:underline "#8b5a2b" :foreground "#8b7355" :background "#8b7355")))
-  "Face used for the line delimiting the begin of source blocks.")
+;; (defface org-block-begin-line
+;;   '((t (:underline "#8b5a2b" :foreground "#8b7355" :background "#8b7355")))
+;;   "Face used for the line delimiting the begin of source blocks.")
 
-(defface org-block-background
-  '((t (:background "#545454")))
-  "Face used for the source block background.")
+;; (defface org-block-background
+;;   '((t (:background "#545454")))
+;;   "Face used for the source block background.")
 
-(defface org-block-end-line
-  '((t (:overline "#8b5a2b" :foreground "#8b7355" :background "#8b7355")))
-  "Face used for the line delimiting the end of source blocks.")
+;; (defface org-block-end-line
+;;   '((t (:overline "#8b5a2b" :foreground "#8b7355" :background "#8b7355")))
+;;   "Face used for the line delimiting the end of source blocks.")
+
+
+;; (defface org-block-begin-line
+;;   '((t (:underline "#A7A6AA" :foreground "#008ED1" :background "#EAEAFF")))
+;;   "Face used for the line delimiting the begin of source blocks.")
+
+;; (defface org-block-background
+;;   '((t (:background "#FFFFEA")))
+;;   "Face used for the source block background.")
+
+;; (defface org-block-end-line
+;;   '((t (:overline "#A7A6AA" :foreground "#008ED1" :background "#EAEAFF")))
+;;   "Face used for the line delimiting the end of source blocks.")
 
 ;; Indent for clarity
 (setq org-startup-indented t)
