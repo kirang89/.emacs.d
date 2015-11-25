@@ -30,6 +30,12 @@
 ;; Spellcheck my org mode files.
 (add-hook 'org-mode-hook 'flyspell-mode)
 
+;; Prefer UTF-8
+(setq org-export-coding-system 'utf-8)
+
+;; Preserve the indentation inside of source blocks
+(setq org-src-preserve-indentation t)
+
 ;; Retrieve agenda from this directory
 (setq org-agenda-files '("~/Box Sync/org-notes/agenda.org"))
 
