@@ -101,6 +101,7 @@
 
 
 (global-set-key (kbd "C-c C-a") 'org-agenda)
+(global-set-key (kbd "C-x c") 'org-capture)
 
 ;; The directory where images should be downloaded to, when dragged into
 ;; an org buffer
