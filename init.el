@@ -55,6 +55,13 @@
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
 
+;; Smoother scrolling behavior when using keyboard navigation
+(setq redisplay-dont-pause t
+      scroll-margin 1
+      scroll-step 1
+      scroll-conservatively 10000
+      scroll-preserve-screen-position 1)
+
 ;; autocomplete
 (require 'auto-complete)
 (global-auto-complete-mode -1)
