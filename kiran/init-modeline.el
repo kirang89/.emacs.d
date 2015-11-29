@@ -36,8 +36,10 @@
 ;;(eval-after-load "org-indent" '(diminish 'org-indent-mode)
 (eval-after-load "paredit" '(diminish 'paredit-mode))
 (eval-after-load "smartparens" '(diminish 'smartparens-mode))
-(eval-after-load "flycheck" '(diminish 'flycheck-mode "FC"))
+(eval-after-load "flycheck" '(diminish 'flycheck-mode))
 (eval-after-load "cider" '(diminish 'cider-mode "Cdr"))
+(eval-after-load "subword" '(diminish 'subword-mode))
+(eval-after-load "indent-guide" '(diminish 'indent-guide-mode))
 
 
 (defadvice emacs-lisp-mode (after elisp-rename-modeline activate)
