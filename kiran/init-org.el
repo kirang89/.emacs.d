@@ -95,7 +95,9 @@
 ;; Use unicode chars instead of regular bullets
 (require 'org-bullets)
 (add-hook 'org-mode-hook
-	  (lambda () (org-bullets-mode 1)))
+	  (lambda ()
+        (org-bullets-mode 1)
+        (local-set-key (kbd "C-x p") 'org-cliplink)))
 
 
 (global-set-key (kbd "C-c C-a") 'org-agenda)
