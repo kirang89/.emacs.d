@@ -50,9 +50,9 @@
 (scroll-bar-mode -1)
 
 ; Minimal fringe
-(fringe-mode 1)
+(fringe-mode 0)
 
-;; highlight current line
+;; remove highlight current line
 (global-hl-line-mode -1)
 
 ; add any custom themes
