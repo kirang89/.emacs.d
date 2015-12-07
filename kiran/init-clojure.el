@@ -35,32 +35,17 @@
 ;; Cider
 ;;;;
 
+(setq cider-repl-pop-to-buffer-on-connect t
+      cider-mode-line nil
+      cider-show-error-buffer t
+      cider-auto-select-error-buffer t
+      cider-repl-history-file "~/.emacs.d/cider-history"
+      cider-repl-wrap-history t
+      cider-repl-use-clojure-font-lock t)
+
 ;; provides minibuffer documentation for the code you're typing into the repl
 (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
-
-;; go right to the REPL buffer when it's finished connecting
-(defvar cider-repl-pop-to-buffer-on-connect)
-(setq cider-repl-pop-to-buffer-on-connect t)
-
-;; When there's a cider error, show its buffer and switch to it
-(defvar cider-show-error-buffer)
-(setq cider-show-error-buffer t)
-
-(defvar cider-auto-select-error-buffer)
-(setq cider-auto-select-error-buffer t)
-
-;; Where to store the cider history.
-(defvar cider-repl-history-file)
-(setq cider-repl-history-file "~/.emacs.d/cider-history")
-
-;; Wrap when navigating history
-(defvar cider-repl-wrap-history)
-(setq cider-repl-wrap-history t)
-
-(defvar cider-repl-use-clojure-font-lock)
-(setq cider-repl-use-clojure-font-lock t)
-
-;; enable paredit in your REPL
+;; enable paredit in REPL
 (add-hook 'cider-repl-mode-hook 'paredit-mode)
 
 (provide 'init-clojure)
