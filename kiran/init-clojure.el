@@ -26,7 +26,11 @@
                ("(\\(background?\\)"
                 (1 font-lock-keyword-face))))
             (define-clojure-indent (fact 1))
-            (define-clojure-indent (facts 1))))
+            (define-clojure-indent (facts 1))
+            'linum-mode))
+
+
+(add-hook 'clojure-mode-hook 'flycheck-mode)
 
 (add-hook 'clojure-mode-hook
           (lambda () (local-set-key (kbd "C-c C-s") 'paredit-wrap-round)))
@@ -47,6 +51,7 @@
 (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
 ;; enable paredit in REPL
 (add-hook 'cider-repl-mode-hook 'paredit-mode)
+(add-hook 'cider-repl-mode-hook 'rainbow-delimiters-mode)
 
 (provide 'init-clojure)
 ;;; init-clojure.el ends here
