@@ -35,6 +35,18 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (set-frame-font "Source Code Pro 15")
+(let ((faces '(mode-line
+               mode-line-buffer-id
+               mode-line-emphasis
+               mode-line-highlight
+               mode-line-inactive)))
+     (mapc
+      (lambda (face)
+        (set-face-attribute face nil :font "Code New Roman 12" :weight 'light))
+      faces))
+
+;; Set default line spacing (relative)
+(setq-default line-spacing 0.2)
 
 ;; Disable font antialiasing
 ;;(setq mac-allow-anti-aliasing nil)
