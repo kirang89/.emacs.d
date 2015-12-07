@@ -26,8 +26,8 @@
 ;; This is primarily for OS X, where starting Emacs in GUI mode
 ;; doesn't inherit the shell's environment. This ensures that
 ;; any command we can call from a shell, we can call inside Emacs.
-;; (require 'exec-path-from-shell)
-;; (exec-path-from-shell-initialize)
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
 
 (add-to-list 'load-path "~/.emacs.d/kiran/")
 
