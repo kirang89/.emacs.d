@@ -49,7 +49,8 @@
 
 (add-hook 'python-mode-hook (lambda ()
                               (require 'nose)
-                              (defvar nose-use-verbose nil)))
+                              (defvar nose-use-verbose t)
+                              'linum-mode))
 
 (add-hook 'python-mode-hook
           (lambda () (local-set-key (kbd "C-c t") 'elpy-test-nose-runner)))
