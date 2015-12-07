@@ -54,6 +54,8 @@
 (add-hook 'python-mode-hook
           (lambda () (local-set-key (kbd "C-c t") 'elpy-test-nose-runner)))
 
+(add-hook 'elpy-mode-hook 'flycheck-mode)
+
 ;; (require 'helm)
 ;; (add-hook 'python-mode-hook
 ;;           (lambda () (local-set-key (kbd "C-c f") #'helm-semantic-or-imenu)))
