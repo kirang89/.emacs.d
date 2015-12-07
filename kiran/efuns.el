@@ -207,6 +207,13 @@ Consecutive calls to this command append each line to the kill-ring."
 ;; (define-key org-mode-map (kbd "<C-drag-n-drop>") 'kg/drag-n-drop)
 ;; (define-key org-mode-map (kbd "<M-drag-n-drop>") 'kg/drag-n-drop)
 
+(defun kg/add-watchwords ()
+  "Highlight FIXME, TODO, and NOCOMMIT in code TODO"
+  (font-lock-add-keywords nil
+   '(("\\<\\(FIXME:?\\|TODO:?\\|NOCOMMIT:?\\)\\>"
+      1 font-lock-warning-face t))))
+
+(add-hook 'prog-mode-hook #'kg/add-watchwords)
 
 (provide 'efuns)
 ;;; efuns.el ends here
