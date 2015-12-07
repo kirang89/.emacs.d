@@ -125,5 +125,16 @@
          (file+datetree (concat org-directory "/linklog.org")))
         ))
 
+;; Syntax highlighting for org-export
+(setq org-latex-listings 'minted)
+
+;; Org latex configuration
+(require 'ox-latex)
+(add-to-list 'org-latex-packages-alist '("" "minted"))
+(setq org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+
 (provide 'init-org)
 ;;; init-org ends here
