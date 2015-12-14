@@ -1,0 +1,17 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: einit
+# key: einit
+# binding: direct-keybinding
+# --
+;;; $3 --- $2
+;;
+;;; Commentary:
+;;
+;; $2
+;;
+;;; Code:
+
+$1
+
+(provide $3)
+;;; $3 ends here
