@@ -98,5 +98,7 @@
 (require 'window-numbering)
 (window-numbering-mode t)
 
+(global-prettify-symbols-mode 1)
+
 (provide 'init-looks)
 ;;; init-looks.el ends here
