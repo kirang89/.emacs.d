@@ -2,6 +2,11 @@
 ;; org mode
 (require 'org)
 
+(setq org-directory "~/Box Sync/org-notes")
+
+;; Prefer UTF-8
+(setq org-export-coding-system 'utf-8)
+
 ;; (defface org-block-begin-line
 ;;   '((t (:underline "#8b5a2b" :foreground "#8b7355" :background "#8b7355")))
 ;;   "Face used for the line delimiting the begin of source blocks.")
@@ -14,19 +19,6 @@
 ;;   '((t (:overline "#8b5a2b" :foreground "#8b7355" :background "#8b7355")))
 ;;   "Face used for the line delimiting the end of source blocks.")
 
-
-;; (defface org-block-begin-line
-;;   '((t (:underline "#A7A6AA" :foreground "#008ED1" :background "#EAEAFF")))
-;;   "Face used for the line delimiting the begin of source blocks.")
-
-;; (defface org-block-background
-;;   '((t (:background "#FFFFEA")))
-;;   "Face used for the source block background.")
-
-;; (defface org-block-end-line
-;;   '((t (:overline "#A7A6AA" :foreground "#008ED1" :background "#EAEAFF")))
-;;   "Face used for the line delimiting the end of source blocks.")
-
 ;; Indent for clarity
 (setq org-startup-indented t)
 (setq org-indent-mode t)
@@ -35,16 +27,11 @@
 (eval-after-load "org"
   '(require 'ox-md nil t))
 
-(setq org-directory "~/Box Sync/org-notes")
-
 ;; Make code pretty
 (setq org-src-fontify-natively t)
 
 ;; Spellcheck my org mode files.
 (add-hook 'org-mode-hook 'flyspell-mode)
-
-;; Prefer UTF-8
-(setq org-export-coding-system 'utf-8)
 
 ;; Preserve the indentation inside of source blocks
 (setq org-src-preserve-indentation t)
