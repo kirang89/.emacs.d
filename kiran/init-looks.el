@@ -9,8 +9,10 @@
 ;; it(or better), infinitely flexible, admired for it’s brilliance of concept
 ;; and execution and designed to extend it’s user’s powers")
 
+;; Set a better frame title
 (setq frame-title-format '("%b (%m)"))
 
+;; Remove menu bar when running Emacs from terminal
 (when (not window-system)
   (menu-bar-mode -1))
 
@@ -19,40 +21,11 @@
 
 ;; Set frame font
 
-;;;;;;;;;;;;;; Font Options ;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;(set-frame-font "Office Code Pro 14")     ;;
-;;(set-frame-font "Inconsolata 17")         ;;
-;;(set-frame-font "M+ 1m 13")               ;;
-;;(set-frame-font "M+ 2m 15")               ;;
-;;(set-frame-font "Droid Sans Mono 13")     ;;
-;;(set-frame-font "DejaVu Sans Mono 13")    ;;
-;;(set-frame-font "Fira Code 15")           ;;
-;;(set-frame-font "Cutive Mono 17")         ;;
-;;(set-frame-font "Input Mono 14")          ;;
-;;(set-frame-font "Cousine 12")             ;;
-;;(set-frame-font "Roboto Mono 13")         ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(set-frame-font "Source Code Pro 15")
-(let ((faces '(mode-line
-               mode-line-buffer-id
-               mode-line-emphasis
-               mode-line-highlight
-               mode-line-inactive)))
-     (mapc
-      (lambda (face)
-        (set-face-attribute face nil :font "Code New Roman 12" :weight 'light))
-      faces))
-
 ;; Set default line spacing (relative)
 (setq-default line-spacing 0.2)
 
 ;; Disable font antialiasing
 ;;(setq mac-allow-anti-aliasing nil)
-
-; don't show the menu bar
-(menu-bar-mode nil)
 
 ; don't show the tool bar
 (require 'tool-bar)
@@ -75,9 +48,6 @@
 (setq font-lock-maximum-decoration t)
 (global-font-lock-mode 1)
 
-;; set cursor color
-;;(set-cursor-color "#636363")
-
 ;; default frame size
 ;; (add-to-list 'default-frame-alist '(left . 80))
 ;; (add-to-list 'default-frame-alist '(top . 0))
@@ -88,7 +58,7 @@
 (setq-default fill-column 80)
 
 ; display line numbers to the left of the window
-(global-linum-mode -1)
+;; (global-linum-mode -1)
 ;; (setq linum-format "%4d ")
 
 ;; Show line numbers, dynamically with spaces on either side
