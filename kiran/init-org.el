@@ -47,6 +47,10 @@
   (interactive)
   (org-map-entries 'org-archive-subtree "/DONE" 'file))
 
+;; Org-html export configuration
+(setq org-html-doctype "html5"
+      org-html-html5-fancy t)
+
 ;; Remove html postamble
 (setq org-html-postamble nil)
 
