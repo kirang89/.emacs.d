@@ -1,4 +1,10 @@
-;; Author: Kiran Gangadharan
+;;; init.el --- Configuration for Emacs
+;;
+;;; Commentary:
+;;
+;; Configuration for Emacs
+;;
+;;; Code:
 
 ;; Record the start time
 (setq *emacs-load-start* (current-time))
@@ -62,7 +68,7 @@
       scroll-conservatively 10000
       scroll-preserve-screen-position 1)
 
-;; autocomplete
+;; Remove autocomplete (and use company-mode instead)
 (require 'auto-complete)
 (global-auto-complete-mode -1)
 
@@ -70,7 +76,7 @@
 (require 'smartparens-config)
 (smartparens-global-mode)
 
-; highlight parentheses when the cursor is next to them
+;; highlight parentheses when the cursor is next to them
 (require 'paren)
 (show-paren-mode t)
 
@@ -95,7 +101,7 @@
 ;; don't show trailing whitespace
 (setq-default show-trailing-whitespace nil)
 
-; indents 4 chars
+;; indents 4 chars
 (setq c-basic-offset 4)
 (setq standard-indent 4)
 
@@ -146,20 +152,11 @@
 (global-set-key (kbd "<C-S-left>")   'buf-move-left)
 (global-set-key (kbd "<C-S-right>")  'buf-move-right)
 
-;; Run MIT Scheme with Emacs
-;(require 'xscheme)
-;(setenv "MITSCHEME_LIBRARY_PATH" "/usr/local/lib/mit-scheme-x86-64")
-
-;; (add-to-list 'auto-mode-alist '("\\.pp\\'" . pascal-mode))
 (add-to-list 'auto-mode-alist '("\\.json\\'" . json-mode))
 
 ;;; Make files and folders in dired-mode neater
 (require 'dired-details)
 (dired-details-install)
-
-;; Documentation at point for lisp files
-(add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
-(add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
 
 ;; Requires aspell to be installed
 ;; Install on OSX by running `brew install aspell --with-lang-en`
