@@ -53,5 +53,15 @@
 (add-hook 'cider-repl-mode-hook 'paredit-mode)
 (add-hook 'cider-repl-mode-hook 'rainbow-delimiters-mode)
 
+(defun kg/clj-src-file-name-from-test (name)
+  (s-with name
+    (s-replace "/test/" "/src/")
+    (s-replace "_test.clj" ".clj")))
+
+(defun kg/clj-test-file-name-from-src (name)
+  (s-with name
+    (s-replace "/src/" "/test/")
+    (s-replace ".clj" "_test.clj")))
+
 (provide 'init-clojure)
 ;;; init-clojure.el ends here
