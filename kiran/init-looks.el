@@ -34,6 +34,11 @@
 ; don't show the scroll bar
 (scroll-bar-mode -1)
 
+;; Scroll in one line increments
+;; Gives a smoother mouse scroll
+(setq mouse-wheel-follow-mouse 't)
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
+
 ; Minimal fringe
 (fringe-mode 0)
 
