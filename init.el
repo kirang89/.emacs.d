@@ -189,6 +189,9 @@
       '(".o" ".elc" "~" ".bin" ".class" ".exe" ".ps" ".abs" ".mx"
         ".~jv" ".rbc" ".pyc" ".beam" ".aux" ".out" ".pdf" ".hbc"))
 
+;; Rewrite selected text
+(delete-selection-mode 1)
+
 ;;; =====================================
 ;;; Experimental Stuff
 ;;; =====================================
