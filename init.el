@@ -37,15 +37,16 @@
 
 (add-to-list 'load-path "~/.emacs.d/kiran/")
 
+(require 'init-packages)
 (require 'init-looks)
 (require 'init-kbd)
-(require 'init-packages)
 (require 'init-ido)
 (require 'init-helm)
 (require 'init-keychord)
 (require 'init-company)
 (require 'init-python)
 (require 'init-clojure)
+(require 'init-elisp)
 (require 'init-markdown)
 (require 'init-org)
 (require 'init-yasnippet)
