@@ -73,12 +73,15 @@
          (linum-format (concat " %" (number-to-string w) "d ")))
     ad-do-it))
 
-(set-face-attribute 'linum nil :font "M+ 1mn 11")
-(set-face-attribute 'linum-highlight-face nil :font "M+ 1mn 11")
+(require 'linum)
+(eval-after-load "linum"
+  (set-face-attribute 'linum nil :font "Code New Roman 11"))
 
 ;; highlight current line number as well
-;; (require 'hlinum)
-;; (hlinum-activate)
+(require 'hlinum)
+(hlinum-activate)
+(eval-after-load "hlinum"
+  (set-face-attribute 'linum-highlight-face nil :font "Code New Roman 11"))
 
 ;; set unique names for two similar buffers
 (require 'uniquify)
