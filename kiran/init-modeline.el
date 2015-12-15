@@ -14,15 +14,16 @@
 
 ;; Set default font for different modeline modes
 (defun kg/set-modeline-face ()
-    (let ((faces '(mode-line
-               mode-line-buffer-id
-               mode-line-emphasis
-               mode-line-highlight
-               mode-line-inactive)))
-     (mapc
-      (lambda (face)
-        (set-face-attribute face nil :font "Code New Roman 12" :weight 'light))
-      faces)))
+  (interactive)
+  (let ((faces '(mode-line
+                 mode-line-buffer-id
+                 mode-line-emphasis
+                 mode-line-highlight
+                 mode-line-inactive)))
+    (mapc
+     (lambda (face)
+       (set-face-attribute face nil :font "Code New Roman 12" :weight 'light))
+     faces)))
 
 (add-hook 'after-init-hook 'kg/set-modeline-face)
 
