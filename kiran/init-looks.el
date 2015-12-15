@@ -42,6 +42,15 @@
 ; Minimal fringe
 (fringe-mode 0)
 
+;; Experimental
+(defun kg/set-fringe-background ()
+  "Set the fringe background to the same color as the regular background."
+  (interactive)
+  (custom-set-faces
+   `(fringe ((t (:background ,(face-background 'default)))))))
+
+(add-hook 'after-init-hook #'kg/set-fringe-background)
+
 ;; remove highlight current line
 (global-hl-line-mode -1)
 
