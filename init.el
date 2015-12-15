@@ -219,6 +219,18 @@
 ;;; =================================================================
 
 
+;; Turn on ansi color interpretation in a compilation buffer
+(require 'ansi-color)
+(defun colorize-compilation-buffer ()
+  "Show some love for the compilation buffers."
+  (toggle-read-only)
+  (ansi-color-apply-on-region (point-min) (point-max))
+  (toggle-read-only))
+(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
+;; Follow compiler ouput
+(setq compilation-scroll-output t)
+
+
 ;; Start emacs server
 (server-start)
 
