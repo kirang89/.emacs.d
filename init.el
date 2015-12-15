@@ -28,13 +28,6 @@
 ;; Don't litter fs with backup files
 ;;(setq backup-directory-alist '((".", "~/.saves")))
 
-;; set exec-path according to the system's PATH
-;; This is primarily for OS X, where starting Emacs in GUI mode
-;; doesn't inherit the shell's environment. This ensures that
-;; any command we can call from a shell, we can call inside Emacs.
-(when (memq window-system '(mac ns))
-  (exec-path-from-shell-initialize))
-
 (add-to-list 'load-path "~/.emacs.d/kiran/")
 
 (require 'init-packages)
@@ -61,6 +54,14 @@
 ;; Custom configuration set by Emacs
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
+
+;; set exec-path according to the system's PATH
+;; This is primarily for OS X, where starting Emacs in GUI mode
+;; doesn't inherit the shell's environment. This ensures that
+;; any command we can call from a shell, we can call inside Emacs.
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
+
 
 ;; Smoother scrolling behavior when using keyboard navigation
 (setq redisplay-dont-pause t
