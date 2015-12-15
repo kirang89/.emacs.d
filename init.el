@@ -164,6 +164,9 @@
 ;; Install on OSX by running `brew install aspell --with-lang-en`
 (autoload 'flyspell-mode "flyspell" "Spell checker" t)
 (setq-default ispell-program-name "aspell")
+(setq ispell-extra-args
+      (list "--sug-mode=ultra"
+            "--lang=en_US"))
 
 ;; multiple cursors!
 ;; To quit mc mode hit C-g or RET
