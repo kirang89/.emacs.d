@@ -53,8 +53,10 @@
   `((paredit-mode . " π")
     ;; Major modes
     (hi-lock-mode . "")
-    (python-mode . "Py")
-    (clojure-mode . "λ"))
+    (python-mode . "ξ")
+    (clojure-mode . "λ")
+    (markdown-mode . "md")
+    (abbrev-mode . ""))
   "Alist for `clean-mode-line'.
 
 When you add a new element to the alist, keep in mind that you
