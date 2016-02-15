@@ -27,9 +27,9 @@
 (add-hook 'python-mode-hook (lambda ()
                               (require 'sphinx-doc)
                               (sphinx-doc-mode t)))
-(add-hook 'python-mode-hook (lambda ()
-                              (require 'indent-guide)
-                              (indent-guide-mode t)))
+;; (add-hook 'python-mode-hook (lambda ()
+;;                               (require 'indent-guide)
+;;                               (indent-guide-mode t)))
 
 (defvar py-force-py-shell-name-p)
 (setq py-force-py-shell-name-p t)
@@ -47,10 +47,10 @@
 ;; Make python shell use utf-8 encoding
 (setenv "LC_CTYPE" "UTF-8")
 
+(add-hook 'python-mode-hook 'linum-mode)
 (add-hook 'python-mode-hook (lambda ()
                               (require 'nose)
-                              (defvar nose-use-verbose t)
-                              'linum-mode))
+                              (defvar nose-use-verbose t)))
 
 (add-hook 'python-mode-hook
           (lambda () (local-set-key (kbd "C-c t") 'elpy-test-nose-runner)))
