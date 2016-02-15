@@ -141,6 +141,11 @@
 
         ("l" "Link" item
          (file+datetree (concat org-directory "/linklog.org")))
+
+        ("v" "Video (Programming)" checkitem
+         (file+headline (concat org-directory
+                                "/programming_videos_watchlist.org")
+                        "Programming Videos Watchlist"))
         ))
 
 ;; Syntax highlighting for org-export
