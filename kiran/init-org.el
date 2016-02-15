@@ -109,8 +109,12 @@
 ;; an org buffer
 (setq-default org-download-image-dir "~/Box Sync/org-notes/resources")
 
-
 (setq org-default-notes-file (concat org-directory "/scratch1.txt"))
+
+(setq org-todo-keyword-faces
+        '(("TODO" :foreground "red" :weight bold)
+          ("DOING" :foreground "magenta" :weight bold)
+          ("DONE" :foreground "green" :weight bold)))
 
 ;; Deft configuration
 (use-package deft
