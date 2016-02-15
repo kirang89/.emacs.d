@@ -26,11 +26,10 @@
 (setq eshell-cmpl-cycle-completions nil
       eshell-save-history-on-exit t
       eshell-cmpl-dir-ignore "\\`\\(\\.\\.?\\|CVS\\|\\.svn\\|\\.git\\)/\\'"
-      eshell-hist-ignoredups t)
+      eshell-hist-ignoredups t
+      eshell-scroll-to-bottom-on-output t
+      eshell-scroll-show-maximum-output t)
 
-;; scroll to the bottom
-(setq eshell-scroll-to-bottom-on-output t)
-(setq eshell-scroll-show-maximum-output t)
 ;; (add-to-list 'eshell-output-filter-functions
 ;;              'eshell-postoutput-scroll-to-bottom)
 

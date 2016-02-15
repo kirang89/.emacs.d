@@ -31,10 +31,13 @@
 (add-to-list 'load-path "~/.emacs.d/kiran/")
 
 (require 'init-packages)
+(require 'use-package)
+
 (require 'init-looks)
 (require 'init-kbd)
 (require 'init-ido)
 (require 'init-helm)
+(require 'init-ibuffer)
 (require 'init-keychord)
 (require 'init-company)
 (require 'init-python)
@@ -48,7 +51,7 @@
 (require 'init-magit)
 (require 'init-modeline)
 (require 'init-mu4e)
-(require 'init-news)
+;; (require 'init-news)
 (require 'init-web)
 
 ;; Custom configuration set by Emacs
@@ -128,7 +131,7 @@
                            (y-or-n-p (format "Directory %s does not exist. Create it?" dir)))
                   (make-directory dir t))))))
 
-;; ace-jump aka avy
+;; avy
 (require 'avy)
 (define-key global-map (kbd "C-`") 'avy-goto-word-or-subword-1)
 
@@ -145,7 +148,7 @@
 
 ;; remote-editing ftw!
 (require 'tramp)
-(setq tramp-default-method "scp")
+(setq tramp-default-method "ssh")
 
 ;; move buffers around
 (require 'buffer-move)
