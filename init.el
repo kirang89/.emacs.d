@@ -196,6 +196,34 @@
 ;; Rewrite selected text
 (delete-selection-mode 1)
 
+;; Use M-w to copy line containing cursor if no region
+;; is selected.
+(defadvice kill-ring-save
+    (before slick-copy activate compile)
+    "When called interactively with no active region, copy a single
+         line instead."
+  (interactive
+   (if mark-active
+       (list (region-beginning)
+             (region-end))
+     (message "Copied line")
+     (list (line-beginning-position)
+           (line-beginning-position 2)))))
+
+
+;; Turn on ansi color interpretation in a compilation buffer
+(require 'ansi-color)
+(defun colorize-compilation-buffer ()
+  "Show some love for the compilation buffers."
+  (toggle-read-only)
+  (ansi-color-apply-on-region (point-min) (point-max))
+  (toggle-read-only))
+
+(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
+;; Follow compiler ouput
+(setq compilation-scroll-output t)
+
+
 ;;; =====================================
 ;;; Experimental Stuff
 ;;; =====================================
