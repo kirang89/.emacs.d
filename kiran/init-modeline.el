@@ -5,7 +5,7 @@
 (require 'powerline)
 (powerline-default-theme)
 ;; (setq powerline-default-separator (quote arrow-fade))
-(setq powerline-default-separator 'wave)
+(setq powerline-default-separator 'slant)
 (powerline-buffer-size nil 'l)
 
 (line-number-mode t)
@@ -38,7 +38,6 @@
 (eval-after-load "sphinx-doc" '(diminish 'sphinx-doc-mode))
 (eval-after-load "elpy" '(diminish 'elpy-mode))
 (eval-after-load "org-indent" '(diminish 'org-indent-mode))
-;; (eval-after-load "paredit" '(diminish 'paredit-mode))
 (eval-after-load "smartparens" '(diminish 'smartparens-mode))
 (eval-after-load "flycheck" '(diminish 'flycheck-mode))
 (eval-after-load "cider" '(diminish 'cider-mode "Cdr"))
@@ -55,7 +54,8 @@
     (hi-lock-mode . "")
     (python-mode . "ξ")
     (clojure-mode . "λ")
-    (markdown-mode . "md")
+    ;;(clojurec-mode . "λC")
+    (markdown-mode . "Md")
     (abbrev-mode . ""))
   "Alist for `clean-mode-line'.
 
@@ -76,6 +76,21 @@ want to use in the modeline *in lieu of* the original.")
                (setq mode-name mode-str)))))
 
 (add-hook 'after-change-major-mode-hook 'clean-mode-line)
+
+;; Fix for broken seperator colors in modeline as shown in
+;; https://imgur.com/7Ldxa97
+;; (setq ns-use-srgb-colorspace nil)
+
+;; To remove the underline below text in modeline for certain
+;; themes do:
+;; M-x customize-face mode-line and remove the underline.
+
+;; Config after installing https://github.com/TheBB/spaceline/tree/master
+;; (use-package spaceline-config
+;;   :ensure spaceline
+;;   :config
+;;   (spaceline-emacs-theme)
+;;   (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state))
 
 (provide 'init-modeline)
 ;;; init-modeline.el ends here
