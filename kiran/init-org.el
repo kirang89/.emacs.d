@@ -112,6 +112,18 @@
 
 (setq org-default-notes-file (concat org-directory "/scratch1.txt"))
 
+;; Deft configuration
+(use-package deft
+  :bind ("C-x C-g" . deft-find-file)
+  :config
+  (setq deft-extensions '("txt" "md" "org")
+        deft-directory "~/Box Sync/org-notes/"
+        deft-recursive t
+        deft-use-filename-as-title t
+        deft-strip-summary-regexp "\\*"))
+
+;; (global-set-key (kbd "C-x C-g") 'deft-find-file)
+
 ;; Capture templates
 (setq org-capture-templates
       '(
