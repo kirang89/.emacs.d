@@ -54,7 +54,8 @@
 
 ;; show images
 (setq mu4e-show-images t)
-
+(setq mu4e-view-show-images t)
+;;(setq mu4e-view-image-max-width 600)
 ;; use imagemagick, if available
 (when (fboundp 'imagemagick-register-types)
   (imagemagick-register-types))

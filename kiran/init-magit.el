@@ -2,6 +2,7 @@
 ;; git-awesome-mode
 (require 'magit)
 
+;; Open magit in a new buffer
 (setq magit-status-buffer-switch-function 'switch-to-buffer)
 
 (defun disable-magit-highlight-in-buffer ()

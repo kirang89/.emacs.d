@@ -32,7 +32,7 @@
     diminish
     dired-details
     discover-my-major
-    elfeed
+    elpy
     emmet-mode
     epc
     epl
@@ -44,8 +44,6 @@
     fullscreen-mode
     gh
     gist
-    git-commit-mode
-    git-rebase-mode
     helm
     highlight-current-line
     ido-vertical-mode
@@ -63,12 +61,10 @@
     org-bullets
     pkg-info
     popup
-    popup
     pos-tip
     powerline
     pydoc
     pyvenv
-    racket-mode
     restclient
     smartparens
     subatomic-theme

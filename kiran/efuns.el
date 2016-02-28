@@ -215,5 +215,15 @@ Consecutive calls to this command append each line to the kill-ring."
 
 (add-hook 'prog-mode-hook #'kg/add-watchwords)
 
+(defun kg/narrow-to-region-indirect (start end)
+  "Restrict editing to the current region, indirectly(in a new buffer).
+Source: http://demonastery.org/2013/04/emacs-narrow-to-region-indirect/"
+  (interactive "r")
+  (deactivate-mark)
+  (let ((buf (clone-indirect-buffer nil nil)))
+    (with-current-buffer buf
+      (narrow-to-region start end))
+      (switch-to-buffer buf)))
+
 (provide 'efuns)
 ;;; efuns.el ends here

@@ -13,6 +13,9 @@
 (setq web-mode-enable-auto-expanding t)
 (setq web-mode-enable-css-colorization t)
 
+;; Use M-x httpd-start to enable the web server
+;;(add-hook 'web-mode-hook 'impatient-mode)
+
 (require 'emmet-mode)
 (add-hook 'web-mode-hook 'emmet-mode)
 (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes

@@ -12,11 +12,11 @@
 ;; language
 (setq current-language-environment "English")
 
-;; Prefer unicode encoding everywhere
+;; UTF-8 UTF-8 everywhere!
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
-(setq default-buffer-file-coding-system 'utf-8)
+(setq buffer-file-coding-system 'utf-8)
 
 ;; Changes all yes/no questions to y/n type
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -66,7 +66,6 @@
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
-
 ;; Smoother scrolling behavior when using keyboard navigation
 (setq redisplay-dont-pause t
       scroll-margin 1
@@ -77,14 +76,6 @@
 ;; Remove autocomplete (and use company-mode instead)
 (require 'auto-complete)
 (global-auto-complete-mode -1)
-
-;; Smart parenthesis
-(require 'smartparens-config)
-(smartparens-global-mode)
-
-;; highlight parentheses when the cursor is next to them
-(require 'paren)
-(show-paren-mode t)
 
 ;; require final newlines in files when they are saved
 (setq require-final-newline t)
@@ -253,18 +244,11 @@
 
 ;;; =================================================================
 
+;; flycheck support
+(autoload 'flycheck-mode "flycheck" "Checker" t)
 
-;; Turn on ansi color interpretation in a compilation buffer
-(require 'ansi-color)
-(defun colorize-compilation-buffer ()
-  "Show some love for the compilation buffers."
-  (toggle-read-only)
-  (ansi-color-apply-on-region (point-min) (point-max))
-  (toggle-read-only))
-(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
-;; Follow compiler ouput
-(setq compilation-scroll-output t)
 
+(setq org-use-speed-commands t)
 
 ;; Start emacs server
 (server-start)

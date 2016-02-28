@@ -51,11 +51,9 @@
 
 ;; Org-html export configuration
 (setq org-html-doctype "html5"
-      org-html-html5-fancy t)
-
-;; Remove html postamble
-(setq org-html-postamble nil)
-
+      org-html-html5-fancy t
+      ;; Remove html postamble
+      org-html-postamble nil)
 
 (defun get-string-from-file (filePath)
   "Return filePath's file content."
@@ -88,8 +86,8 @@
    (clojure . t)
    (sh . t)))
 
-(setq org-babel-clojure-backend 'cider)
-(require 'cider)
+;;(setq org-babel-clojure-backend 'cider)
+;;(require 'cider)
 
 ;; don't run stuff automatically on export
 (setq org-export-babel-evaluate nil)
