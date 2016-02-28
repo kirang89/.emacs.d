@@ -31,9 +31,11 @@
 
 (add-hook 'clojure-mode-hook 'flycheck-mode)
 (add-hook 'clojure-mode-hook 'linum-mode)
-
+(add-hook 'clojure-mode-hook 'kg/set-pretty-symbols)
+(add-hook 'clojure-mode-hook 'paren-face-mode)
 (add-hook 'clojure-mode-hook
-          (lambda () (local-set-key (kbd "C-c C-s") 'paredit-wrap-round)))
+          (lambda ()
+            (local-set-key (kbd "C-c C-s") 'paredit-wrap-round)))
 
 ;;;;
 ;; Cider
@@ -48,13 +50,14 @@
       cider-repl-use-clojure-font-lock t
       cider-docview-fill-column 70
       cider-stacktrace-fill-column 76
-      cider-repl-use-pretty-printing t)
+      cider-repl-use-pretty-printing t
+      cider-repl-display-help-banner nil)
 
 ;; provides minibuffer documentation for the code you're typing into the repl
 (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
 ;; enable paredit in REPL
 (add-hook 'cider-repl-mode-hook 'paredit-mode)
-;; (add-hook 'cider-repl-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'cider-repl-mode-hook 'paren-face-mode)
 
 (defun kg/clj-src-file-name-from-test (name)
   (s-with name
@@ -75,9 +78,6 @@
           ("=>"  . 8658)    ; ⇒
           ("map" . 8614)    ; ↦
           )))
-
-(add-hook 'clojure-mode-hook 'kg/set-pretty-symbols)
-(add-hook 'clojure-mode-hook 'paren-face-mode)
 
 (provide 'init-clojure)
 ;;; init-clojure.el ends here
