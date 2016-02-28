@@ -14,5 +14,9 @@
 			 (lambda ()
 			   (interactive)
 			   (find-file "~/.emacs.d/init.el")))
+(key-chord-define-global "ii"
+			 (lambda ()
+			   (interactive)
+			   (find-file "~/Box Sync/org-notes/scratch1.txt")))
 
 (provide 'init-keychord)
