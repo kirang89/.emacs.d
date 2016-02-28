@@ -3,12 +3,6 @@
 (setq inhibit-splash-screen t)
 (setq inhibit-startup-message t)
 
-;; empty scratch
-
-(setq initial-scratch-message ";; The Hacker Ethic held that every program should be as good as you could make
-;; it(or better), infinitely flexible, admired for it’s brilliance of concept
-;; and execution and designed to extend it’s user’s powers")
-
 ;; Set a better frame title
 (setq frame-title-format '("%b (%m)"))
 
@@ -16,16 +10,29 @@
 (when (not window-system)
   (menu-bar-mode -1))
 
+(setq-default cursor-type 'bar)
+
 ;; Load theme
 ;;(load-theme 'zenburn t)
 
-;; Set frame font
+;; Good font sizes
+;; ===============
+;; (set-frame-font "Code New Roman 16")
+;; (set-frame-font "Inconsolata Bold 15")
+;; (set-frame-font "Source Code Pro 16")
+(set-frame-font "Menlo 13")
+;; (set-frame-font "PragmataPro 17")
+;; (set-frame-font "Roboto Mono Light 13")
+;; (set-frame-font "DejaVu Sans Mono 13")
+;; (set-frame-font "CamingoCode 14")
+;; (set-frame-font "Droid Sans Mono 13")
+;; (set-frame-font "Ubuntu Mono 15")
+;; (set-frame-font "Office Code Pro 13")
+;; (set-frame-font "Hasklig 13")
+
 
 ;; Set default line spacing (relative)
-(setq-default line-spacing 0.2)
-
-;; Disable font antialiasing
-;;(setq mac-allow-anti-aliasing nil)
+(setq-default line-spacing 0.5)
 
 ; don't show the tool bar
 (require 'tool-bar)
@@ -62,18 +69,8 @@
 (setq font-lock-maximum-decoration t)
 (global-font-lock-mode 1)
 
-;; default frame size
-;; (add-to-list 'default-frame-alist '(left . 80))
-;; (add-to-list 'default-frame-alist '(top . 0))
-;; (add-to-list 'default-frame-alist '(height . 50))
-;; (add-to-list 'default-frame-alist '(width . 90))
-
 ;; M-q should fill at 80 chars, not 70
 (setq-default fill-column 80)
-
-; display line numbers to the left of the window
-;; (global-linum-mode -1)
-;; (setq linum-format "%4d ")
 
 ;; Show line numbers, dynamically with spaces on either side
 (defadvice linum-update-window (around linum-dynamic activate)
@@ -84,20 +81,23 @@
 
 (require 'linum)
 (eval-after-load "linum"
-  (set-face-attribute 'linum nil :font "Code New Roman 11"))
+  (set-face-attribute 'linum nil :font "Menlo 11"))
 
 ;; highlight current line number as well
 (require 'hlinum)
 (hlinum-activate)
 (eval-after-load "hlinum"
-  (set-face-attribute 'linum-highlight-face nil :font "Code New Roman 11"))
+  (set-face-attribute 'linum-highlight-face nil :font "Menlo 11"))
+
+;; set color for selection
+;; (set-face-attribute 'region nil :background "#666")
 
 ;; set unique names for two similar buffers
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
 
 ;; Clean up modeline a bit
-(line-number-mode)
+(line-number-mode -1)
 (size-indication-mode -1)
 (column-number-mode -1)
 
@@ -108,21 +108,6 @@
 (window-numbering-mode t)
 
 (global-prettify-symbols-mode 1)
-
-;; (defun kg/reset-frame-look ()
-;;   (interactive)
-;;   (set-face-attribute 'linum nil :font "Fira Code 10")
-;;   (fringe-mode 0)
-;;   (powerline-reset)
-;;   (let ((faces '(mode-line
-;;                mode-line-buffer-id
-;;                mode-line-emphasis
-;;                mode-line-highlight
-;;                mode-line-inactive)))
-;;      (mapc
-;;       (lambda (face)
-;;         (set-face-attribute face nil :font "Fira Code 11"))
-;;       faces)))
 
 ;; Make Emacs handle sRGB colors correctly
 ;; for solarized theme
