@@ -40,6 +40,7 @@
 (require 'init-ibuffer)
 (require 'init-keychord)
 (require 'init-company)
+(require 'init-parens)
 (require 'init-python)
 (require 'init-clojure)
 (require 'init-elisp)
