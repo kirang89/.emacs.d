@@ -22,8 +22,10 @@
                         "/bin/ls")))
               (eshell/alias "ll" (concat ls " -AlohG --color=always")))))
 
+(global-set-key (kbd "C-c e") 'eshell)
 
 (setq eshell-cmpl-cycle-completions nil
+      eshell-history-size 1024
       eshell-save-history-on-exit t
       eshell-cmpl-dir-ignore "\\`\\(\\.\\.?\\|CVS\\|\\.svn\\|\\.git\\)/\\'"
       eshell-hist-ignoredups t
