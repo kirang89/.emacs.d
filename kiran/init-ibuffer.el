@@ -1,8 +1,6 @@
 
-
 ;; IBuffer
 (global-set-key (kbd "C-x C-b") #'ibuffer)
-
 
 ;; Gnus style grouping for ibuffer
 ;; Check http://www.emacswiki.org/emacs/IbufferMode
@@ -18,7 +16,9 @@
                            (name . ".cljc$")
                            (name . "^\\*cider")
                            (name . "^\\*nrepl")))
-               ("ORG" (mode . org-mode))
+               ("ORG" (or
+                       (mode . org-mode)
+                       (name . "^\\*Deft\\*$")))
                ("DIRED" (mode . dired-mode))
                ("MARKDOWN" (mode . markdown-mode))
                ("WEBDEV" (mode . web-mode))
