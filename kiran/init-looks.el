@@ -84,10 +84,10 @@
   (set-face-attribute 'linum nil :font "Menlo 11"))
 
 ;; highlight current line number as well
-(require 'hlinum)
-(hlinum-activate)
-(eval-after-load "hlinum"
-  (set-face-attribute 'linum-highlight-face nil :font "Menlo 11"))
+(use-package hlinum
+  :config
+  (hlinum-activate)
+  (set-face-attribute 'linum-highlight-face nil :font "Fira Code 11"))
 
 ;; set color for selection
 ;; (set-face-attribute 'region nil :background "#666")
