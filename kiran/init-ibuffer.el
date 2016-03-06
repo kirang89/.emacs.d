@@ -20,6 +20,7 @@
                        (mode . org-mode)
                        (name . "^\\*Deft\\*$")))
                ("DIRED" (mode . dired-mode))
+               ("SHELL" (mode . eshell-mode))
                ("MARKDOWN" (mode . markdown-mode))
                ("WEBDEV" (mode . web-mode))
                ("MAGIT" (or
