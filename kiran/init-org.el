@@ -2,58 +2,74 @@
 ;; org mode
 (require 'org)
 
-(setq org-directory "~/Box Sync/org-notes")
+(setq org-directory "~/Box Sync/org-notes"
+      org-default-notes-file (concat org-directory "/scratch1.txt")
+      org-agenda-files '("~/Box Sync/org-notes/agenda.org")
+      ;; Prefer UTF-8
+      org-export-coding-system 'utf-8
+      org-startup-indented t
+      org-indent-mode t
+      ;; Make code pretty
+      org-src-fontify-natively t
+      ;; change behavior of TAB as per the appropriate major mode
+      org-src-tab-acts-natively t
+      ;; Preserve the indentation inside of source blocks
+      org-src-preserve-indentation t
+      ;; week starts on Monday
+      org-agenda-start-on-weekday 0
+      ;; Org-html export configuration
+      org-html-doctype "html5"
+      org-html-html5-fancy t
+      org-html-postamble nil
+      ;; Use speed commands like `t` to change todo status
+      org-use-speed-commands t
+      ;; Syntax highlighting for org-export
+      org-latex-listings 'minted)
 
-;; Prefer UTF-8
-(setq org-export-coding-system 'utf-8)
+;; The directory where images should be downloaded to, when dragged into
+;; an org buffer
+(setq-default org-download-image-dir "~/Box Sync/org-notes/resources")
 
-;; (defface org-block-begin-line
-;;   '((t (:underline "#8b5a2b" :foreground "#8b7355" :background "#8b7355")))
-;;   "Face used for the line delimiting the begin of source blocks.")
+(setq org-todo-keyword-faces
+        '(("TODO" :foreground "red" :weight bold)
+          ("DOING" :foreground "magenta" :weight bold)
+          ("DONE" :foreground "green" :weight bold)))
 
-;; (defface org-block-background
-;;   '((t (:background "#545454")))
-;;   "Face used for the source block background.")
+;; Capture templates
+(setq org-capture-templates
+      '(
+        ("t" "Todo" entry
+         (file+headline (concat org-directory "/agenda.org") "Personal")
+         "*** TODO %?")
 
-;; (defface org-block-end-line
-;;   '((t (:overline "#8b5a2b" :foreground "#8b7355" :background "#8b7355")))
-;;   "Face used for the line delimiting the end of source blocks.")
+        ("m" "Todo" entry
+         (file+headline (concat org-directory "/agenda.org") "Meetups")
+         "*** TODO %?\n SCHEDULED: %^{SCHEDULED: }t")
 
-;; Indent for clarity
-(setq org-startup-indented t)
-(setq org-indent-mode t)
+        ("l" "Link" item
+         (file+datetree (concat org-directory "/linklog.org")))
+
+        ("v" "Video (Programming)" checkitem
+         (file+headline (concat org-directory
+                                "/programming_videos_watchlist.org")
+                        "Programming Videos Watchlist"))
+        ))
+
+(global-set-key (kbd "C-c C-a") 'org-agenda)
+(global-set-key (kbd "C-x c") 'org-capture)
 
 ;; load org-mode markdown export
 (eval-after-load "org"
   '(require 'ox-md nil t))
 
-;; Make code pretty
-(setq org-src-fontify-natively t)
-;; change behavior of TAB as per the appropriate major mode
-(setq org-src-tab-acts-natively t)
-
 ;; Spellcheck my org mode files.
 (add-hook 'org-mode-hook 'flyspell-mode)
 
-;; Preserve the indentation inside of source blocks
-(setq org-src-preserve-indentation t)
-
-;; Retrieve agenda from this directory
-(setq org-agenda-files '("~/Box Sync/org-notes/agenda.org"))
-
-;; Week starts on Monday
-(setq org-agenda-start-on-weekday 0)
 
 (defun org-archive-tasks ()
   "Archive DONE tasks in org-mode."
   (interactive)
   (org-map-entries 'org-archive-subtree "/DONE" 'file))
-
-;; Org-html export configuration
-(setq org-html-doctype "html5"
-      org-html-html5-fancy t
-      ;; Remove html postamble
-      org-html-postamble nil)
 
 (defun get-string-from-file (filePath)
   "Return filePath's file content."
@@ -99,20 +115,13 @@
         (org-bullets-mode 1)
         (local-set-key (kbd "C-x p") 'org-cliplink)))
 
-
-(global-set-key (kbd "C-c C-a") 'org-agenda)
-(global-set-key (kbd "C-x c") 'org-capture)
-
-;; The directory where images should be downloaded to, when dragged into
-;; an org buffer
-(setq-default org-download-image-dir "~/Box Sync/org-notes/resources")
-
-(setq org-default-notes-file (concat org-directory "/scratch1.txt"))
-
-(setq org-todo-keyword-faces
-        '(("TODO" :foreground "red" :weight bold)
-          ("DOING" :foreground "magenta" :weight bold)
-          ("DONE" :foreground "green" :weight bold)))
+;; Org latex configuration
+(require 'ox-latex)
+(add-to-list 'org-latex-packages-alist '("" "minted"))
+(setq org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
 
 ;; Deft configuration
 (use-package deft
@@ -124,38 +133,18 @@
         deft-use-filename-as-title t
         deft-strip-summary-regexp "\\*"))
 
-;; (global-set-key (kbd "C-x C-g") 'deft-find-file)
+;; (defface org-block-begin-line
+;;   '((t (:underline "#8b5a2b" :foreground "#8b7355" :background "#8b7355")))
+;;   "Face used for the line delimiting the begin of source blocks.")
 
-;; Capture templates
-(setq org-capture-templates
-      '(
-        ("t" "Todo" entry
-         (file+headline (concat org-directory "/agenda.org") "Personal")
-         "*** TODO %?")
+;; (defface org-block-background
+;;   '((t (:background "#545454")))
+;;   "Face used for the source block background.")
 
-        ("m" "Todo" entry
-         (file+headline (concat org-directory "/agenda.org") "Meetups")
-         "*** TODO %?\n SCHEDULED: %^{SCHEDULED: }t")
+;; (defface org-block-end-line
+;;   '((t (:overline "#8b5a2b" :foreground "#8b7355" :background "#8b7355")))
+;;   "Face used for the line delimiting the end of source blocks.")
 
-        ("l" "Link" item
-         (file+datetree (concat org-directory "/linklog.org")))
-
-        ("v" "Video (Programming)" checkitem
-         (file+headline (concat org-directory
-                                "/programming_videos_watchlist.org")
-                        "Programming Videos Watchlist"))
-        ))
-
-;; Syntax highlighting for org-export
-(setq org-latex-listings 'minted)
-
-;; Org latex configuration
-(require 'ox-latex)
-(add-to-list 'org-latex-packages-alist '("" "minted"))
-(setq org-latex-pdf-process
-      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
 
 (provide 'init-org)
 ;;; init-org ends here
