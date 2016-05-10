@@ -1,4 +1,3 @@
-
 (add-to-list 'load-path "/Users/kiran/.emacs.d/elpa/company-20150727.1415")
 (require 'company)
 (add-hook 'after-init-hook 'global-company-mode)

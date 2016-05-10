@@ -1,4 +1,6 @@
 
+(remove-hook 'find-file-hooks 'vc-find-file-hook)
+
 ;; git-awesome-mode
 (require 'magit)
 

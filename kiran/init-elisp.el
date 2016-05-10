@@ -11,6 +11,7 @@
 ;; Documentation at point for lisp files
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
 (add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
+
 (add-hook 'emacs-lisp-mode-hook (lambda () (rainbow-delimiters-mode)))
 (add-hook 'emacs-lisp-mode-hook 'paren-face-mode)
 

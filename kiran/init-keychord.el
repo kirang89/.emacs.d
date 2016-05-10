@@ -1,7 +1,3 @@
-;; Keychord Configuration
-;; Author: Kiran Gangadharan
-
-;; Bind actions to repeated key presses!
 (key-chord-mode t)
 (key-chord-define-global "aa"
 			 (lambda ()
