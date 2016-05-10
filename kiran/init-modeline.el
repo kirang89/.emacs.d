@@ -2,17 +2,18 @@
 ;; Author: Kiran Gangadharan
 
 ;; powerline
-(require 'powerline)
-(powerline-default-theme)
+;; (require 'powerline)
+;; (powerline-default-theme)
 ;; (setq powerline-default-separator (quote arrow-fade))
-(setq powerline-default-separator 'slant)
-(powerline-buffer-size nil 'l)
+;; (setq powerline-default-separator 'slant)
+;; (powerline-buffer-size nil 'l)
 
 (line-number-mode t)
 (column-number-mode -1)
 (size-indication-mode -1)
 
 ;; Set default font for different modeline modes
+(defvar fontfamily "DejaVu Sans Mono-13:spacing=m")
 (defun kg/set-modeline-face ()
   (interactive)
   (let ((faces '(mode-line
@@ -28,7 +29,8 @@
 (add-hook 'after-init-hook 'kg/set-modeline-face)
 
 (require 'diminish)
-(eval-after-load "helm" '(diminish 'helm-mode))
+(diminish 'helm-mode)
+(diminish 'auto-revert-mode)
 (eval-after-load "abbrev" '(diminish 'abbrev-mode))
 (eval-after-load "yasnippet" '(diminish 'yas-minor-mode))
 (eval-after-load "eldoc" '(diminish 'eldoc-mode))
@@ -40,10 +42,10 @@
 (eval-after-load "org-indent" '(diminish 'org-indent-mode))
 (eval-after-load "smartparens" '(diminish 'smartparens-mode))
 (eval-after-load "flycheck" '(diminish 'flycheck-mode))
-;;(eval-after-load "cider" '(diminish 'cider-mode "Cdr"))
+(eval-after-load "cider" '(diminish 'cider-mode "Cdr"))
 (eval-after-load "subword" '(diminish 'subword-mode))
 (eval-after-load "indent-guide" '(diminish 'indent-guide-mode))
-(eval-after-load "beacon" '(diminish 'beacon-mode))
+(eval-after-load "paredit" '(diminish 'paredit-mode))
 
 (defadvice emacs-lisp-mode (after elisp-rename-modeline activate)
   (setq mode-name "ELisp"))
