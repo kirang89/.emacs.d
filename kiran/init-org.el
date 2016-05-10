@@ -101,11 +101,15 @@
    (clojure . t)
    (sh . t)))
 
-;;(setq org-babel-clojure-backend 'cider)
-;;(require 'cider)
+;; (require 'cider)
+;; (setq org-babel-clojure-backend 'cider)
+
+(use-package ob-clojure
+  :init
+  (setq org-babel-clojure-backend 'cider))
 
 ;; don't run stuff automatically on export
-(setq org-export-babel-evaluate nil)
+;;(setq org-export-babel-evaluate nil)
 
 ;; Use unicode chars instead of regular bullets
 (require 'org-bullets)
