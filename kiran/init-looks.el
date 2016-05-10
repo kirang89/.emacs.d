@@ -6,33 +6,39 @@
 ;; Set a better frame title
 (setq frame-title-format '("%b (%m)"))
 
+;; Remove scratch buffer message
+(setq initial-scratch-message "")
+
 ;; Remove menu bar when running Emacs from terminal
 (when (not window-system)
   (menu-bar-mode -1))
 
-(setq-default cursor-type 'bar)
-
-;; Load theme
-;;(load-theme 'zenburn t)
+;;(setq-default cursor-type 'bar)
 
 ;; Good font sizes
 ;; ===============
-;; (set-frame-font "Code New Roman 16")
-;; (set-frame-font "Inconsolata Bold 15")
-;; (set-frame-font "Source Code Pro 16")
-(set-frame-font "Menlo 13")
-;; (set-frame-font "PragmataPro 17")
-;; (set-frame-font "Roboto Mono Light 13")
-;; (set-frame-font "DejaVu Sans Mono 13")
-;; (set-frame-font "CamingoCode 14")
-;; (set-frame-font "Droid Sans Mono 13")
-;; (set-frame-font "Ubuntu Mono 15")
-;; (set-frame-font "Office Code Pro 13")
-;; (set-frame-font "Hasklig 13")
-
+;;(set-frame-font "Code New Roman-16:spacing=m")
+;;(set-frame-font "Consolas-14:spacing=m")
+;;(set-frame-font "Inconsolata-17:spacing=m")
+;;(set-frame-font "Source Code Pro-13.0:weight=regular:spacing=m")
+;;(set-frame-font "Menlo-13:weight=regular:spacing=m")
+;;(set-frame-font "Generic Mono II-14:spacing=m")
+;;(set-frame-font "Roboto Mono 15")
+(set-frame-font "DejaVu Sans Mono-15:spacing=m")
+;;(set-frame-font "Droid Sans Mono-13:spacing=m")
+;;(set-frame-font "Office Code Pro 13")
+;;(set-frame-font "Hasklig-13:weight=medium")
+;;(set-default-font "-apple-Monaco-normal-normal-normal-*-13-*-*-*-*-0-iso10646-1")
+;;(set-frame-font "Fira Code-15:weight=regular:spacing=m")
+;;(set-frame-font "Fira Mono-15:spacing=m")
+;;(set-frame-font "Consolas-14:weight=medium:spacing=m")
+;;(set-frame-font "-*-Hack-normal-normal-normal-*-14-*-*-*-m-0-iso10646-1")
+;;(set-frame-font "DejaVu Sans Mono-13:weight=bold:spacing=p")
+;;(set-frame-font "Liberation Mono-13:weight=bold:spacing=p")
+;;(set-frame-font "Meslo LG L DZ-13:spacing=m")
 
 ;; Set default line spacing (relative)
-(setq-default line-spacing 0.5)
+(setq-default line-spacing 0.4)
 
 ; don't show the tool bar
 (require 'tool-bar)
@@ -47,7 +53,7 @@
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 
 ; Minimal fringe
-(fringe-mode 1)
+(fringe-mode 4)
 
 ;; Experimental
 (defun kg/set-fringe-background ()
@@ -79,15 +85,21 @@
          (linum-format (concat " %" (number-to-string w) "d ")))
     ad-do-it))
 
-(require 'linum)
-(eval-after-load "linum"
-  (set-face-attribute 'linum nil :font "Menlo 11"))
-
 ;; highlight current line number as well
-(use-package hlinum
-  :config
-  (hlinum-activate)
-  (set-face-attribute 'linum-highlight-face nil :font "Fira Code 11"))
+;; (use-package hlinum
+;;   :config
+;;   (hlinum-activate)
+;;   ;;(set-face-attribute 'linum-highlight-face nil :font "Fira Code 11")
+;;   (set-face-attribute 'linum-highlight-face nil :font "Code New Roman 12"))
+
+(defun kg/reset-linum ()
+  "Reset formatting of line numbers"
+  (interactive)
+  (let ((font "DejaVu Sans Mono-11:spacing=m"))
+    (require 'linum)
+    (set-face-attribute 'linum nil :font font)))
+
+(add-hook 'after-init-hook #'kg/reset-linum)
 
 ;; set color for selection
 ;; (set-face-attribute 'region nil :background "#666")
