@@ -63,8 +63,7 @@
   '(require 'ox-md nil t))
 
 ;; Spellcheck my org mode files.
-(add-hook 'org-mode-hook 'flyspell-mode)
-
+;;(add-hook 'org-mode-hook 'flyspell-mode)
 
 (defun org-archive-tasks ()
   "Archive DONE tasks in org-mode."
