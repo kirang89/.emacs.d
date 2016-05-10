@@ -116,13 +116,14 @@ Requires 'pcsv' package to be installed."
 
 ;; Source: http://www.emacswiki.org/emacs/DuplicateStartOfLineOrRegion
 (defun kg/duplicate-start-of-line-or-region ()
-  "Duplicate start of line or region"
+  "Duplicate start of line or region."
   (interactive)
   (if mark-active
       (kg/duplicate-region)
     (kg/duplicate-start-of-line)))
 
 (defun kg/duplicate-start-of-line ()
+  "Duplicate start of line."
   (let ((text (buffer-substring (point)
                                 (beginning-of-thing 'line))))
     (forward-line)
@@ -131,6 +132,7 @@ Requires 'pcsv' package to be installed."
     (open-line 1)))
 
 (defun kg/duplicate-region ()
+  "Duplicate start of region."
   (let* ((end (region-end))
          (text (buffer-substring (region-beginning)
                                  end)))
@@ -224,6 +226,16 @@ Source: http://demonastery.org/2013/04/emacs-narrow-to-region-indirect/"
     (with-current-buffer buf
       (narrow-to-region start end))
       (switch-to-buffer buf)))
+
+;; (defun kg/iterm-here ()
+;;   "Open current file location in iTerm."
+;;   (interactive)
+;;   (dired-smart-shell-command "open -a iTerm $PWD" nil nil))
+
+(defun kg/reset-ui ()
+  "Reset some UI components after changing a theme."
+  (kg/set-fringe-background)
+  (kg/reset-linum))
 
 (provide 'efuns)
 ;;; efuns.el ends here
