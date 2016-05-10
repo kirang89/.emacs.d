@@ -1,6 +1,16 @@
-;;
-;; Clojure configuration
-;;
+(require 'cider)
+
+;; A little more syntax highlighting
+(require 'clojure-mode-extra-font-locking)
+
+(use-package clj-refactor
+  :ensure t
+  :init
+  (add-hook 'clojure-mode-hook 'clj-refactor-mode)
+  ;;:config
+  ;; Configure the Clojure Refactoring prefix:
+  ;;(cljr-add-keybindings-with-prefix "C-c .")
+  :diminish clj-refactor-mode)
 
 ;; Enable paredit for Clojure
 (add-hook 'clojure-mode-hook 'enable-paredit-mode)
@@ -10,9 +20,6 @@
 (add-hook 'clojure-mode-hook 'subword-mode)
 
 ;; (add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
-
-;; A little more syntax highlighting
-(require 'clojure-mode-extra-font-locking)
 
 ;; syntax highlighting in repl
 (add-hook 'clojure-mode-hook
@@ -36,6 +43,8 @@
 (add-hook 'clojure-mode-hook
           (lambda ()
             (local-set-key (kbd "C-c C-s") 'paredit-wrap-round)))
+(add-hook 'clojure-mode-hook
+          (lambda () ()))
 
 ;;;;
 ;; Cider
@@ -47,27 +56,49 @@
       cider-auto-select-error-buffer t
       cider-repl-history-file "~/.emacs.d/cider-history"
       cider-repl-wrap-history t
+      cider-repl-history-size 1000
       cider-repl-use-clojure-font-lock t
       cider-docview-fill-column 70
       cider-stacktrace-fill-column 76
+      nrepl-hide-special-buffers t
+      ;; Stop error buffer from popping up while working in buffers other than REPL:
+      nrepl-popup-stacktraces nil
       cider-repl-use-pretty-printing t
-      cider-repl-display-help-banner nil)
+      cider-repl-display-help-banner nil
+      cider-repl-result-prefix ";; => ")
 
 ;; provides minibuffer documentation for the code you're typing into the repl
 (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
 ;; enable paredit in REPL
 (add-hook 'cider-repl-mode-hook 'paredit-mode)
 (add-hook 'cider-repl-mode-hook 'paren-face-mode)
+(add-hook 'cider-repl-mode-hook 'subword-mode)
 
-(defun kg/clj-src-file-name-from-test (name)
-  (s-with name
-    (s-replace "/test/" "/src/")
-    (s-replace "_test.clj" ".clj")))
+(defun cider-send-and-evaluate-sexp ()
+  "Sends the s-expression located before the point or the active
+  region to the REPL and evaluates it. Then the Clojure buffer is
+  activated as if nothing happened."
+  (interactive)
+  (if (not (region-active-p))
+      (cider-insert-last-sexp-in-repl)
+    (cider-insert-in-repl
+     (buffer-substring (region-beginning) (region-end)) nil))
+  (cider-switch-to-repl-buffer)
+  (cider-repl-closing-return)
+  (cider-switch-to-last-clojure-buffer)
+  (message ""))
 
-(defun kg/clj-test-file-name-from-src (name)
-  (s-with name
-    (s-replace "/src/" "/test/")
-    (s-replace ".clj" "_test.clj")))
+(bind-key "C-c C-v" 'cider-send-and-evaluate-sexp)
+
+;; (defun kg/clj-src-file-name-from-test (name)
+;;   (s-with name
+;;     (s-replace "/test/" "/src/")
+;;     (s-replace "_test.clj" ".clj")))
+
+;; (defun kg/clj-test-file-name-from-src (name)
+;;   (s-with name
+;;     (s-replace "/src/" "/test/")
+;;     (s-replace ".clj" "_test.clj")))
 
 (defun kg/set-pretty-symbols ()
   "make some word or string show as pretty Unicode symbols"
@@ -78,6 +109,14 @@
           ("=>"  . 8658)    ; ⇒
           ("map" . 8614)    ; ↦
           )))
+
+(defun kg/helm-clojure-headlines ()
+  "Display headlines for the current Clojure file."
+  (interactive)
+  (helm-mode t)
+  (helm :sources '(((name . "Clojure Headlines")
+                    (volatile)
+                    (headline "^[;(]")))))
 
 (provide 'init-clojure)
 ;;; init-clojure.el ends here
