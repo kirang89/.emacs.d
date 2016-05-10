@@ -23,7 +23,8 @@
                  mode-line-inactive)))
     (mapc
      (lambda (face)
-       (set-face-attribute face nil :font "Menlo 11" :weight 'normal))
+       (set-face-attribute face nil :font fontfamily :weight 'normal)
+       )
      faces)))
 
 (add-hook 'after-init-hook 'kg/set-modeline-face)

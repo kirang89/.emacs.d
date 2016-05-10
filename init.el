@@ -168,6 +168,14 @@
 ;; Use spotlight instead of locate
 (setq locate-command "mdfind")
 
+;;(projectile-global-mode)
+;; asks for file to open when project is switched
+;;(setq projectile-switch-project-action 'helm-projectile-find-file)
+;; turns on helm bindings for projectile
+;;(helm-projectile-on)
+;; (define-key projectile-mode-map (kbd "C-x j") 'projectile-find-file)
+
+(remove-hook 'text-mode-hook 'turn-on-flyspell)
 
 ;; Comment a line from anywhere in that line
 (use-package smart-comment

@@ -9,9 +9,6 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 
-(defalias 'pi 'package-install)
-(defalias 'pl 'package-list-packages)
-
 (defvar required-packages
   '(ace-jump-mode
     ace-window
