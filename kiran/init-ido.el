@@ -2,20 +2,27 @@
 ;; Author: Kiran Gangadharan
 
 ;; Enable ido (Interactively Do Things) mode
-(require 'ido)
-(ido-mode t)
+(use-package ido
+  :ensure t
+  :init  (setq ido-enable-flex-matching t
+               ido-ignore-extensions t
+               ido-use-virtual-buffers t
+               ido-everywhere t)
+  :config
+  (ido-mode 1)
+  (ido-everywhere 1)
+  (add-to-list 'completion-ignored-extensions ".pyc")
+  (add-to-list 'ido-ignore-files ".DS_STORE"))
 
-;; ido vertical mode
-(require 'ido-vertical-mode)
-(ido-vertical-mode 1)
+(use-package ido-vertical-mode
+  :ensure t
+  :config (ido-vertical-mode 1))
 
 ;; ido with fuzzy search
-(require 'flx-ido)
-(flx-ido-mode 1)
-(setq ido-enable-flex-matching t)
-(add-to-list 'ido-ignore-files "\\.pyc")
-(add-to-list 'ido-ignore-files ".DS_STORE")
-(setq ido-use-faces nil)
-;(setq flx-ido-use-faces nil)
+(use-package flx-ido
+   :ensure t
+   :init (setq ido-enable-flex-matching t
+               ido-use-faces nil)
+   :config (flx-ido-mode 1))
 
 (provide 'init-ido)
