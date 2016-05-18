@@ -77,9 +77,9 @@
 
 ;; Smoother scrolling behavior when using keyboard navigation
 (setq redisplay-dont-pause t
-      scroll-margin 1
-      scroll-step 1
-      scroll-conservatively 10000
+      scroll-margin 3
+      scroll-step 5
+      scroll-conservatively 1000
       scroll-preserve-screen-position 1)
 
 ;; Remove autocomplete (and use company-mode instead)
