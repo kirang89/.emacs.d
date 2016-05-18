@@ -155,6 +155,12 @@
 ;; Follow compiler ouput
 (setq compilation-scroll-output t)
 
+(use-package json-mode
+  :mode "\\.json\\'"
+  :config
+  ;; (add-to-list 'auto-mode-alist '("\\.json\\'" . json-mode))
+  (bind-key "{" #'paredit-open-curly json-mode-map)
+  (bind-key "}" #'paredit-close-curly json-mode-map))
 
 ;;; =====================================
 ;;; Experimental Stuff
