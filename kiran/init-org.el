@@ -112,7 +112,11 @@
 ;;(setq org-export-babel-evaluate nil)
 
 ;; Use unicode chars instead of regular bullets
-(require 'org-bullets)
+(use-package org-bullets
+  :ensure t
+  :commands org-bullets-mode
+  :config (add-hook 'org-mode-hook 'org-bullets-mode))
+
 (add-hook 'org-mode-hook
 	  (lambda ()
         (org-bullets-mode 1)

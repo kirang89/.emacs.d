@@ -114,12 +114,11 @@
 (column-number-mode -1)
 
 ;; Number each buffer for easy switching with M-<no>
-(add-to-list 'load-path
-             "/Users/kiran/.emacs.d/elpa/window-numbering-20150228.1247")
-(require 'window-numbering)
-(window-numbering-mode t)
+;; (add-to-list 'load-path
+;;              "/Users/kiran/.emacs.d/elpa/window-numbering-20150228.1247")
 
-(global-prettify-symbols-mode 1)
+(use-package window-numbering
+  :config (window-numbering-mode t))
 
 ;; Make Emacs handle sRGB colors correctly
 ;; for solarized theme

@@ -27,23 +27,24 @@
 (delete-selection-mode 1)
 
 ;; expand-region
-(require 'expand-region)
-(global-set-key (kbd "C-;") 'er/expand-region)
+(use-package expand-region
+  :config (global-set-key (kbd "C-;") 'er/expand-region))
 
 ;; avy
-(require 'avy)
-(define-key global-map (kbd "C-`") 'avy-goto-word-or-subword-1)
+(use-package avy
+  :config (define-key global-map (kbd "C-`") 'avy-goto-word-or-subword-1))
 
 ;; Move b/w windows ace-jump style
-(require 'ace-window)
-(define-key global-map (kbd "M-p") 'ace-window)
+;; (use-package ace-window
+;;   :config (define-key global-map (kbd "M-p") 'ace-window))
 
 ;; move buffers around
-(require 'buffer-move)
-(global-set-key (kbd "<C-S-up>")     'buf-move-up)
-(global-set-key (kbd "<C-S-down>")   'buf-move-down)
-(global-set-key (kbd "<C-S-left>")   'buf-move-left)
-(global-set-key (kbd "<C-S-right>")  'buf-move-right)
+(use-package buffer-move
+  :config
+  (global-set-key (kbd "C-c <up>")     'buf-move-up)
+  (global-set-key (kbd "C-c <down>")   'buf-move-down)
+  (global-set-key (kbd "C-c <left>")   'buf-move-left)
+  (global-set-key (kbd "C-c <right>")  'buf-move-right))
 
 ;; Requires aspell to be installed
 ;; Install on OSX by running `brew install aspell --with-lang-en`
@@ -56,14 +57,27 @@
 ;; multiple cursors!
 ;; To quit mc mode hit C-g or RET
 ;; TO insert newline hit C-j
-(require 'multiple-cursors)
-(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+;; (require 'multiple-cursors)
+;; (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+;; (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+;; (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+;; (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
+(use-package multiple-cursors
+  ;; :bind (("C->" . mc/mark-next-like-this)
+  ;;        ("C-<" . mc/mark-previous-like-this)
+  ;;        ("C-c C->" . mc/mark-all-like-this))
+  :config
+  (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+  (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+  (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this))
 
 ;; Mode for distraction free writing
-(autoload 'darkroom "darkroom" "Darkroom mode" t)
+(use-package darkroom
+  :defer t
+  :diminish "DkR")
+;;(autoload 'darkroom "darkroom" "Darkroom mode" t)
 
 (provide 'init-editing)
 ;;; init-editing.el ends here
