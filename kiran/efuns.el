@@ -252,5 +252,32 @@ Source: http://demonastery.org/2013/04/emacs-narrow-to-region-indirect/"
      			 (face-foreground 'default)))
   (set-face-attribute 'show-paren-match-face nil :weight 'extra-bold))
 
+
+;; http://emacs.stackexchange.com/a/81
+(defun kg/switch-to-scratch-and-back (arg)
+  "Toggle between *scratch-MODE* buffer and the current buffer.
+
+The mode is specified by ARG.  If a scratch buffer does not
+exist, create it with the major mode set to that of the buffer
+from where this function is called.
+
+COMMAND -> Open/switch to a scratch buffer in the current buffer's major mode
+C-0 COMMAND -> Open/switch to a scratch buffer in `fundamental-mode'
+C-u COMMAND -> Open/switch to a scratch buffer in `org-mode'
+C-u C-u COMMAND -> Open/switch to a scratch buffer in `emacs-elisp-mode'"
+  (interactive "p")
+  (if (and (= arg 1) ; no prefix
+           (string-match-p "\\*scratch" (buffer-name)))
+      (switch-to-buffer (other-buffer))
+    (let ((mode-str (cl-case arg
+                      (0  "fundamental-mode") ; C-0
+                      (4  "org-mode") ; C-u
+                      (16 "emacs-lisp-mode") ; C-u C-u
+                      (t  (format "%s" major-mode))))) ; no prefix
+      (switch-to-buffer (get-buffer-create
+                         (concat "*scratch-" mode-str "*")))
+      (funcall (intern mode-str)))))
+
+
 (provide 'efuns)
 ;;; efuns.el ends here
