@@ -237,5 +237,20 @@ Source: http://demonastery.org/2013/04/emacs-narrow-to-region-indirect/"
   (kg/set-fringe-background)
   (kg/reset-linum))
 
+(defun kg/lispy-parens ()
+  "Setup parens display for Lisp modes."
+  (interactive)
+  (setq show-paren-delay 0)
+  (setq show-paren-style 'parenthesis)
+  (make-variable-buffer-local 'show-paren-mode)
+  (show-paren-mode 1)
+  (set-face-background 'show-paren-match-face (face-background 'default))
+  (if (boundp 'font-lock-comment-face)
+      (set-face-foreground 'show-paren-match-face
+     			   (face-foreground 'font-lock-comment-face))
+    (set-face-foreground 'show-paren-match-face
+     			 (face-foreground 'default)))
+  (set-face-attribute 'show-paren-match-face nil :weight 'extra-bold))
+
 (provide 'efuns)
 ;;; efuns.el ends here
