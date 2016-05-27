@@ -7,6 +7,7 @@
       mu4e-drafts-folder "/me@kirang.in/INBOX.Drafts"
       mu4e-sent-folder   "/me@kirang.in/INBOX.Sent Items"
       mu4e-attachment-dir "/me@kirang.in/Attachments"
+      mu4e-view-prefer-html t
       mu4e-confirm-quit nil
       mu4e-headers-skip-duplicates t
       mu4e-headers-leave-behavior 'apply
@@ -14,32 +15,28 @@
       mu4e-sent-messages-behavior 'delete
       mu4e-get-mail-command "offlineimap"
       mu4e-show-images t
+      mu4e-view-show-addresses t
       mu4e-update-interval 600
-)
+      user-mail-address "me@kirang.in"
+      user-full-name  "Kiran Gangadharan"
+      mu4e-reply-to-address "me@kirang.in"
+      mu4e-compose-signature (concat "Cheers,\n"
+				     "Kiran Gangadharan\n"
+				     "http://kirang.in\n")
+      message-kill-buffer-on-exit t
+      ;; show images
+      mu4e-show-images t
+      mu4e-view-show-images t
+      org-mu4e-convert-to-html t)
 
 ;; the headers to show in the headers list -- a pair of a field
 ;; and its width, with `nil' meaning 'unlimited'
 ;; (better only use that for the last field.
 (setq mu4e-headers-fields
-    '( (:date          .  10)    ;; alternatively, use :human-date
-       (:from          .  20)
-       (:subject       .  nil))) ;; alternatively, use :thread-subject
+      '( (:human-date    .  10) ;; alternatively, use :human-date
+	 (:subject       .  nil)
+	 (:from          .  20))) ;; alternatively, use :thread-subject
 
-;; shortcuts
-;; (setq mu4e-maildir-shortcuts
-;;     '( ("/INBOX"               . ?i)
-;;        ("/[Gmail].Sent Mail"   . ?s)))
-
-;; something about ourselves
-(setq
-   user-mail-address "me@kirang.in"
-   user-full-name  "Kiran Gangadharan"
-   mu4e-reply-to-address "me@kirang.in"
-   mu4e-compose-signature
-    (concat
-      "Cheers,\n"
-      "Kiran Gangadharan\n"
-      "http://kirang.in\n"))
 
 ;; configuration for sending mail
 (require 'smtpmail)
@@ -49,19 +46,10 @@
      smtpmail-smtp-server "mail.messagingengine.com"
      smtpmail-smtp-service 465)
 
-;; don't keep message buffers around
-(setq message-kill-buffer-on-exit t)
-
-;; show images
-(setq mu4e-show-images t)
-(setq mu4e-view-show-images t)
-;;(setq mu4e-view-image-max-width 600)
+(setq mu4e-view-image-max-width 600)
 ;; use imagemagick, if available
 (when (fboundp 'imagemagick-register-types)
   (imagemagick-register-types))
-
-;; convert org mode to HTML automatically
-(setq org-mu4e-convert-to-html t)
 
 ;; convert html emails properly
 ;; Possible options:
@@ -71,8 +59,12 @@
 ;;   - w3m -dump -cols 80 -T text/html
 ;;   - view in browser (provided below)
 ;;   - shr html renderer mu4e-shr2text
+;;   - pandoc -f html -t plain --normalize --columns 72
 (require 'mu4e-contrib)
 (setq mu4e-html2text-command 'mu4e-shr2text)
+;;(setq mu4e-html2text-command "html2text utf8")
+;;(setq mu4e-html2text-command "html2markdown --body-width=0 | sed \"s/&nbsp_place_holder;//g; /^$/d\"")
+;;(setq mu4e-html2text-command "pandoc -f html -t plain --normalize")
 
 ;; spell check
 (add-hook 'mu4e-compose-mode-hook
