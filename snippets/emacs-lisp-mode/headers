@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: headers
+# key: headers
+# --
+;;; ${1:(buffer-file-name)} --- $2
+;;; Copyright (C) 2016 Kiran Gangadharan
+;;; Commentary:
+;;;
+;;; $3
+;;;
+;;; Code:
+$0

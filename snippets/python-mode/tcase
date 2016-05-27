@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: tcase
+# key: tcase
+# --
+import unittest
+
+
+class $1TestCase(unittest.TestCase):
+
+    def test_$2(self):
+        pass$0
+
+
+
+if __name__ == '__main__':
+    unittest.main()

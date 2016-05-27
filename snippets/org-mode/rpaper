@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: rpaper
+# key: rpaper
+# binding: direct-keybinding
+# --
+#+TITLE: $2
+#+AUTHOR: $1
+#+DATE: `(kg/timestamp)`$0
+#+OPTIONS: toc:nil
+#+LaTeX_CLASS_OPTIONS: [a4paper,twocolumn]
+#+LaTeX_HEADER: \usepackage[T1]{fontenc}
+#+LaTeX_HEADER: \usepackage{libertine}
+#+LaTeX_HEADER: \renewcommand*\oldstylenums[1]{{\fontfamily{fxlj}\selectfont #1}}
+#+LaTeX_HEADER: \usepackage{lmodern}
+#+LaTeX_HEADER: \usepackage{parskip}
+#+LaTeX_HEADER: \setlength\parindent{1cm}
