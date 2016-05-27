@@ -97,6 +97,10 @@
 ;;(setq linum-format " %4d ")
 (setq linum-format "%5i ")
 
+;; Dynamically adjust to width
+;;(custom-set-variables '(linum-format 'dynamic))
+;; (custom-set-variables '(nlinum-format 'dynamic))
+
 (defun kg/reset-linum ()
   "Reset formatting of line numbers"
   (interactive)

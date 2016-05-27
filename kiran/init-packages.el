@@ -6,8 +6,8 @@
 
 (package-initialize)
 
-(when (not package-archive-contents)
-  (package-refresh-contents))
+;; (when (not package-archive-contents)
+;;   (package-refresh-contents))
 
 (defvar required-packages
   '(ace-jump-mode
@@ -77,9 +77,9 @@
     zenburn-theme)
   "Packages to be installed upon launch")
 
-(dolist (package required-packages)
-  (unless (package-installed-p package)
-    (package-install package)))
+;; (dolist (package required-packages)
+;;   (unless (package-installed-p package)
+;;     (package-install package)))
 
 (provide 'init-packages)
 ;;; init-packages.el ends here
