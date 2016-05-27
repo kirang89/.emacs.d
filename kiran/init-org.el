@@ -24,7 +24,8 @@
       ;; Use speed commands like `t` to change todo status
       org-use-speed-commands t
       ;; Syntax highlighting for org-export
-      org-latex-listings 'minted)
+      org-latex-listings 'minted
+      org-hide-emphasis-markers t)
 
 ;; The directory where images should be downloaded to, when dragged into
 ;; an org buffer
@@ -34,6 +35,11 @@
         '(("TODO" :foreground "red" :weight bold)
           ("DOING" :foreground "magenta" :weight bold)
           ("DONE" :foreground "green" :weight bold)))
+
+;; Better bullets
+(font-lock-add-keywords 'org-mode
+                        '(("^ +\\([-*]\\) "
+                           (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
 
 ;; Capture templates
 (setq org-capture-templates
@@ -101,9 +107,6 @@
    (clojure . t)
    (sh . t)))
 
-;; (require 'cider)
-;; (setq org-babel-clojure-backend 'cider)
-
 (use-package ob-clojure
   :init
   (setq org-babel-clojure-backend 'cider))
@@ -118,9 +121,7 @@
   :config (add-hook 'org-mode-hook 'org-bullets-mode))
 
 (add-hook 'org-mode-hook
-	  (lambda ()
-        (org-bullets-mode 1)
-        (local-set-key (kbd "C-x p") 'org-cliplink)))
+	  (lambda () (local-set-key (kbd "C-x p") 'org-cliplink)))
 
 ;; Org latex configuration
 (require 'ox-latex)
@@ -151,7 +152,6 @@
 ;; (defface org-block-end-line
 ;;   '((t (:overline "#8b5a2b" :foreground "#8b7355" :background "#8b7355")))
 ;;   "Face used for the line delimiting the end of source blocks.")
-
 
 (provide 'init-org)
 ;;; init-org ends here
