@@ -3,7 +3,6 @@
 (setq py-electric-colon-active t)
 
 ;; Elpy setup
-(package-initialize)
 (elpy-enable)
 ;;(elpy-use-ipython)
 (setq elpy-rpc-backend "jedi")
@@ -20,13 +19,15 @@
 (defun kg/python-mode-hook ()
   (add-to-list 'company-backends 'company-jedi))
 
-(add-hook 'python-mode-hook 'yas-minor-mode)
+;;(add-hook 'python-mode-hook 'yas-minor-mode)
 (add-hook 'python-mode-hook 'kg/python-mode-hook)
 (add-hook 'python-mode-hook 'turn-on-eldoc-mode)
 ;;(add-hook 'python-mode-hook 'projectile-mode)
 (add-hook 'python-mode-hook (lambda ()
                               (require 'sphinx-doc)
                               (sphinx-doc-mode t)))
+(add-hook 'elpy-mode-hook (lambda ()
+			    (local-set-key (kbd "M-.") 'elpy-goto-definition)))
 ;; (add-hook 'python-mode-hook (lambda ()
 ;;                               (require 'indent-guide)
 ;;                               (indent-guide-mode t)))
@@ -48,12 +49,12 @@
 (setenv "LC_CTYPE" "UTF-8")
 
 (add-hook 'python-mode-hook 'linum-mode)
-(add-hook 'python-mode-hook (lambda ()
-                              (require 'nose)
-                              (defvar nose-use-verbose t)))
+;; (add-hook 'python-mode-hook (lambda ()
+;;                               (require 'nose)
+;;                               (defvar nose-use-verbose t)))
 
-(add-hook 'python-mode-hook
-          (lambda () (local-set-key (kbd "C-c t") 'elpy-test-nose-runner)))
+;; (add-hook 'python-mode-hook
+;;           (lambda () (local-set-key (kbd "C-c t") 'elpy-test-nose-runner)))
 
 (add-hook 'elpy-mode-hook 'flycheck-mode)
 
@@ -61,6 +62,11 @@
 ;; (add-hook 'python-mode-hook
 ;;           (lambda () (local-set-key (kbd "C-c f") #'helm-semantic-or-imenu)))
 
+
+;; Settings to try out anaconda-mode
+;; (add-hook 'python-mode-hook 'anaconda-mode)
+;; (add-hook 'python-mode-hook 'eldoc-mode)
+;; (add-to-list 'company-backends 'company-anaconda)
 
 (provide 'init-python)
 ;;; init-python.el ends here
