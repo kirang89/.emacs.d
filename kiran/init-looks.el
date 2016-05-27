@@ -18,27 +18,29 @@
 ;; Good font sizes
 ;; ===============
 ;;(set-frame-font "Code New Roman-16:spacing=m")
-;;(set-frame-font "Consolas-14:spacing=m")
-;;(set-frame-font "Inconsolata-17:spacing=m")
-;;(set-frame-font "Source Code Pro-13.0:weight=regular:spacing=m")
+;;(set-frame-font "Consolas-14:weight=bold:spacing=m")
+;;(set-frame-font "Inconsolata-13:weight=regular:spacing=m")
+;;(set-frame-font "Inconsolata-g-15:spacing=m")
+;;(set-frame-font "Source Code Pro-13.0:weight=light:spacing=m")
+;;(set-frame-font "Source Code Pro-13:weight=medium:height=150")
+;; with ls 0.2
+(set-frame-font "Hasklig-13:weight=medium:spacing=m") ;; with ls 0.2
 ;;(set-frame-font "Menlo-13:weight=regular:spacing=m")
-;;(set-frame-font "Generic Mono II-14:spacing=m")
-;;(set-frame-font "Roboto Mono 15")
-(set-frame-font "DejaVu Sans Mono-15:spacing=m")
-;;(set-frame-font "Droid Sans Mono-13:spacing=m")
+;;(set-frame-font "Generic Mono II-14:weight=medium:spacing=m")
+;;(set-frame-font "Roboto Mono 13")
+;;(set-frame-font "Droid Sans Mono-13:weight=bold:spacing=m")
+;;(set-frame-font "Liberation Mono-13:weight=bold:spacing=p")
 ;;(set-frame-font "Office Code Pro 13")
-;;(set-frame-font "Hasklig-13:weight=medium")
 ;;(set-default-font "-apple-Monaco-normal-normal-normal-*-13-*-*-*-*-0-iso10646-1")
-;;(set-frame-font "Fira Code-15:weight=regular:spacing=m")
-;;(set-frame-font "Fira Mono-15:spacing=m")
-;;(set-frame-font "Consolas-14:weight=medium:spacing=m")
 ;;(set-frame-font "-*-Hack-normal-normal-normal-*-14-*-*-*-m-0-iso10646-1")
 ;;(set-frame-font "DejaVu Sans Mono-13:weight=bold:spacing=p")
-;;(set-frame-font "Liberation Mono-13:weight=bold:spacing=p")
-;;(set-frame-font "Meslo LG L DZ-13:spacing=m")
+;;(set-frame-font "Fira Mono Medium for Powerline-15:spacing=m")
+;;(set-frame-font "NanumGothicCoding-17:spacing=m")
+;;(set-frame-font "AHAMONO-17:spacing=m")
+;;(set-frame-font "Anonymous Pro-14:spacing=m")
 
 ;; Set default line spacing (relative)
-(setq-default line-spacing 0.4)
+(setq-default line-spacing 0.1)
 
 ; don't show the tool bar
 (require 'tool-bar)
@@ -95,7 +97,7 @@
 (defun kg/reset-linum ()
   "Reset formatting of line numbers"
   (interactive)
-  (let ((font "DejaVu Sans Mono-11:spacing=m"))
+  (let ((font "Source Code Pro-11.0:weight=regular:spacing=m"))
     (require 'linum)
     (set-face-attribute 'linum nil :font font)))
 
