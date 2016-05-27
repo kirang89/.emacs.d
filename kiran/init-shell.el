@@ -2,13 +2,12 @@
 ;; set zsh as shell in emacs
 (setenv "ESHELL" "/bin/zsh")
 (setenv "SHELL" "/bin/zsh")
+(setenv "PAGER" "cat")
 
 ;; bash completion for emacs shell
-(autoload 'bash-completion-dynamic-complete "bash-completion" "BASH completion hook")
-(add-hook 'shell-dynamic-complete-functions 'bash-completion-dynamic-complete)
-(add-hook 'shell-command-complete-functions 'bash-completion-dynamic-complete)
-
-(setenv "PAGER" "cat")
+;; (autoload 'bash-completion-dynamic-complete "bash-completion" "BASH completion hook")
+;; (add-hook 'shell-dynamic-complete-functions 'bash-completion-dynamic-complete)
+;; (add-hook 'shell-command-complete-functions 'bash-completion-dynamic-complete)
 
 (add-hook 'eshell-mode-hook
           (lambda ()
@@ -30,6 +29,9 @@
 
 ;; (add-to-list 'eshell-output-filter-functions
 ;;              'eshell-postoutput-scroll-to-bottom)
+
+(defalias 'e 'find-file)
+(defalias 'ee 'find-file-other-window)
 
 ;; git status
 (defun eshell/gst (&rest args)
@@ -99,9 +101,6 @@ PWD is not in a git repo (or the git command is not found)."
       (list (file-name-directory directory) (file-name-base directory))
     (list "" directory)))
 
-;; Turn off the default prompt.
-(setq eshell-highlight-prompt nil)
-
 ;; Create a custom prompt using the functions above
 (setq eshell-prompt-function
       (lambda ()
@@ -126,6 +125,10 @@ PWD is not in a git repo (or the git command is not found)."
              (propertize " "    'face `(:weight bold)))))))
 
 ;; ======================================================================
+
+;; Turn off the default prompt.
+(setq eshell-highlight-prompt nil)
+
 
 (provide 'init-shell)
 ;;; init-shell.el ends here
