@@ -47,6 +47,8 @@
 
 (add-to-list 'load-path "~/.emacs.d/kiran/")
 
+(require 'init-solarized)
+
 (require 'init-packages)
 (require 'use-package)
 
