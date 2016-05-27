@@ -6,8 +6,22 @@
 ;;
 ;;; Code:
 
+
+; =================================== TODOS ===============================
+;
+; - Better completion in eshell
+; - Completely migrate to using use-package
+; - Eshell does not show previous commands
+; - Try anaconda mode
+;
+; ========================================= ===============================
+
 ;; Record the start time
 (setq *emacs-load-start* (current-time))
+
+;; Disable VC hooks
+;; http://stackoverflow.com/questions/6724471/git-slows-down-emacs-to-death-how-to-fix-this
+(setq vc-handled-backends nil)
 
 ;; Turn off mouse interface early in startup to avoid momentary display
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
@@ -30,8 +44,6 @@
 
 ;; do not make backup files
 (setq make-backup-files nil)
-;; Don't litter fs with backup files
-;;(setq backup-directory-alist '((".", "~/.saves")))
 
 (add-to-list 'load-path "~/.emacs.d/kiran/")
 
@@ -39,21 +51,21 @@
 (require 'use-package)
 
 (require 'init-looks)
-(require 'init-modeline)
 (require 'init-editing)
 (require 'init-kbd)
 (require 'init-ido)
 (require 'init-helm)
 (require 'init-ibuffer)
-(require 'init-keychord)
 (require 'init-company)
+(require 'init-keychord)
 (require 'init-parens)
-(eval-after-load 'python-mode '(require 'init-python))
+(require 'init-python)
 (eval-after-load 'clojure-mode '(require 'init-clojure))
 (require 'init-elisp)
 (eval-after-load 'markdown-mode '(require 'init-markdown))
 (eval-after-load 'org '(require 'init-org))
 (require 'init-yasnippet)
+(require 'init-modeline)
 (require 'init-shell)
 (require 'efuns)
 (require 'init-magit)
@@ -114,8 +126,6 @@
 ;; (require 'tramp)
 ;; (setq tramp-default-method "ssh")
 
-(add-to-list 'auto-mode-alist '("\\.json\\'" . json-mode))
-
 ;;; Make files and folders in dired-mode neater
 (require 'dired-details)
 (dired-details-install)
@@ -139,7 +149,7 @@
    (if mark-active
        (list (region-beginning)
              (region-end))
-     (message "Copied line")
+     (message "Line copied")
      (list (line-beginning-position)
            (line-beginning-position 2)))))
 
@@ -154,6 +164,12 @@
 (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 ;; Follow compiler ouput
 (setq compilation-scroll-output t)
+
+;; Various keywords (in comments) are now flagged in a Red Error font
+(add-hook 'prog-common-hook
+          (lambda ()
+            (font-lock-add-keywords nil
+                                    '(("\\<\\(FIX\\|FIXME\\|TODO\\|BUG\\|HACK\\):" 1 font-lock-warning-face t)))))
 
 (use-package json-mode
   :mode "\\.json\\'"
@@ -185,6 +201,8 @@
 ;;; Experimental Stuff
 ;;; =====================================
 
+;; Read http://www.lunaryorn.com/2015/01/06/my-emacs-configuration-with-use-package.html
+
 ;; flycheck support
 ;;(autoload 'flycheck-mode "flycheck" "Checker" t)
 ;;(require 'flycheck)
@@ -200,18 +218,31 @@
 ;;(helm-projectile-on)
 ;; (define-key projectile-mode-map (kbd "C-x j") 'projectile-find-file)
 
-(remove-hook 'text-mode-hook 'turn-on-flyspell)
+;;(remove-hook 'text-mode-hook 'turn-on-flyspell)
 
 ;; Comment a line from anywhere in that line
 (use-package smart-comment
   :ensure t
   :bind ("M-;" . smart-comment))
 
-;; Various keywords (in comments) are now flagged in a Red Error font
-(add-hook 'prog-common-hook
-          (lambda ()
-            (font-lock-add-keywords nil
-                                    '(("\\<\\(FIX\\|FIXME\\|TODO\\|BUG\\|HACK\\):" 1 font-lock-warning-face t)))))
+(use-package aggressive-indent
+  :commands (aggressive-indent-mode)
+  :config
+  (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
+  (add-hook 'clojure-mode-hook #'aggressive-indent-mode))
+
+
+;; Increase the GC threshold to 50MB during startup and then bring it
+;; down to the default value of 800KB
+;; (setq gc-cons-threshold 50000000)
+
+;; (add-hook 'emacs-startup-hook 'my/set-gc-threshold)
+;; (defun my/set-gc-threshold ()
+;;   "Reset `gc-cons-threshold' to its default value."
+;;   (setq gc-cons-threshold 800000))
+
+;; Make C-v and M-v undo each other
+(setq scroll-preserve-screen-position 'always)
 
 ;;; =================================================================
 
