@@ -13,7 +13,9 @@
 (size-indication-mode -1)
 
 ;; Set default font for different modeline modes
-(defvar fontfamily "DejaVu Sans Mono-13:spacing=m")
+;;(defvar modeline-font "DejaVu Sans Mono-13:spacing=p")
+;;(defvar modeline-font "Droid Sans Mono-13:weight=bold:spacing=m")
+(defvar modeline-font "Source Code Pro-13.0:weight=regular:spacing=m")
 (defun kg/set-modeline-face ()
   (interactive)
   (let ((faces '(mode-line
@@ -23,7 +25,7 @@
                  mode-line-inactive)))
     (mapc
      (lambda (face)
-       (set-face-attribute face nil :font fontfamily :weight 'normal)
+       (set-face-attribute face nil :font modeline-font :weight 'normal)
        )
      faces)))
 
@@ -32,6 +34,7 @@
 (require 'diminish)
 (diminish 'helm-mode)
 (diminish 'auto-revert-mode)
+(diminish 'auto-fill-mode)
 (eval-after-load "abbrev" '(diminish 'abbrev-mode))
 (eval-after-load "yasnippet" '(diminish 'yas-minor-mode))
 (eval-after-load "eldoc" '(diminish 'eldoc-mode))
@@ -52,7 +55,7 @@
   (setq mode-name "ELisp"))
 
 (defvar mode-line-cleaner-alist
-  `((paredit-mode . " π")
+  `(;; (paredit-mode . " π")
     ;; Major modes
     (hi-lock-mode . "")
     (python-mode . "ξ")

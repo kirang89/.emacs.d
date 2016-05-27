@@ -13,6 +13,6 @@
 (key-chord-define-global "ii"
 			 (lambda ()
 			   (interactive)
-			   (find-file "~/Box Sync/org-notes/scratch1.txt")))
+			   (find-file "~/Box Sync/org-notes/notes.txt")))
 
 (provide 'init-keychord)
