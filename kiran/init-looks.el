@@ -81,11 +81,11 @@
 (setq-default fill-column 80)
 
 ;; Show line numbers, dynamically with spaces on either side
-(defadvice linum-update-window (around linum-dynamic activate)
-  (let* ((w (length (number-to-string
-                     (count-lines (point-min) (point-max)))))
-         (linum-format (concat " %" (number-to-string w) "d ")))
-    ad-do-it))
+;; (defadvice linum-update-window (around linum-dynamic activate)
+;;   (let* ((w (length (number-to-string
+;;                      (count-lines (point-min) (point-max)))))
+;;          (linum-format (concat " %" (number-to-string w) "d ")))
+;;     ad-do-it))
 
 ;; highlight current line number as well
 ;; (use-package hlinum
@@ -93,6 +93,9 @@
 ;;   (hlinum-activate)
 ;;   ;;(set-face-attribute 'linum-highlight-face nil :font "Fira Code 11")
 ;;   (set-face-attribute 'linum-highlight-face nil :font "Code New Roman 12"))
+
+;;(setq linum-format " %4d ")
+(setq linum-format "%5i ")
 
 (defun kg/reset-linum ()
   "Reset formatting of line numbers"
@@ -102,6 +105,7 @@
     (set-face-attribute 'linum nil :font font)))
 
 (add-hook 'after-init-hook #'kg/reset-linum)
+(add-hook 'prog-mode-hook 'linum-mode)
 
 ;; set color for selection
 ;; (set-face-attribute 'region nil :background "#666")
@@ -122,9 +126,7 @@
 (use-package window-numbering
   :config (window-numbering-mode t))
 
-;; Make Emacs handle sRGB colors correctly
-;; for solarized theme
-;; (setq solarized-broken-srgb nil)
+(global-prettify-symbols-mode 1)
 
 (provide 'init-looks)
 ;;; init-looks.el ends here
