@@ -9,3 +9,10 @@ url
 .mc-lists.el
 .python-environments
 .cask
+
+.yas-compiled-snippets.el
+bookmarks
+cider-history
+recentf
+projectile-bookmarks.eld
+var
