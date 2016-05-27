@@ -234,7 +234,9 @@ Source: http://demonastery.org/2013/04/emacs-narrow-to-region-indirect/"
 
 (defun kg/reset-ui ()
   "Reset some UI components after changing a theme."
+  (interactive)
   (kg/set-fringe-background)
+  (kg/set-modeline-face)
   (kg/reset-linum))
 
 (defun kg/lispy-parens ()
@@ -278,6 +280,14 @@ C-u C-u COMMAND -> Open/switch to a scratch buffer in `emacs-elisp-mode'"
                          (concat "*scratch-" mode-str "*")))
       (funcall (intern mode-str)))))
 
+
+(defun kg/newline-for-code ()
+  "Insert a newline character, but from the end of the current line."
+  (interactive)
+  (move-end-of-line 1)
+  (newline-and-indent))
+
+(global-set-key (kbd "M-RET") 'kg/newline-for-code)
 
 (provide 'efuns)
 ;;; efuns.el ends here
