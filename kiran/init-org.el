@@ -118,7 +118,7 @@
 (use-package org-bullets
   :ensure t
   :commands org-bullets-mode
-  :config (add-hook 'org-mode-hook 'org-bullets-mode))
+  :config (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
 (add-hook 'org-mode-hook
 	  (lambda () (local-set-key (kbd "C-x p") 'org-cliplink)))
