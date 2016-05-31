@@ -15,6 +15,8 @@
 
 ;;(setq-default cursor-type 'bar)
 
+(setq ns-use-srgb-colorspace t)
+
 ;; Good font sizes
 ;; ===============
 ;;(set-frame-font "Code New Roman-16:spacing=m")
@@ -69,8 +71,8 @@
 ;; remove highlight current line
 (global-hl-line-mode -1)
 
-; add any custom themes
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+;; add any custom themes
+;; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 
 ;; Syntax Highlighting
 (require 'font-lock)
@@ -87,19 +89,8 @@
 ;;          (linum-format (concat " %" (number-to-string w) "d ")))
 ;;     ad-do-it))
 
-;; highlight current line number as well
-;; (use-package hlinum
-;;   :config
-;;   (hlinum-activate)
-;;   ;;(set-face-attribute 'linum-highlight-face nil :font "Fira Code 11")
-;;   (set-face-attribute 'linum-highlight-face nil :font "Code New Roman 12"))
-
 ;;(setq linum-format " %4d ")
 (setq linum-format "%5i ")
-
-;; Dynamically adjust to width
-;;(custom-set-variables '(linum-format 'dynamic))
-;; (custom-set-variables '(nlinum-format 'dynamic))
 
 (defun kg/reset-linum ()
   "Reset formatting of line numbers"
@@ -124,11 +115,6 @@
 ;; set unique names for two similar buffers
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
-
-;; Clean up modeline a bit
-(line-number-mode -1)
-(size-indication-mode -1)
-(column-number-mode -1)
 
 ;; Number each buffer for easy switching with M-<no>
 ;; (add-to-list 'load-path
