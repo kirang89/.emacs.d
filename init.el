@@ -71,6 +71,7 @@
 (require 'init-shell)
 (require 'efuns)
 (require 'init-magit)
+;; (require 'init-projectile)
 (require 'init-mu4e)
 (eval-after-load 'web-mode '(require 'init-web))
 
