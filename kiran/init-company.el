@@ -23,16 +23,39 @@
   (define-key company-active-map (kbd "M-n") nil)
   (define-key company-active-map (kbd "M-p") nil)
   (define-key company-active-map (kbd "C-n") 'company-select-next)
-  (define-key company-active-map (kbd "C-p") 'company-select-previous))
+  (define-key company-active-map (kbd "C-p") 'company-select-previous)
+
+  ;; =======================
+  ;; Adding company backends
+  ;; =======================
+
+  ;; Python auto completion
+  (use-package company-jedi
+    :ensure t
+    :config
+    (add-to-list 'company-backends 'company-jedi))
+
+  ;; HTML completion
+  (use-package company-web
+    :ensure t
+    :bind (("C-c w" . company-web-html))
+    :config
+    (add-to-list 'company-backends 'company-web-html))
+
+  ;; Python auto completion
+  (use-package company-anaconda
+    :ensure t
+    :config
+    (add-to-list 'company-backends
+                 '(company-anaconda :with company-capf)))
+
+  ;; C code completion
+  (use-package company-irony
+    :ensure t
+    :config
+    (add-to-list 'company-backends 'company-irony)))
 
 ;;(company-quickhelp-mode 1)
-
-;; Decrease delay before autocompletion popup shows up
-;; (setq company-idle-delay 0.2)
-
-;; Remove blinking
-;; (setq company-echo-delay 0)
-
 
 (provide 'init-company)
 ;;; init-company.el ends here
