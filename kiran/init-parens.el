@@ -1,15 +1,14 @@
 
 ;; highlight parentheses when the cursor is next to them
 (require 'paren)
-(show-paren-mode t)
+;; Highlight matching parens
+(add-hook 'prog-mode-hook #'show-paren-mode)
 
 ;; Smart parenthesis
 (require 'smartparens-config)
 (smartparens-global-mode)
-
 ;; (foo bar) -> foo bar
 (define-key smartparens-mode-map (kbd "M-s") 'sp-splice-sexp)
-
 ;; (foo bar) -> [foo bar]
 (define-key smartparens-mode-map (kbd "M-S") 'sp-rewrap-sexp)
 
