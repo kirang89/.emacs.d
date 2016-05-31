@@ -13,6 +13,7 @@
 ; - Completely migrate to using use-package
 ; - Eshell does not show previous commands
 ; - Try anaconda mode
+; - Read http://www.lunaryorn.com/2015/01/06/my-emacs-configuration-with-use-package.html
 ;
 ; ========================================= ===============================
 
@@ -176,8 +177,6 @@
 ;;; Experimental Stuff
 ;;; =====================================
 
-;; Read http://www.lunaryorn.com/2015/01/06/my-emacs-configuration-with-use-package.html
-
 ;; flycheck support
 ;;(autoload 'flycheck-mode "flycheck" "Checker" t)
 ;;(require 'flycheck)
@@ -186,19 +185,6 @@
 ;; Use spotlight instead of locate
 (setq locate-command "mdfind")
 
-;;(projectile-global-mode)
-;; asks for file to open when project is switched
-;;(setq projectile-switch-project-action 'helm-projectile-find-file)
-;; turns on helm bindings for projectile
-;;(helm-projectile-on)
-;; (define-key projectile-mode-map (kbd "C-x j") 'projectile-find-file)
-
-;;(remove-hook 'text-mode-hook 'turn-on-flyspell)
-
-;; Comment a line from anywhere in that line
-(use-package smart-comment
-  :ensure t
-  :bind ("M-;" . smart-comment))
 
 (use-package aggressive-indent
   :commands (aggressive-indent-mode)
