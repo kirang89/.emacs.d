@@ -91,13 +91,6 @@
 ;; (when (memq window-system '(mac ns))
 ;;   (exec-path-from-shell-initialize))
 
-;; Smoother scrolling behavior when using keyboard navigation
-(setq redisplay-dont-pause t
-      scroll-margin 3
-      scroll-step 5
-      scroll-conservatively 1000
-      scroll-preserve-screen-position 1)
-
 ;; Remove autocomplete (and use company-mode instead)
 (require 'auto-complete)
 (global-auto-complete-mode -1)

@@ -114,6 +114,13 @@
 ;; set color for selection
 ;; (set-face-attribute 'region nil :background "#666")
 
+;; Smoother scrolling behavior when using keyboard navigation
+(setq redisplay-dont-pause t
+      scroll-margin 3
+      scroll-step 5
+      scroll-conservatively 1000
+      scroll-preserve-screen-position 1)
+
 ;; set unique names for two similar buffers
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
