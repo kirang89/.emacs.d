@@ -130,10 +130,6 @@
 ;; (require 'tramp)
 ;; (setq tramp-default-method "ssh")
 
-;;; Make files and folders in dired-mode neater
-(require 'dired-details)
-(dired-details-install)
-
 ;; Clean view of major mode keybindings
 (global-set-key (kbd "C-h C-m") 'discover-my-major)
 
