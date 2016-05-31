@@ -54,6 +54,7 @@
 
 (require 'init-looks)
 (require 'init-editing)
+(require 'init-dired)
 (require 'init-kbd)
 (require 'init-ido)
 (require 'init-helm)
