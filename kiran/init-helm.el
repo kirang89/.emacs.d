@@ -33,7 +33,9 @@
   (global-set-key (kbd "C-x b") #'helm-mini)
   (global-set-key (kbd "M-x") #'helm-M-x)
   (global-set-key (kbd "M-y") #'helm-show-kill-ring)
-  (global-set-key (kbd "C-x C-r") #'helm-recentf))
+  (global-set-key (kbd "C-x C-r") #'helm-recentf)
+  (global-set-key (kbd "C-x C-o") #'helm-occur)
+  (global-set-key (kbd "C-c C-s") #'helm-do-grep-ag))
 
 
 ;; Enrich isearch with Helm using the `C-S-s' binding.
@@ -43,6 +45,10 @@
 ;;   :bind (("C-S-s" . swiper-helm)))
 
 
+
+;; (use-package helm-ls-git
+;;   :ensure t
+;;   :bind ("C-x C-d" . helm-browse-project))
 
 (provide 'init-helm)
 ;;; init-helm.el ends here
