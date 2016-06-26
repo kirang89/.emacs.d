@@ -3,7 +3,7 @@
   :ensure t
   :diminish projectile-mode
   :config
-  (projectile-global-mode)
+  (add-hook 'prog-mode-hook 'projectile-mode)
   ;; asks for file to open when project is switched
   (setq projectile-switch-project-action 'helm-projectile-find-file)
 
