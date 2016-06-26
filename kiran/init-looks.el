@@ -53,10 +53,17 @@
 ; don't show the scroll bar
 (scroll-bar-mode -1)
 
-;; Scroll in one line increments
-;; Gives a smoother mouse scroll
-(setq mouse-wheel-follow-mouse 't)
-(setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
+;; Smoother scrolling behavior when using keyboard navigation
+(setq redisplay-dont-pause t
+      scroll-margin 3
+      scroll-step 5
+      scroll-conservatively 1000
+      ;; Make C-v and M-v undo each other
+      scroll-preserve-screen-position 'always
+      mouse-wheel-follow-mouse 't
+      ;; Scroll in one line increments
+      ;; Gives a smoother mouse scroll
+      mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 
 ; Minimal fringe
 (fringe-mode 4)
@@ -72,9 +79,6 @@
 
 ;; remove highlight current line
 (global-hl-line-mode -1)
-
-;; add any custom themes
-;; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 
 ;; Syntax Highlighting
 (require 'font-lock)
@@ -119,13 +123,13 @@
 (setq uniquify-buffer-name-style 'forward)
 
 ;; Number each buffer for easy switching with M-<no>
-;; (add-to-list 'load-path
-;;              "/Users/kiran/.emacs.d/elpa/window-numbering-20150228.1247")
-
 (use-package window-numbering
   :config (window-numbering-mode t))
 
 (global-prettify-symbols-mode 1)
+
+;; Use this for github theme
+;;(set-face-attribute 'helm-selection nil :background "#A7C6E3")
 
 (provide 'init-looks)
 ;;; init-looks.el ends here
