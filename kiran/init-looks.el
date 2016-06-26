@@ -1,4 +1,6 @@
 
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+
 ;; inhibit welcome screen
 (setq inhibit-splash-screen t)
 (setq inhibit-startup-message t)
