@@ -124,11 +124,45 @@ PWD is not in a git repo (or the git command is not found)."
              (propertize " λ"   'face `(:weight ultra-bold))
              (propertize " "    'face `(:weight bold)))))))
 
+;; Set this to match eshell-prompt-function
+(setq eshell-prompt-regexp " λ ")
+
+;; Make C-a go to beginning of command instead of line
+(add-hook 'eshell-mode-hook '(lambda ()
+                               (local-set-key (kbd "C-a")
+                                              '(lambda ()
+                                                 (interactive)
+                                                 (beginning-of-line)
+                                                 (search-forward-regexp eshell-prompt-regexp)))))
+
 ;; ======================================================================
 
 ;; Turn off the default prompt.
 (setq eshell-highlight-prompt nil)
 
+(add-hook 'eshell-mode-hook (lambda ()
+                              (local-set-key (kbd "<up>") 'eshell-previous-input)
+                              (local-set-key (kbd "<down>") 'eshell-next-input)))
+
+(defun eshell-here ()
+  "Opens up a new shell in the directory associated with the
+current buffer's file. The eshell is renamed to match that
+directory to make multiple eshell windows easier."
+  (interactive)
+  (let* ((parent (if (buffer-file-name)
+                     (file-name-directory (buffer-file-name))
+                   default-directory))
+         (height (/ (window-total-height) 3))
+         (name   (car (last (split-string parent "/" t)))))
+    (split-window-vertically (- height))
+    (other-window 1)
+    (eshell "new")
+    (rename-buffer (concat "*eshell: " name "*"))
+
+    (insert (concat "ls"))
+    (eshell-send-input)))
+
+(global-set-key (kbd "C-!") 'eshell-here)
 
 (provide 'init-shell)
 ;;; init-shell.el ends here
