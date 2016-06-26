@@ -47,5 +47,8 @@
 (global-set-key (kbd "M-j")
                 (lambda () (interactive) (join-line -1)))
 
+(global-set-key (kbd "<f2>") 'helm-ag)
+(global-set-key (kbd "<f6>") 'helm-projectile-ag)
+
 (provide 'init-kbd)
 ;;; init-kbd.el ends here
