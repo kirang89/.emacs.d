@@ -154,5 +154,23 @@
 ;;   '((t (:overline "#8b5a2b" :foreground "#8b7355" :background "#8b7355")))
 ;;   "Face used for the line delimiting the end of source blocks.")
 
+
+;; Set the list of viewers for Mac OS X
+;; The -b displayline option highlights the current line
+;; The -g displayline option launches Skim in the background
+;;
+;; Tex->Pdf - C-c C-v
+;; Pdf->Tex - Cmd-Shift-Click
+(setq TeX-view-program-list
+  '(("Preview.app" "open -a Preview.app %o")
+    ("Skim" "open -a Skim.app %o")
+    ("displayline" "/Applications/Skim.app/Contents/SharedSupport/displayline -b %n %o %b")
+    ("open" "open %o"))
+  ;; Select the viewers for each file type.
+  TeX-view-program-selection
+  '((output-dvi "open")
+    (output-pdf "displayline")
+    (output-html "open")))
+
 (provide 'init-org)
 ;;; init-org ends here
