@@ -139,7 +139,8 @@
         deft-directory "~/Box Sync/org-notes/"
         deft-recursive t
         deft-use-filename-as-title t
-        deft-strip-summary-regexp "\\*"))
+        deft-strip-summary-regexp "\\*"
+        deft-auto-save-interval 60))
 
 ;; (defface org-block-begin-line
 ;;   '((t (:underline "#8b5a2b" :foreground "#8b7355" :background "#8b7355")))
