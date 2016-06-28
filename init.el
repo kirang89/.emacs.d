@@ -13,11 +13,20 @@
 ; - Completely migrate to using use-package
 ; - Eshell does not show previous commands
 ; - Try anaconda mode
-; - Read http://www.lunaryorn.com/2015/01/06/my-emacs-configuration-with-use-package.html
+; - Read
+;   - http://www.lunaryorn.com/2015/01/06/my-emacs-configuration-with-use-package.html
+;   - http://writequit.org/eos/eos.html
 ;
 ; ========================================= ===============================
 
 ;; Record the start time
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (setq *emacs-load-start* (current-time))
 
 ;; Disable VC hooks
