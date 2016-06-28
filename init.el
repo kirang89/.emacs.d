@@ -63,6 +63,7 @@
 (require 'init-company)
 (require 'init-keychord)
 (require 'init-parens)
+;;(require 'init-c)
 (require 'init-python)
 (eval-after-load 'clojure-mode '(require 'init-clojure))
 (require 'init-elisp)
