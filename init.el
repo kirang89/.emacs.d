@@ -198,10 +198,11 @@
 ;;; Experimental Stuff
 ;;; =====================================
 
-;; flycheck support
-;;(autoload 'flycheck-mode "flycheck" "Checker" t)
-;;(require 'flycheck)
-;;(add-hook 'after-init-hook #'global-flycheck-mode)
+(use-package flycheck
+  :ensure t
+  :diminish flycheck-mode
+  :config
+  (add-hook 'prog-mode-hook #'flycheck-mode))
 
 ;; Use spotlight instead of locate
 (setq locate-command "mdfind")
