@@ -1,32 +1,22 @@
 ;; Modeline Configuration
 ;; Author: Kiran Gangadharan
 
-;; powerline
-;; (require 'powerline)
-;; (powerline-default-theme)
-;; (setq powerline-default-separator (quote arrow-fade))
-;; (setq powerline-default-separator 'slant)
-;; (powerline-buffer-size nil 'l)
-
 (line-number-mode t)
 (column-number-mode -1)
 (size-indication-mode -1)
 
 ;; Set default font for different modeline modes
-;;(defvar modeline-font "DejaVu Sans Mono-13:spacing=p")
-;;(defvar modeline-font "Droid Sans Mono-13:weight=bold:spacing=m")
-(defvar modeline-font "Source Code Pro-13.0:weight=regular:spacing=m")
+(defvar modeline-font "Source Code Pro-15:weight=light")
 (defun kg/set-modeline-face ()
+  "Set the above font in modeline face."
   (interactive)
   (let ((faces '(mode-line
                  mode-line-buffer-id
                  mode-line-emphasis
                  mode-line-highlight
                  mode-line-inactive)))
-    (mapc
-     (lambda (face)
-       (set-face-attribute face nil :font modeline-font :weight 'normal)
-       )
+    (mapc (lambda (face)
+       (set-face-attribute face nil :font modeline-font :weight 'normal))
      faces)))
 
 (add-hook 'after-init-hook 'kg/set-modeline-face)
@@ -58,9 +48,8 @@
   `(;; (paredit-mode . " π")
     ;; Major modes
     (hi-lock-mode . "")
-    (python-mode . "ξ")
+    (python-mode . "Py")
     (clojure-mode . "λ")
-    ;;(clojurec-mode . "λC")
     (markdown-mode . "Md")
     (abbrev-mode . ""))
   "Alist for `clean-mode-line'.
@@ -95,7 +84,7 @@ want to use in the modeline *in lieu of* the original.")
 ;; (use-package spaceline-config
 ;;   :ensure spaceline
 ;;   :config
-;;   (spaceline-emacs-theme)
+;;   (spaceline-spacemacs-theme)
 ;;   (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state))
 
 (provide 'init-modeline)

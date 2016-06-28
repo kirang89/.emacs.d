@@ -3,7 +3,7 @@
 (require 'org)
 
 (setq org-directory "~/Box Sync/org-notes"
-      org-default-notes-file (concat org-directory "/scratch1.txt")
+      org-default-notes-file (concat org-directory "/notes.txt")
       org-agenda-files '("~/Box Sync/org-notes/agenda.org")
       ;; Prefer UTF-8
       org-export-coding-system 'utf-8

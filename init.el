@@ -51,7 +51,7 @@
 
 (add-to-list 'load-path "~/.emacs.d/kiran/")
 
-(require 'init-solarized)
+;;(require 'init-solarized)
 
 (require 'init-packages)
 (require 'use-package)
@@ -71,23 +71,20 @@
 (eval-after-load 'clojure-mode '(require 'init-clojure))
 (require 'init-elisp)
 (eval-after-load 'markdown-mode '(require 'init-markdown))
-(eval-after-load 'org '(require 'init-org))
+(require 'init-org)
+;;(eval-after-load 'org '(require 'init-org))
 (require 'init-yasnippet)
 (require 'init-modeline)
 (require 'init-shell)
 (require 'efuns)
 (require 'init-magit)
-;; (require 'init-projectile)
-(require 'init-mu4e)
+(require 'init-projectile)
+;;(require 'init-mu4e)
 (eval-after-load 'web-mode '(require 'init-web))
 
 ;; Custom configuration set by Emacs
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
-
-;; Smart modeline
-;; (setq sml/no-confirm-load-theme t)
-;; (sml/setup)
 
 ;; set exec-path according to the system's PATH
 ;; This is primarily for OS X, where starting Emacs in GUI mode
@@ -200,7 +197,6 @@
 ;; Use spotlight instead of locate
 (setq locate-command "mdfind")
 
-
 (use-package aggressive-indent
   :commands (aggressive-indent-mode)
   :config
@@ -208,18 +204,13 @@
   (add-hook 'clojure-mode-hook #'aggressive-indent-mode))
 
 
-;; Increase the GC threshold to 50MB during startup and then bring it
-;; down to the default value of 800KB
-;; (setq gc-cons-threshold 50000000)
 
-;; (add-hook 'emacs-startup-hook 'my/set-gc-threshold)
-;; (defun my/set-gc-threshold ()
-;;   "Reset `gc-cons-threshold' to its default value."
-;;   (setq gc-cons-threshold 800000))
+;;(setq-default cursor-type 'bar)
 
 ;; Make C-v and M-v undo each other
 (setq scroll-preserve-screen-position 'always)
 
+(setq paradox-github-token nil)
 ;;; =================================================================
 
 ;; Start emacs server
