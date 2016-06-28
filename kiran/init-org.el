@@ -121,7 +121,8 @@
   :config (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
 (add-hook 'org-mode-hook
-	  (lambda () (local-set-key (kbd "C-x p") 'org-cliplink)))
+          (lambda ()
+            (local-set-key (kbd "C-x p") 'org-mac-chrome-insert-frontmost-url)))
 
 ;; Org latex configuration
 (require 'ox-latex)
