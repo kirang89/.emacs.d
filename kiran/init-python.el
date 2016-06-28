@@ -24,11 +24,8 @@
   (add-hook 'python-mode-hook 'show-paren-mode)
   (add-hook 'python-mode-hook 'flycheck-mode)
   (add-hook 'python-mode-hook 'projectile-mode)
-  (remove-hook 'python-mode-hook 'flymake-mode)
-  ;; (add-hook 'python-mode-hook (lambda ()
-  ;;                               (require 'nose)
-  ;;                               (defvar nose-use-verbose t)))
-  )
+  (add-hook 'python-mode-hook 'subword-mode)
+  (remove-hook 'python-mode-hook 'flymake-mode))
 
 
 (use-package elpy
