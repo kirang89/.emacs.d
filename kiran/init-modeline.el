@@ -74,18 +74,16 @@ want to use in the modeline *in lieu of* the original.")
 
 ;; Fix for broken seperator colors in modeline as shown in
 ;; https://imgur.com/7Ldxa97
-;; (setq ns-use-srgb-colorspace nil)
+;; (setq ns-use-srgb-colorspace t)
 
 ;; To remove the underline below text in modeline for certain
 ;; themes do:
 ;; M-x customize-face mode-line and remove the underline.
 
-;; Config after installing https://github.com/TheBB/spaceline/tree/master
-;; (use-package spaceline-config
-;;   :ensure spaceline
+;; (use-package spaceline
 ;;   :config
-;;   (spaceline-spacemacs-theme)
-;;   (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state))
+;;   (use-package spaceline-config)
+;;   (spaceline-emacs-theme))
 
 (provide 'init-modeline)
 ;;; init-modeline.el ends here
