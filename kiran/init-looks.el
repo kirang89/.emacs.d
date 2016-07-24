@@ -108,6 +108,13 @@
 
 (global-prettify-symbols-mode 1)
 
+(use-package indent-guide
+  :config
+  ;;(set-face-background 'indent-guide-face "dimgray")
+  (setq indent-guide-delay 0.1)
+  ;;(setq indent-guide-char "¦")
+  (setq indent-guide-char "·"))
+(add-hook 'prog-mode-hook 'indent-guide-mode)
 ;; Use this for github theme
 ;;(set-face-attribute 'helm-selection nil :background "#A7C6E3")
 
