@@ -44,12 +44,27 @@
              emmet-next-edit-point
              emmet-prev-edit-point)
   :config
-  (add-hook 'web-mode-hook 'emmet-mode)
   ;; Auto-start on any markup modes
   (add-hook 'sgml-mode-hook 'emmet-mode))
 
+(add-hook 'web-mode-hook 'emmet-mode)
+
 (use-package nginx-mode
   :commands (nginx-mode))
+
+(use-package json-mode
+  :mode "\\.json\\'"
+  :config
+  ;; (add-to-list 'auto-mode-alist '("\\.json\\'" . json-mode))
+  (bind-key "{" #'paredit-open-curly json-mode-map)
+  (bind-key "}" #'paredit-close-curly json-mode-map))
+
+;; (use-package css-eldoc
+;;   :config
+;;   (progn
+;;     (add-hook 'css-mode-hook 'turn-on-css-eldoc)
+;;     (add-hook 'scss-mode-hook 'turn-on-css-eldoc)
+;;     (add-hook 'less-css-mode-hook 'turn-on-css-eldoc)))
 
 (provide 'init-web)
 ;;; init-web.el ends here
