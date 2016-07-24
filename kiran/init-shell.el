@@ -129,6 +129,10 @@ PWD is not in a git repo (or the git command is not found)."
                                                  (search-forward-regexp eshell-prompt-regexp)))))
 
 
+;; Make prompt read-only
+(require 'em-term)
+(add-to-list 'eshell-modules-list 'eshell-rebind)
+
 ;; Turn off the default prompt.
 (setq eshell-highlight-prompt nil)
 ;; =================================================================================
