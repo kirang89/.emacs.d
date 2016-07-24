@@ -109,7 +109,8 @@
 
 (use-package ob-clojure
   :init
-  (setq org-babel-clojure-backend 'cider))
+  (setq org-babel-clojure-backend 'cider)
+  (require 'cider))
 
 ;; don't run stuff automatically on export
 ;;(setq org-export-babel-evaluate nil)
