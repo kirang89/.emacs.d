@@ -1,4 +1,3 @@
-
 (use-package python
   :ensure t
   :mode ("\\.py\\'" . python-mode)
@@ -9,7 +8,7 @@
   ;;(setenv "PYTHONPATH" "/usr/local/lib/python2.7/site-packages:")
   (setenv "PYTHONPATH" "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/")
   ;; Make python shell use utf-8 encoding
-  (setenv "LC_CTYPE" "UTF-8")
+  ;; (setenv "LC_CTYPE" "UTF-8")
   (setq python-shell-interpreter-args "-i"
         py-electric-colon-active t
         python-indent-offset 4
@@ -26,7 +25,6 @@
   (add-hook 'python-mode-hook 'projectile-mode)
   (add-hook 'python-mode-hook 'subword-mode)
   (remove-hook 'python-mode-hook 'flymake-mode))
-
 
 (use-package elpy
     :after python
@@ -45,23 +43,11 @@
   :config
   (add-to-list 'company-backends 'company-jedi))
 
-;; (use-package anaconda-mode
-;;   :ensure t
-;;   :defer 2
-;;   :diminish anaconda-mode
-;;   :diminish anaconda-eldoc-mode
-;;   :bind (:map python-mode-map
-;;               ("C-c d" . anaconda-mode-show-doc))
-;;   :config
-;;   (progn
-;;     (add-hook 'python-mode-hook 'anaconda-mode)
-;;     (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
-;;     (add-to-list 'company-backends
-;;                  '(company-anaconda :with company-capf))))
-;;
-;; Settings to try out anaconda-mode
-;; (add-hook 'python-mode-hook 'anaconda-mode)
-;;
+(use-package sphinx-doc
+  :after python
+  :config
+  (sphinx-doc-mode t))
+
 ;; (use-package pytest
 ;;   :ensure t
 ;;   :commands (pytest-all
@@ -74,25 +60,9 @@
 ;;              pytest-pdb-module
 ;;              pytest-pdb-one))
 
-;; Elpy setup
-;;(elpy-enable)
-;;(elpy-use-ipython)
-;;(setq elpy-rpc-backend "jedi")
-
-;; (elpy-clean-modeline)
-; Set PYTHONPATH, because we don't load .bashrc
-
-;; (defun kg/python-mode-hook ()
-;;   (add-to-list 'company-backends 'company-jedi))
-
-;;(add-hook 'python-mode-hook 'turn-on-eldoc-mode)
-;;(add-hook 'python-mode-hook 'projectile-mode)
-;; (add-hook 'python-mode-hook
-;;           (lambda () (local-set-key (kbd "C-c t") 'elpy-test-nose-runner)))
-
-;; (setq flycheck-highlighting-mode 'lines)
-;; (add-hook 'python-mode-hook
-;;           (lambda () (local-set-key (kbd "C-c f") #'flycheck-list-errors)))
+;; Stop pinging me about trying to guess the indentation.
+;; The defaults work fine.
+(setq python-indent-guess-indent-offset nil)
 
 (provide 'init-python)
 ;;; init-python.el ends here
