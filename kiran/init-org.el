@@ -119,11 +119,15 @@
 (use-package org-bullets
   :ensure t
   :commands org-bullets-mode
-  :config (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+  ;; :config (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+  )
+
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
 (add-hook 'org-mode-hook
           (lambda ()
-            (local-set-key (kbd "C-x p") 'org-mac-chrome-insert-frontmost-url)))
+            (local-set-key (kbd "C-x p")
+                           'org-mac-chrome-insert-frontmost-url)))
 
 ;; Org latex configuration
 (require 'ox-latex)
