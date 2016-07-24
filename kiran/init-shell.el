@@ -1,13 +1,9 @@
-
+(require 'eshell)
+(set-terminal-coding-system 'utf-8)
 ;; set zsh as shell in emacs
-(setenv "ESHELL" "/bin/zsh")
-(setenv "SHELL" "/bin/zsh")
+;;(setenv "ESHELL" "/bin/zsh")
+;;(setenv "SHELL" "/bin/zsh")
 (setenv "PAGER" "cat")
-
-;; bash completion for emacs shell
-;; (autoload 'bash-completion-dynamic-complete "bash-completion" "BASH completion hook")
-;; (add-hook 'shell-dynamic-complete-functions 'bash-completion-dynamic-complete)
-;; (add-hook 'shell-command-complete-functions 'bash-completion-dynamic-complete)
 
 (add-hook 'eshell-mode-hook
           (lambda ()
@@ -24,41 +20,38 @@
       eshell-save-history-on-exit t
       eshell-cmpl-dir-ignore "\\`\\(\\.\\.?\\|CVS\\|\\.svn\\|\\.git\\)/\\'"
       eshell-hist-ignoredups t
-      eshell-scroll-to-bottom-on-output t
+      eshell-scroll-to-bottom-on-output nil
       eshell-scroll-show-maximum-output t)
 
 ;; (add-to-list 'eshell-output-filter-functions
 ;;              'eshell-postoutput-scroll-to-bottom)
 
-(defalias 'e 'find-file)
-(defalias 'ee 'find-file-other-window)
+(add-hook 'eshell-mode-hook
+          (lambda ()
+            (local-set-key (kbd "<up>") 'eshell-previous-input)
+            (local-set-key (kbd "<down>") 'eshell-next-input)))
 
-;; git status
-(defun eshell/gst (&rest args)
-    (magit-status (pop args) nil)
-    (eshell/echo))
+(defun eshell-here ()
+  "Opens up a new shell in the directory associated with the current buffer's file.  The eshell is renamed to match that directory to make multiple eshell windows easier."
+  (interactive)
+  (let* ((parent (if (buffer-file-name)
+                     (file-name-directory (buffer-file-name))
+                   default-directory))
+         (height (/ (window-total-height) 3))
+         (name   (car (last (split-string parent "/" t)))))
+    (split-window-vertically (- height))
+    (other-window 1)
+    (eshell "new")
+    (rename-buffer (concat "*eshell: " name "*"))
 
-;; git diff
-(defalias 'gd 'magit-diff-unstaged)
-(defalias 'gds 'magit-diff-staged)
+    (insert (concat "ls"))
+    (eshell-send-input)))
 
-(defun eshell/ef (filename &optional dir)
-  "Searches for the first matching filename and loads it into a
-file to edit."
-  (let* ((files (eshell/f filename dir))
-         (file (car (s-split "\n" files))))
-    (find-file file)))
+(global-set-key (kbd "C-!") 'eshell-here)
 
-(defun eshell/clear ()
-    "clear the eshell buffer."
-    (interactive)
-    (let ((inhibit-read-only t))
-      (erase-buffer)))
-
-
-;; ===================== CUSTOM PROMPT =================================
+;; ============================= CUSTOM PROMPT ======================================
 (defun curr-dir-git-branch-string (pwd)
-  "Returns current git branch as a string, or the empty string if
+  "Return current git branch as a string, or the empty string if
 PWD is not in a git repo (or the git command is not found)."
   (interactive)
   (when (and (eshell-search-path "git")
@@ -135,34 +128,39 @@ PWD is not in a git repo (or the git command is not found)."
                                                  (beginning-of-line)
                                                  (search-forward-regexp eshell-prompt-regexp)))))
 
-;; ======================================================================
 
 ;; Turn off the default prompt.
 (setq eshell-highlight-prompt nil)
+;; =================================================================================
 
-(add-hook 'eshell-mode-hook (lambda ()
-                              (local-set-key (kbd "<up>") 'eshell-previous-input)
-                              (local-set-key (kbd "<down>") 'eshell-next-input)))
+;; =========================== ALIASES =============================================
+(defalias 'e 'find-file)
+(defalias 'ee 'find-file-other-window)
 
-(defun eshell-here ()
-  "Opens up a new shell in the directory associated with the
-current buffer's file. The eshell is renamed to match that
-directory to make multiple eshell windows easier."
-  (interactive)
-  (let* ((parent (if (buffer-file-name)
-                     (file-name-directory (buffer-file-name))
-                   default-directory))
-         (height (/ (window-total-height) 3))
-         (name   (car (last (split-string parent "/" t)))))
-    (split-window-vertically (- height))
-    (other-window 1)
-    (eshell "new")
-    (rename-buffer (concat "*eshell: " name "*"))
+;; git status
+(defun eshell/gst (&rest args)
+  "Make git status use Magit."
+    (magit-status (pop args) nil)
+    (eshell/echo))
 
-    (insert (concat "ls"))
-    (eshell-send-input)))
+;; git diff
+(defalias 'gd 'magit-diff-unstaged)
+(defalias 'gds 'magit-diff-staged)
 
-(global-set-key (kbd "C-!") 'eshell-here)
+(defun eshell/ef (filename &optional dir)
+  "Search for the first matching FILENAME (in a DIR) and load it into a file to edit."
+  (let* ((files (eshell/f filename dir))
+         (file (car (s-split "\n" files))))
+    (find-file file)))
+
+(defun eshell/clear ()
+    "Clear the eshell buffer."
+    (interactive)
+    (let ((inhibit-read-only t))
+      (erase-buffer)))
+;; =================================================================================
+
+(add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode))
 
 (provide 'init-shell)
 ;;; init-shell.el ends here
