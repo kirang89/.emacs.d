@@ -115,6 +115,24 @@
   ;;(setq indent-guide-char "¦")
   (setq indent-guide-char "·"))
 (add-hook 'prog-mode-hook 'indent-guide-mode)
+
+;; Turn on ansi color interpretation in a compilation buffer
+(require 'ansi-color)
+(defun colorize-compilation-buffer ()
+  "Show some love for the compilation buffers."
+  (toggle-read-only)
+  (ansi-color-apply-on-region (point-min) (point-max))
+  (toggle-read-only))
+
+(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
+
+;; Various keywords (in comments) are now flagged in a Red Error font
+(add-hook 'prog-common-hook
+          (lambda ()
+            (font-lock-add-keywords nil
+                                    '(("\\<\\(FIX\\|FIXME\\|TODO\\|BUG\\|HACK\\):"
+                                       1 font-lock-warning-face t)))))
+
 ;; Use this for github theme
 ;;(set-face-attribute 'helm-selection nil :background "#A7C6E3")
 
