@@ -35,16 +35,16 @@
             (define-clojure-indent (facts 1))
             'linum-mode))
 
-
 (add-hook 'clojure-mode-hook 'flycheck-mode)
-(add-hook 'clojure-mode-hook 'linum-mode)
 (add-hook 'clojure-mode-hook 'kg/set-pretty-symbols)
 (add-hook 'clojure-mode-hook 'paren-face-mode)
+(add-hook 'clojure-mode-hook 'paredit-mode)
 (add-hook 'clojure-mode-hook
           (lambda ()
             (local-set-key (kbd "C-c C-s") 'paredit-wrap-round)))
 (add-hook 'clojure-mode-hook
-          (lambda () ()))
+          (lambda ()
+            (local-set-key (kbd "C-c r") 'cider-eval-region)))
 
 ;;;;
 ;; Cider
@@ -63,21 +63,28 @@
       nrepl-hide-special-buffers t
       ;; Stop error buffer from popping up while working in buffers other than REPL:
       nrepl-popup-stacktraces nil
+      nrepl-log-messages nil
+      nrepl-hide-special-buffers t
       cider-repl-use-pretty-printing t
       cider-repl-display-help-banner nil
       cider-repl-result-prefix ";; => ")
 
 ;; provides minibuffer documentation for the code you're typing into the repl
-(add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
+(add-hook 'cider-mode-hook #'eldoc-mode)
 ;; enable paredit in REPL
 (add-hook 'cider-repl-mode-hook 'paredit-mode)
 (add-hook 'cider-repl-mode-hook 'paren-face-mode)
 (add-hook 'cider-repl-mode-hook 'subword-mode)
+(add-hook 'cider-mode-hook
+          (local-set-key (kbd "<C-return>") 'cider-eval-defun-at-point))
+
 
 (defun cider-send-and-evaluate-sexp ()
-  "Sends the s-expression located before the point or the active
-  region to the REPL and evaluates it. Then the Clojure buffer is
-  activated as if nothing happened."
+  "Send and eval expression in REPL.
+
+Sends the s-expression located before the point or the active
+region to the REPL and evaluates it.Then the Clojure buffer is
+activated as if nothing happened."
   (interactive)
   (if (not (region-active-p))
       (cider-insert-last-sexp-in-repl)
@@ -101,7 +108,7 @@
 ;;     (s-replace ".clj" "_test.clj")))
 
 (defun kg/set-pretty-symbols ()
-  "make some word or string show as pretty Unicode symbols"
+  "Make some word or string show as pretty Unicode symbols."
   (setq prettify-symbols-alist
         '(
           ("fn"  . 955)     ; λ
@@ -117,6 +124,12 @@
   (helm :sources '(((name . "Clojure Headlines")
                     (volatile)
                     (headline "^[;(]")))))
+
+(defun kg/ns-reset ()
+  "Refreshes the cider repl."
+  (interactive)
+  (save-some-buffers)
+  (cider-interactive-eval "(user/reset)"))
 
 (provide 'init-clojure)
 ;;; init-clojure.el ends here
