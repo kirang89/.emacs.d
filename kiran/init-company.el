@@ -12,7 +12,7 @@
   ;;   :init (company-quickhelp-mode 1))
   ;; Company settings.
   (setq company-tooltip-limit 20)
-  (setq company-idle-delay 0.2)
+  (setq company-idle-delay 0.1)
   (setq company-echo-delay 0)
   (setq company-minimum-prefix-length 2)
   (setq company-require-match nil)
@@ -32,6 +32,8 @@
   ;; Python auto completion
   (use-package company-jedi
     :ensure t
+    :init
+    (setq company-jedi-python-bin "python3")
     :config
     (add-to-list 'company-backends 'company-jedi))
 
@@ -53,9 +55,15 @@
   (use-package company-irony
     :ensure t
     :config
-    (add-to-list 'company-backends 'company-irony)))
+    (add-to-list 'company-backends 'company-irony))
+
+  (use-package company-statistics
+    :ensure t
+    :config
+    (add-hook 'after-init-hook 'company-statistics-mode)))
 
 ;;(company-quickhelp-mode 1)
+
 
 (provide 'init-company)
 ;;; init-company.el ends here
