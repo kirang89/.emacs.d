@@ -9,10 +9,7 @@
 
 ; =================================== TODOS ===============================
 ;
-; - Better completion in eshell
 ; - Completely migrate to using use-package
-; - Eshell does not show previous commands
-; - Try anaconda mode
 ; - Read
 ;   - http://www.lunaryorn.com/2015/01/06/my-emacs-configuration-with-use-package.html
 ;   - http://writequit.org/eos/eos.html
@@ -42,12 +39,8 @@
 (setq current-language-environment "English")
 
 ;; UTF-8 UTF-8 everywhere!
-(prefer-coding-system 'utf-8)
+
 (setq default-file-name-coding-system 'utf-8)
-(set-default-coding-systems 'utf-8)
-(set-terminal-coding-system 'utf-8)
-(set-keyboard-coding-system 'utf-8)
-(prefer-coding-system 'utf-8)
 (setq buffer-file-coding-system 'utf-8)
 
 ;; Changes all yes/no questions to y/n type
@@ -58,11 +51,26 @@
 ;; do not make backup files
 (setq make-backup-files nil)
 
+;; Turn off bell
+(setq ring-bell-function #'ignore)
+
+;; https://www.emacswiki.org/emacs/ExecPath
+(add-to-list 'exec-path "/usr/local/bin")
+
+;; Disable key bypass (ex: M-h) to system
+(setq mac-pass-command-to-system nil)
+
+;; Prevent loading of outdated .elc files
+(setq load-prefer-newer t)
+
 (add-to-list 'load-path "~/.emacs.d/kiran/")
 
-;;(require 'init-solarized)
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(package-initialize)
 
-(require 'init-packages)
+;;(require 'init-solarized)
+;;(require 'init-packages)
 (require 'use-package)
 
 (require 'init-looks)
@@ -75,13 +83,10 @@
 (require 'init-company)
 (require 'init-keychord)
 (require 'init-parens)
-;;(require 'init-c)
 (require 'init-python)
-(eval-after-load 'clojure-mode '(require 'init-clojure))
+(require 'init-clojure)
 (require 'init-elisp)
-(eval-after-load 'markdown-mode '(require 'init-markdown))
 (require 'init-org)
-;;(eval-after-load 'org '(require 'init-org))
 (require 'init-yasnippet)
 (require 'init-modeline)
 (require 'init-shell)
@@ -89,7 +94,10 @@
 (require 'init-magit)
 (require 'init-projectile)
 ;;(require 'init-mu4e)
+(eval-after-load 'markdown-mode '(require 'init-markdown))
+(eval-after-load 'c-mode '(require 'init-c))
 (eval-after-load 'web-mode '(require 'init-web))
+(eval-after-load 'prolog-mode '(require 'init-prolog))
 
 ;; Custom configuration set by Emacs
 (setq custom-file "~/.emacs.d/custom.el")
@@ -99,8 +107,10 @@
 ;; This is primarily for OS X, where starting Emacs in GUI mode
 ;; doesn't inherit the shell's environment. This ensures that
 ;; any command we can call from a shell, we can call inside Emacs.
-;; (when (memq window-system '(mac ns))
-;;   (exec-path-from-shell-initialize))
+;; (use-package exec-path-from-shell
+;;   :config
+;;   (when (memq window-system '(mac ns))
+;;     (exec-path-from-shell-initialize)))
 
 ;; Remove autocomplete (and use company-mode instead)
 (require 'auto-complete)
@@ -124,7 +134,7 @@
             (when buffer-file-name
               (let ((dir (file-name-directory buffer-file-name)))
                 (when (and (not (file-exists-p dir))
-                           (y-or-n-p (format "Directory %s does not exist. Create it?" dir)))
+                           (y-or-n-p (format "Directory %s does not exist. Create it? " dir)))
                   (make-directory dir t))))))
 
 ;; Toggle frame split (see efuns.el)
@@ -137,7 +147,6 @@
 ;; Clean view of major mode keybindings
 (global-set-key (kbd "C-h C-m") 'discover-my-major)
 
-(add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode))
 
 ;; Completion ignores filenames ending in any string in this list.
 (setq completion-ignored-extensions
@@ -157,31 +166,16 @@
      (list (line-beginning-position)
            (line-beginning-position 2)))))
 
-;; Turn on ansi color interpretation in a compilation buffer
-(require 'ansi-color)
-(defun colorize-compilation-buffer ()
-  "Show some love for the compilation buffers."
-  (toggle-read-only)
-  (ansi-color-apply-on-region (point-min) (point-max))
-  (toggle-read-only))
-
-(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 ;; Follow compiler ouput
 (setq compilation-scroll-output t)
 
-;; Various keywords (in comments) are now flagged in a Red Error font
-(add-hook 'prog-common-hook
-          (lambda ()
-            (font-lock-add-keywords nil
-                                    '(("\\<\\(FIX\\|FIXME\\|TODO\\|BUG\\|HACK\\):" 1 font-lock-warning-face t)))))
+;; Spell checking in text mode
+;;(remove-hook 'text-mode-hook 'turn-on-flyspell)
 
-(use-package json-mode
-  :mode "\\.json\\'"
-  :config
-  ;; (add-to-list 'auto-mode-alist '("\\.json\\'" . json-mode))
-  (bind-key "{" #'paredit-open-curly json-mode-map)
-  (bind-key "}" #'paredit-close-curly json-mode-map))
-
+;; Comment a line from anywhere in that line
+;; (use-package smart-comment
+;;   :ensure t
+;;   :bind ("M-;" . smart-comment))
 
 (use-package neotree
   :init
@@ -213,14 +207,36 @@
   (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
   (add-hook 'clojure-mode-hook #'aggressive-indent-mode))
 
-
+;; (use-package google-this
+;;   :ensure t
+;;   :commands (google-this-word
+;;              google-this-region
+;;              google-this-symbol
+;;              google-this-clean-error-string
+;;              google-this-line
+;;              google-this-search
+;;              google-this-cpp-reference))
 
 ;;(setq-default cursor-type 'bar)
 
-;; Make C-v and M-v undo each other
-(setq scroll-preserve-screen-position 'always)
+(setq x-select-enable-clipboard t
+      save-interprogram-paste-before-kill t)
 
 (setq paradox-github-token nil)
+
+;; Learn about HTTP headers, media-types, methods, relations and status codes
+(use-package know-your-http-well)
+
+;;(use-package fancy-narrow)
+
+(use-package swiper-helm
+  :config
+  ;; (global-unset-key (kbd "C-s"))
+  ;; (global-unset-key (kbd "C-r"))
+  ;; (global-set-key (kbd "C-s") 'swiper-helm)
+  ;; (global-set-key (kbd "C-r") 'swiper-helm)
+  )
+
 ;;; =================================================================
 
 ;; Start emacs server
