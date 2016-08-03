@@ -65,12 +65,7 @@
 
 (add-to-list 'load-path "~/.emacs.d/kiran/")
 
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-(package-initialize)
-
-;;(require 'init-solarized)
-;;(require 'init-packages)
+(require 'init-packages)
 (require 'use-package)
 
 (require 'init-looks)
@@ -93,6 +88,7 @@
 (require 'efuns)
 (require 'init-magit)
 (require 'init-projectile)
+;;(require 'init-solarized)
 ;;(require 'init-mu4e)
 (eval-after-load 'markdown-mode '(require 'init-markdown))
 (eval-after-load 'c-mode '(require 'init-c))
@@ -219,6 +215,7 @@
 
 ;;(setq-default cursor-type 'bar)
 
+;; Allow pasting selection outside of Emacs
 (setq x-select-enable-clipboard t
       save-interprogram-paste-before-kill t)
 
@@ -236,6 +233,9 @@
   ;; (global-set-key (kbd "C-s") 'swiper-helm)
   ;; (global-set-key (kbd "C-r") 'swiper-helm)
   )
+
+
+(setq-default cursor-type 'bar)
 
 ;;; =================================================================
 

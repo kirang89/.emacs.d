@@ -1,10 +1,12 @@
+(require 'package)
 
-;; (when (not package-archive-contents)
-;;   (package-refresh-contents))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives '("elpa" . "https://elpa.gnu.org/packages/"))
 
-;; (dolist (package required-packages)
-;;   (unless (package-installed-p package)
-;;     (package-install package)))
+(package-initialize)
+
+(unless package-archive-contents
+  (package-refresh-contents))
 
 (provide 'init-packages)
 ;;; init-packages.el ends here
