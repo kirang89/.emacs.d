@@ -48,9 +48,6 @@
 (setq scroll-step 1) ;; keyboard scroll one line at a time
 
 ;; Smoother scrolling behavior when using keyboard navigation
-
-; Minimal fringe
-(fringe-mode 4)
 ;; (setq redisplay-dont-pause t
 ;;       scroll-margin 3
 ;;       scroll-step 5
@@ -61,6 +58,9 @@
 ;;       ;; Scroll in one line increments
 ;;       ;; Gives a smoother mouse scroll
 ;;       mouse-wheel-scroll-amount '(1 ((shift) . 1)))
+
+;; Minimal fringe
+(fringe-mode 15)
 
 ;; Experimental
 (defun kg/set-fringe-background ()
