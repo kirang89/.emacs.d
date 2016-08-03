@@ -1,8 +1,14 @@
 
-;; highlight parentheses when the cursor is next to them
+;; highlight matching parentheses
 (require 'paren)
-;; Highlight matching parens
-(add-hook 'prog-mode-hook #'show-paren-mode)
+;; (add-hook 'prog-mode-hook #'show-paren-mode)
+(show-paren-mode 1)
+(setq show-paren-delay 0)
+(set-face-background 'show-paren-match (face-background 'default))
+(if (eq (frame-parameter nil 'background-mode) 'dark)
+    (set-face-foreground 'show-paren-match "red")
+  (set-face-foreground 'show-paren-match "black"))
+(set-face-attribute 'show-paren-match nil :weight 'extra-bold)
 
 ;; Smart parenthesis
 (require 'smartparens-config)
@@ -12,6 +18,7 @@
 ;; (foo bar) -> [foo bar]
 (define-key smartparens-mode-map (kbd "M-S") 'sp-rewrap-sexp)
 
+;; Checkout http://danmidwood.com/content/2014/11/21/animated-paredit.html
 (use-package paredit
   :diminish " π"
   :init
