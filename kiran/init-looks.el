@@ -21,11 +21,18 @@
 
 ;; Good font sizes
 ;; ===============
-(set-frame-font "Source Code Pro-15.0:weight=regular:spacing=m")
-;;(set-frame-font "Office Code Pro 13")
+;;(set-frame-font "Meslo LG M-13.0:weight=regular:spacing=m")
+;;(set-frame-font "DejaVu Sans Mono-13.0:weight=regular:spacing=m")
+;;(set-frame-font "M+ 2m-15.0:weight=regular:spacing=m")
+;;(set-frame-font "Source Code Pro-13.0:weight=light:spacing=m")
+(set-frame-font "Office Code Pro-15.0:weight=regular")
+;;(set-frame-font "AkkuratMonoMono-15.0:weight=light")
+;;(set-frame-font "Oxygen Mono-15.0:weight=regular:spacing=m")
+;;(set-frame-font "Fira Code-15.0:weight=light:spacing=m")
+;;(set-frame-font "Consolas-14.0:weight=regular:spacing=m")
 
 ;; Set default line spacing (relative)
-(setq-default line-spacing 0.3)
+(setq-default line-spacing 0.4)
 
 ; don't show the tool bar
 (require 'tool-bar)
@@ -81,7 +88,7 @@
 (defun kg/reset-linum ()
   "Reset formatting of line numbers."
   (interactive)
-  (let ((font "Source Code Pro-11:weight=regular:spacing=m"))
+  (let ((font "Office Code Pro-11:weight=light"))
     (require 'linum)
     (set-face-attribute 'linum nil :font font)))
 
