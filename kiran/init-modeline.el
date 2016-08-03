@@ -6,7 +6,6 @@
 (size-indication-mode -1)
 
 ;; Set default font for different modeline modes
-(defvar modeline-font "Source Code Pro-15:weight=light")
 (defun kg/set-modeline-face ()
   "Set the above font in modeline face."
   (interactive)
@@ -16,8 +15,10 @@
                  mode-line-highlight
                  mode-line-inactive)))
     (mapc (lambda (face)
-       (set-face-attribute face nil :font modeline-font :weight 'normal))
-     faces)))
+            (set-face-attribute face nil
+                                :font "Source Code Pro for Powerline-15:weight=regular"
+                                :weight 'normal))
+          faces)))
 
 (add-hook 'after-init-hook 'kg/set-modeline-face)
 
