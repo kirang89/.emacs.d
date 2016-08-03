@@ -70,7 +70,8 @@
     ("github-blue-3"   . "#333333")
     ("github-blue-4"   . "#333333")
     ("github-blue-5"   . "#333333")
-    ("github-magenta"  . "#333333"))
+    ("github-magenta"  . "#333333")
+    ("github-dim-gray"  . "#e6e6e6"))
   "List of GitHub colors.
 Each element has the form (NAME . HEX).
 
@@ -164,7 +165,7 @@ Also bind `class' to ((class color) (min-colors 89))."
    `(trailing-whitespace ((t (:background ,github-red))))
    `(vertical-border ((t (:foreground ,"#d0d0d0"))))
 ;;;;; font lock
-   `(font-lock-builtin-face ((t (:foreground ,github-fg :weight normal))))  ;; weight bold (built-in keywords)
+   `(font-lock-builtin-face ((t (:foreground ,github-fg :weight normal)))) ;; weight bold (built-in keywords)
    `(font-lock-comment-face ((t (:foreground ,github-green))))
    `(font-lock-comment-delimiter-face ((t (:foreground ,github-green-1))))
    `(font-lock-constant-face ((t (:foreground ,github-green+4))))
@@ -571,7 +572,7 @@ Also bind `class' to ((class color) (min-colors 89))."
                       :underline nil
                       :weight bold
                       :box (:line-width -1 :style released-button)))))
-   `(helm-selection ((t (:background ,github-bg+1 :underline nil))))
+   `(helm-selection ((t (:background ,github-bg-1 :underline nil))))
    `(helm-selection-line ((t (:background ,github-bg+1))))
    `(helm-visible-mark ((t (:foreground ,github-bg :background ,github-yellow-2))))
    `(helm-candidate-number ((t (:foreground ,github-green+4 :background ,github-bg-1))))
@@ -722,15 +723,15 @@ Also bind `class' to ((class color) (min-colors 89))."
      ((t (:underline t))))
 ;;;;; magit
 ;;;;;; headings and diffs
-   `(magit-section-highlight           ((t (:background ,github-bg+05))))
+   `(magit-section-highlight           ((t (:background ,github-dim-gray))))
    `(magit-section-heading             ((t (:foreground ,github-yellow :weight bold))))
-   `(magit-section-heading-selection   ((t (:foreground ,github-orange :weight bold))))
+   `(magit-section-heading-selection   ((t (:foreground ,github-orange :background ,github-bg-1 :weight bold))))
    `(magit-diff-file-heading           ((t (:weight bold))))
    `(magit-diff-file-heading-highlight ((t (:background ,github-bg+05  :weight bold))))
-   `(magit-diff-file-heading-selection ((t (:background ,github-bg+05
+   `(magit-diff-file-heading-selection ((t (:background ,github-bg-1
                                                         :foreground ,github-orange :weight bold))))
    `(magit-diff-hunk-heading           ((t (:background ,github-bg+1))))
-   `(magit-diff-hunk-heading-highlight ((t (:background ,github-bg+2))))
+   `(magit-diff-hunk-heading-highlight ((t (:background ,github-bg-1))))
    `(magit-diff-hunk-heading-selection ((t (:background ,github-bg+2
                                                         :foreground ,github-orange))))
    `(magit-diff-lines-heading          ((t (:background ,github-orange
@@ -773,7 +774,7 @@ Also bind `class' to ((class color) (min-colors 89))."
                                           :weight bold))))
 ;;;;;; references etc
    `(magit-dimmed         ((t (:foreground ,github-bg+3))))
-   `(magit-hash           ((t (:foreground ,github-bg+3))))
+   `(magit-hash           ((t (:foreground ,github-fg-1))))
    `(magit-tag            ((t (:foreground ,github-orange :weight bold))))
    `(magit-branch-remote  ((t (:foreground ,github-green  :weight bold))))
    `(magit-branch-local   ((t (:foreground ,github-blue   :weight bold))))
