@@ -41,20 +41,26 @@
 ; don't show the scroll bar
 (scroll-bar-mode -1)
 
+;; Scroll one line at a time (less "jumpy" than defaults)
+(setq mouse-wheel-scroll-amount '(2 ((shift) . 2))) ;; two lines at a time
+(setq mouse-wheel-progressive-speed 't) ;; don't accelerate scrolling
+(setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
+(setq scroll-step 1) ;; keyboard scroll one line at a time
+
 ;; Smoother scrolling behavior when using keyboard navigation
-(setq redisplay-dont-pause t
-      scroll-margin 3
-      scroll-step 5
-      scroll-conservatively 1000
-      ;; Make C-v and M-v undo each other
-      scroll-preserve-screen-position 'always
-      mouse-wheel-follow-mouse 't
-      ;; Scroll in one line increments
-      ;; Gives a smoother mouse scroll
-      mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 
 ; Minimal fringe
 (fringe-mode 4)
+;; (setq redisplay-dont-pause t
+;;       scroll-margin 3
+;;       scroll-step 5
+;;       scroll-conservatively 1000
+;;       ;; Make C-v and M-v undo each other
+;;       scroll-preserve-screen-position 'always
+;;       mouse-wheel-follow-mouse 't
+;;       ;; Scroll in one line increments
+;;       ;; Gives a smoother mouse scroll
+;;       mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 
 ;; Experimental
 (defun kg/set-fringe-background ()
@@ -99,9 +105,10 @@
 
 ;; Smoother scrolling behavior when using keyboard navigation
 (setq redisplay-dont-pause t
-      scroll-margin 3
-      scroll-step 5
-      scroll-conservatively 1000
+      ;;scroll-margin 3
+      ;;scroll-step 5
+      scroll-step 0
+      scroll-conservatively 100000
       scroll-preserve-screen-position 1)
 (add-hook 'after-init-hook #'kg/reset-linum)
 
