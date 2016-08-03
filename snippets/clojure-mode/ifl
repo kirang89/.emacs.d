@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: ifl
+# key: ifl
+# --
+(if-let [$1 $2]
+  $3)
+$0

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: mapl
+# key: mapl
+# --
+(map (fn [$1] $2) $0)

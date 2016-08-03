@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: mapsl
+# key: mapsl
+# --
+(map #($1) $0)

@@ -1,0 +1,7 @@
+# name: defn
+# key: defn
+# --
+(defn ${1:name}
+  "${3:doc-string}"
+  [${4:arg-list}]
+  $0)
