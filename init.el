@@ -234,6 +234,9 @@
   ;; (global-set-key (kbd "C-r") 'swiper-helm)
   )
 
+;; Add path to sml binary
+(setenv "PATH" (concat "/usr/local/smlnj/bin:" (getenv "PATH")))
+(setq exec-path (cons "/usr/local/smlnj/bin"  exec-path))
 
 (setq-default cursor-type 'bar)
 
