@@ -107,6 +107,8 @@
    (clojure . t)
    (sh . t)))
 
+(setq org-babel-sh-command "bash")
+
 (use-package ob-clojure
   :init
   (setq org-babel-clojure-backend 'cider)
