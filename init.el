@@ -94,6 +94,7 @@
 (eval-after-load 'c-mode '(require 'init-c))
 (eval-after-load 'web-mode '(require 'init-web))
 (eval-after-load 'prolog-mode '(require 'init-prolog))
+(eval-after-load 'sml-mode '(require 'init-sml))
 
 ;; Custom configuration set by Emacs
 (setq custom-file "~/.emacs.d/custom.el")
