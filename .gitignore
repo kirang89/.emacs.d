@@ -1,4 +1,5 @@
 *~
+*.log
 ac-comphist.dat
 auto-save-list
 eshell
@@ -15,4 +16,11 @@ bookmarks
 cider-history
 recentf
 projectile-bookmarks.eld
+projectile.cache
 var
+
+company-statistics-cache.el
+emms
+games
+image-dired
+irony
