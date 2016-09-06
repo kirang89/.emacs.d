@@ -64,5 +64,8 @@
 ;; The defaults work fine.
 (setq python-indent-guess-indent-offset nil)
 
+;; Setting this for pyvenv-workon to work
+(setenv "WORKON_HOME" "/Users/kiran/Envs")
+
 (provide 'init-python)
 ;;; init-python.el ends here
