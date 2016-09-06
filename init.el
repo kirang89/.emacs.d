@@ -109,6 +109,9 @@
 ;;   (when (memq window-system '(mac ns))
 ;;     (exec-path-from-shell-initialize)))
 
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
+
 ;; Remove autocomplete (and use company-mode instead)
 (require 'auto-complete)
 (global-auto-complete-mode -1)
@@ -234,10 +237,6 @@
   ;; (global-set-key (kbd "C-s") 'swiper-helm)
   ;; (global-set-key (kbd "C-r") 'swiper-helm)
   )
-
-;; Add path to sml binary
-(setenv "PATH" (concat "/usr/local/smlnj/bin:" (getenv "PATH")))
-(setq exec-path (cons "/usr/local/smlnj/bin"  exec-path))
 
 (setq-default cursor-type 'bar)
 
