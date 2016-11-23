@@ -227,7 +227,10 @@
 (setq x-select-enable-clipboard t
       save-interprogram-paste-before-kill t)
 
-(setq paradox-github-token nil)
+(use-package paradox
+  :config
+  (setq-default paradox-github-token nil
+                paradox-execute-asynchronously t))
 
 ;; Learn about HTTP headers, media-types, methods, relations and status codes
 (use-package know-your-http-well)
