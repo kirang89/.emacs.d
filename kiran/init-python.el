@@ -14,28 +14,32 @@
         python-indent-offset 4
         py-force-py-shell-name-p t
         py-shell-switch-buffers-on-execute-p t
-        py-smart-indentation t)
+        py-smart-indentation t
+        python-shell-completion-native nil
+        python-shell-interpreter "python3")
   :config
   (add-hook 'python-mode-hook (lambda ()
                                 (require 'sphinx-doc)
                                 (sphinx-doc-mode t)))
   (add-hook 'python-mode-hook 'yas-minor-mode)
   (add-hook 'python-mode-hook 'show-paren-mode)
-  (add-hook 'python-mode-hook 'flycheck-mode)
   (add-hook 'python-mode-hook 'projectile-mode)
   (add-hook 'python-mode-hook 'subword-mode)
-  (remove-hook 'python-mode-hook 'flymake-mode))
+  )
 
 (use-package elpy
-    :after python
-    :bind ("M-." . elpy-goto-definition)
-    :init
-    (setq elpy-rpc-backend "jedi")
-    :config
-    (elpy-enable)
+  :after python
+  :bind ("M-." . elpy-goto-definition)
+  :init
+  (setq elpy-rpc-backend "jedi")
+  ;;(setq elpy-rpc-python-command "python3")
+  :config
+  (elpy-enable)
+  ;;(local-set-key (kbd "C-c n") 'elpy-test-nose-runner)
+  (let ((disabled-modules '(;;elpy-module-flymake
+                            elpy-module-highlight-indentation)))
+    (setq elpy-modules (-difference elpy-modules disabled-modules))))
 
-    (let ((disabled-modules '(elpy-module-flymake elpy-module-highlight-indentation)))
-      (setq elpy-modules (-difference elpy-modules disabled-modules))))
 
 
 (use-package company-jedi
