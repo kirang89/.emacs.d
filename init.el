@@ -147,13 +147,8 @@
 ;; Toggle frame split (see efuns.el)
 (global-set-key (kbd "C-x |") 'toggle-frame-split)
 
-;; remote-editing ftw!
-;; (require 'tramp)
-;; (setq tramp-default-method "ssh")
-
 ;; Clean view of major mode keybindings
 (global-set-key (kbd "C-h C-m") 'discover-my-major)
-
 
 ;; Completion ignores filenames ending in any string in this list.
 (setq completion-ignored-extensions
