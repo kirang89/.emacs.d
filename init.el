@@ -250,6 +250,15 @@
 
 (setenv "PATH" (concat "/Library/TeX/texbin" (getenv "PATH")))
 (setq exec-path (cons "/Library/TeX/texbin"  exec-path))
+
+(use-package auto-dim-other-buffers
+  :ensure t)
+
+(add-hook 'after-init-hook
+          (lambda ()
+            (when (fboundp 'auto-dim-other-buffers-mode)
+              (auto-dim-other-buffers-mode t))))
+
 ;;; =================================================================
 
 ;; Start emacs server
