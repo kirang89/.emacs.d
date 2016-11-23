@@ -112,6 +112,13 @@
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
+;; Save minibuffer history
+(setq savehist-file "~/.emacs.d/savehist")
+(savehist-mode 1)
+(setq history-length t)
+(setq history-delete-duplicates t)
+(setq savehist-save-minibuffer-history 1)
+
 ;; Remove autocomplete (and use company-mode instead)
 (require 'auto-complete)
 (global-auto-complete-mode -1)
