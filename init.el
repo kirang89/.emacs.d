@@ -242,7 +242,7 @@
   ;; (global-set-key (kbd "C-r") 'swiper-helm)
   )
 
-(setq-default cursor-type 'bar)
+(set-default 'cursor-type 'box)
 
 
 (setenv "PATH" (concat "/Library/TeX/texbin" (getenv "PATH")))
