@@ -62,6 +62,8 @@
 ;; Minimal fringe
 (fringe-mode 15)
 
+(add-hook 'after-init-hook (lambda () (fringe-mode 15)))
+
 ;; Experimental
 (defun kg/set-fringe-background ()
   "Set the fringe background to the same color as the regular background."
