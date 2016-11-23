@@ -42,6 +42,13 @@
                         '(("^ +\\([-*]\\) "
                            (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
 
+
+(defun kg/grep-notes ()
+  "Search my notes."
+  (interactive)
+  (let ((search-string (read-string "Search String: ")))
+    (ag search-string "~/Box Sync/org-notes")))
+
 ;; Capture templates
 (setq org-capture-templates
       '(
@@ -126,7 +133,6 @@
   )
 
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-
 (add-hook 'org-mode-hook
           (lambda ()
             (local-set-key (kbd "C-x p")
@@ -141,15 +147,15 @@
         "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
 
 ;; Deft configuration
-(use-package deft
-  :bind ("C-x C-g" . deft-find-file)
-  :config
-  (setq deft-extensions '("txt" "md" "org")
-        deft-directory "~/Box Sync/org-notes/"
-        deft-recursive t
-        deft-use-filename-as-title t
-        deft-strip-summary-regexp "\\*"
-        deft-auto-save-interval 60))
+;; (use-package deft
+;;   :bind ("C-x C-g" . deft-find-file)
+;;   :config
+;;   (setq deft-extensions '("txt" "md" "org")
+;;         deft-directory "~/Box Sync/org-notes/"
+;;         deft-recursive t
+;;         deft-use-filename-as-title t
+;;         deft-strip-summary-regexp "\\*"
+;;         deft-auto-save-interval 60))
 
 ;; (defface org-block-begin-line
 ;;   '((t (:underline "#8b5a2b" :foreground "#8b7355" :background "#8b7355")))
