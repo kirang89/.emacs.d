@@ -16,11 +16,11 @@
                  mode-line-inactive)))
     (mapc (lambda (face)
             (set-face-attribute face nil
-                                :font "Source Code Pro for Powerline-15:weight=regular"
-                                :weight 'normal))
-          faces)))
+                                :font "Source Code Pro-12.55"
+                                :weight 'light))
+          faces))
 
-(add-hook 'after-init-hook 'kg/set-modeline-face)
+  (add-hook 'after-init-hook 'kg/set-modeline-face))
 
 (require 'diminish)
 (diminish 'helm-mode)

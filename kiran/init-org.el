@@ -25,7 +25,8 @@
       org-use-speed-commands t
       ;; Syntax highlighting for org-export
       org-latex-listings 'minted
-      org-hide-emphasis-markers t)
+      org-hide-emphasis-markers t
+      org-ellipsis "•••")
 
 ;; The directory where images should be downloaded to, when dragged into
 ;; an org buffer
