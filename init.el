@@ -200,6 +200,8 @@
   :config
   (add-hook 'prog-mode-hook #'flycheck-mode))
 
+(remove-hook 'python-mode-hook #'flycheck-mode)
+
 ;; Use spotlight instead of locate
 (setq locate-command "mdfind")
 
