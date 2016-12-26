@@ -35,7 +35,7 @@
             (define-clojure-indent (facts 1))
             'linum-mode))
 
-(add-hook 'clojure-mode-hook 'flycheck-mode)
+;;(add-hook 'clojure-mode-hook 'flycheck-mode)
 (add-hook 'clojure-mode-hook 'kg/set-pretty-symbols)
 (add-hook 'clojure-mode-hook 'paren-face-mode)
 (add-hook 'clojure-mode-hook 'paredit-mode)
@@ -50,52 +50,58 @@
 ;; Cider
 ;;;;
 
-(setq cider-repl-pop-to-buffer-on-connect t
-      cider-mode-line nil
-      cider-show-error-buffer t
-      cider-auto-select-error-buffer t
-      cider-repl-history-file "~/.emacs.d/cider-history"
-      cider-repl-wrap-history t
-      cider-repl-history-size 1000
-      cider-repl-use-clojure-font-lock t
-      cider-docview-fill-column 70
-      cider-stacktrace-fill-column 76
-      nrepl-hide-special-buffers t
-      ;; Stop error buffer from popping up while working in buffers other than REPL:
-      nrepl-popup-stacktraces nil
-      nrepl-log-messages nil
-      nrepl-hide-special-buffers t
-      cider-repl-use-pretty-printing t
-      cider-repl-display-help-banner nil
-      cider-repl-result-prefix ";; => ")
+(use-package cider
+  :ensure t
+  :defer t
+  :config
+  (setq cider-repl-pop-to-buffer-on-connect t
+        cider-mode-line nil
+        cider-show-error-buffer t
+        cider-auto-select-error-buffer t
+        cider-repl-history-file "~/.emacs.d/cider-history"
+        cider-repl-wrap-history t
+        cider-repl-history-size 1000
+        cider-repl-use-clojure-font-lock t
+        cider-docview-fill-column 70
+        cider-stacktrace-fill-column 76
+        nrepl-hide-special-buffers t
+        ;; Stop error buffer from popping up while working in buffers other than REPL:
+        nrepl-popup-stacktraces nil
+        nrepl-log-messages nil
+        nrepl-hide-special-buffers t
+        cider-repl-use-pretty-printing t
+        cider-repl-display-help-banner nil
+        cider-repl-result-prefix ";; => "
+        cider-show-error-buffer nil)
 
-;; provides minibuffer documentation for the code you're typing into the repl
-(add-hook 'cider-mode-hook #'eldoc-mode)
-;; enable paredit in REPL
-(add-hook 'cider-repl-mode-hook 'paredit-mode)
-(add-hook 'cider-repl-mode-hook 'paren-face-mode)
-(add-hook 'cider-repl-mode-hook 'subword-mode)
-(add-hook 'cider-mode-hook
-          (local-set-key (kbd "<C-return>") 'cider-eval-defun-at-point))
+  ;; provides minibuffer documentation for the code you're typing into the repl
+  (add-hook 'cider-mode-hook #'eldoc-mode)
+  ;; enable paredit in REPL
+  (add-hook 'cider-repl-mode-hook #'paredit-mode)
+  (add-hook 'cider-repl-mode-hook #'paren-face-mode)
+  (add-hook 'cider-repl-mode-hook #'subword-mode)
+  (add-hook 'cider-repl-mode-hook #'company-mode)
+  (add-hook 'cider-mode-hook #'company-mode)
+  (add-hook 'cider-mode-hook
+            (local-set-key (kbd "<C-return>") 'cider-eval-defun-at-point))
 
-
-(defun cider-send-and-evaluate-sexp ()
-  "Send and eval expression in REPL.
+  (defun cider-send-and-evaluate-sexp ()
+    "Send and eval expression in REPL.
 
 Sends the s-expression located before the point or the active
 region to the REPL and evaluates it.Then the Clojure buffer is
 activated as if nothing happened."
-  (interactive)
-  (if (not (region-active-p))
-      (cider-insert-last-sexp-in-repl)
-    (cider-insert-in-repl
-     (buffer-substring (region-beginning) (region-end)) nil))
-  (cider-switch-to-repl-buffer)
-  (cider-repl-closing-return)
-  (cider-switch-to-last-clojure-buffer)
-  (message ""))
+    (interactive)
+    (if (not (region-active-p))
+        (cider-insert-last-sexp-in-repl)
+      (cider-insert-in-repl
+       (buffer-substring (region-beginning) (region-end)) nil))
+    (cider-switch-to-repl-buffer)
+    (cider-repl-closing-return)
+    (cider-switch-to-last-clojure-buffer)
+    (message ""))
 
-(bind-key "C-c C-v" 'cider-send-and-evaluate-sexp)
+  (bind-key "C-c C-v" 'cider-send-and-evaluate-sexp))
 
 ;; (defun kg/clj-src-file-name-from-test (name)
 ;;   (s-with name
