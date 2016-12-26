@@ -50,26 +50,26 @@
     (ag search-string "~/Box Sync/org-notes")))
 
 ;; Capture templates
-(setq org-capture-templates
-      '(
-        ("t" "Todo" entry
-         (file+headline (concat org-directory "/agenda.org") "Personal")
-         "*** TODO %?")
+;; (setq org-capture-templates
+;;       '(
+;;         ("t" "Todo" entry
+;;          (file+headline (concat org-directory "/agenda.org") "Personal")
+;;          "*** TODO %?")
 
-        ("m" "Todo" entry
-         (file+headline (concat org-directory "/agenda.org") "Meetups")
-         "*** TODO %?\n SCHEDULED: %^{SCHEDULED: }t")
+;;         ("m" "Todo" entry
+;;          (file+headline (concat org-directory "/agenda.org") "Meetups")
+;;          "*** TODO %?\n SCHEDULED: %^{SCHEDULED: }t")
 
-        ("l" "Link" item
-         (file+datetree (concat org-directory "/linklog.org")))
+;;         ("l" "Link" item
+;;          (file+datetree (concat org-directory "/linklog.org")))
 
-        ("v" "Video (Programming)" checkitem
-         (file+headline (concat org-directory
-                                "/programming_videos_watchlist.org")
-                        "Programming Videos Watchlist"))
-        ))
+;;         ("v" "Video (Programming)" checkitem
+;;          (file+headline (concat org-directory
+;;                                 "/programming_videos_watchlist.org")
+;;                         "Programming Videos Watchlist"))
+;;         ))
 
-(global-set-key (kbd "C-c C-a") 'org-agenda)
+;;(global-set-key (kbd "C-c C-a") 'org-agenda)
 (global-set-key (kbd "C-x c") 'org-capture)
 
 ;; load org-mode markdown export
@@ -113,26 +113,28 @@
  'org-babel-load-languages
  '((python . t)
    (clojure . t)
-   (sh . t)))
+   (sh . t)
+   ;; (latex . t)
+   ))
 
 (setq org-babel-sh-command "bash")
 
-(use-package ob-clojure
-  :init
-  (setq org-babel-clojure-backend 'cider)
-  (require 'cider))
+;; (use-package ob-clojure
+;;   :init
+;;   (setq org-babel-clojure-backend 'cider)
+;;   (require 'cider))
 
 ;; don't run stuff automatically on export
 ;;(setq org-export-babel-evaluate nil)
 
 ;; Use unicode chars instead of regular bullets
-(use-package org-bullets
-  :ensure t
-  :commands org-bullets-mode
-  ;; :config (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-  )
+;; (use-package org-bullets
+;;   :ensure t
+;;   :commands org-bullets-mode
+;;   ;; :config (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+;;   )
 
-(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+;; (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 (add-hook 'org-mode-hook
           (lambda ()
             (local-set-key (kbd "C-x p")
@@ -177,15 +179,15 @@
 ;; Tex->Pdf - C-c C-v
 ;; Pdf->Tex - Cmd-Shift-Click
 (setq TeX-view-program-list
-  '(("Preview.app" "open -a Preview.app %o")
-    ("Skim" "open -a Skim.app %o")
-    ("displayline" "/Applications/Skim.app/Contents/SharedSupport/displayline -b %n %o %b")
-    ("open" "open %o"))
-  ;; Select the viewers for each file type.
-  TeX-view-program-selection
-  '((output-dvi "open")
-    (output-pdf "displayline")
-    (output-html "open")))
+      '(("Preview.app" "open -a Preview.app %o")
+        ("Skim" "open -a Skim.app %o")
+        ("displayline" "/Applications/Skim.app/Contents/SharedSupport/displayline -b %n %o %b")
+        ("open" "open %o"))
+      ;; Select the viewers for each file type.
+      TeX-view-program-selection
+      '((output-dvi "open")
+        (output-pdf "displayline")
+        (output-html "open")))
 
 (provide 'init-org)
 ;;; init-org ends here

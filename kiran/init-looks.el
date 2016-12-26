@@ -44,26 +44,26 @@
 ; don't show the scroll bar
 (scroll-bar-mode -1)
 
-;; Scroll one line at a time (less "jumpy" than defaults)
-(setq mouse-wheel-scroll-amount '(2 ((shift) . 2))) ;; two lines at a time
-(setq mouse-wheel-progressive-speed 't) ;; don't accelerate scrolling
-(setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
-(setq scroll-step 1) ;; keyboard scroll one line at a time
+;; ;; Scroll one line at a time (less "jumpy" than defaults)
+;; (setq mouse-wheel-scroll-amount '(2 ((shift) . 2))) ;; two lines at a time
+;; (setq mouse-wheel-progressive-speed 't) ;; don't accelerate scrolling
+;; (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
+;; (setq scroll-step 1) ;; keyboard scroll one line at a time
 
 ;; Smoother scrolling behavior when using keyboard navigation
-;; (setq redisplay-dont-pause t
-;;       scroll-margin 3
-;;       scroll-step 5
-;;       scroll-conservatively 1000
-;;       ;; Make C-v and M-v undo each other
-;;       scroll-preserve-screen-position 'always
-;;       mouse-wheel-follow-mouse 't
-;;       ;; Scroll in one line increments
-;;       ;; Gives a smoother mouse scroll
-;;       mouse-wheel-scroll-amount '(1 ((shift) . 1)))
+(setq redisplay-dont-pause t
+      scroll-margin 0
+      ;;scroll-step 5
+      scroll-conservatively 10000
+      ;; Make C-v and M-v undo each other
+      scroll-preserve-screen-position 'always
+      mouse-wheel-follow-mouse 't
+      ;; Scroll in one line increments
+      ;; Gives a smoother mouse scroll
+      mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 
 ;; Minimal fringe
-(fringe-mode 15)
+;; (fringe-mode 15)
 
 (add-hook 'after-init-hook (lambda () (fringe-mode 15)))
 
@@ -93,7 +93,7 @@
 (defadvice linum-update-window (around linum-dynamic activate)
   (let* ((w (length (number-to-string
                      (count-lines (point-min) (point-max)))))
-         (linum-format (concat "  %" (number-to-string w) "d ")))
+         (linum-format (concat "  %" (number-to-string w) "d")))
     ad-do-it))
 
 (defun kg/reset-linum ()
@@ -110,11 +110,11 @@
 
 ;; Smoother scrolling behavior when using keyboard navigation
 (setq redisplay-dont-pause t
-      ;;scroll-margin 3
-      ;;scroll-step 5
+      scroll-margin 3
       scroll-step 0
       scroll-conservatively 100000
-      scroll-preserve-screen-position 1)
+      scroll-preserve-screen-position 0)
+
 (add-hook 'after-init-hook #'kg/reset-linum)
 
 ;; set unique names for two similar buffers

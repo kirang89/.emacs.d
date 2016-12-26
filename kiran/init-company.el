@@ -49,22 +49,27 @@
     (add-to-list 'company-backends 'company-web-html))
 
   ;; Python auto completion
-  (use-package company-anaconda
-    :ensure t
-    :config
-    (add-to-list 'company-backends
-                 '(company-anaconda :with company-capf)))
+  ;; (use-package company-anaconda
+  ;;   :ensure t
+  ;;   :config
+  ;;   (add-to-list 'company-backends
+  ;;                '(company-anaconda :with company-capf)))
 
   ;; C code completion
-  (use-package company-irony
-    :ensure t
-    :config
-    (add-to-list 'company-backends 'company-irony))
+  ;; (use-package company-irony
+  ;;   :ensure t
+  ;;   :config
+  ;;   (add-to-list 'company-backends 'company-irony))
 
   (use-package company-statistics
     :ensure t
     :config
-    (add-hook 'after-init-hook 'company-statistics-mode)))
+    (add-hook 'after-init-hook 'company-statistics-mode))
+
+  (use-package company-ansible
+    :ensure t
+    :config
+    (add-to-list 'company-backends 'company-ansible)))
 
 ;;(company-quickhelp-mode 1)
 

@@ -41,6 +41,7 @@
     (setq elpy-modules (-difference elpy-modules disabled-modules))))
 
 
+;;(remove-hook 'python-mode-hook 'flycheck-mode)
 
 (use-package company-jedi
   :after python
@@ -51,6 +52,8 @@
   :after python
   :config
   (sphinx-doc-mode t))
+
+(setq python-shell-completion-native nil)
 
 ;; (use-package pytest
 ;;   :ensure t

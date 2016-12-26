@@ -1,18 +1,20 @@
 
 (remove-hook 'find-file-hooks 'vc-find-file-hook)
 
-;; git-awesome-mode
-(require 'magit)
+(use-package magit
+  :ensure t
+  :config
+  ;; Open magit in a new buffer
+  (setq magit-status-buffer-switch-function 'switch-to-buffer)
 
-;; Open magit in a new buffer
-(setq magit-status-buffer-switch-function 'switch-to-buffer)
+  (defun disable-magit-highlight-in-buffer ()
+    (face-remap-add-relative 'magit-item-highlight '()))
+  (add-hook 'magit-status-mode-hook 'disable-magit-highlight-in-buffer)
 
-(defun disable-magit-highlight-in-buffer ()
-  (face-remap-add-relative 'magit-item-highlight '()))
+  (global-set-key (kbd "C-c C-g") 'magit-status)
 
-(add-hook 'magit-status-mode-hook 'disable-magit-highlight-in-buffer)
+  (setq magit-set-upstream-on-push 'askifnotset))
 
-(global-set-key (kbd "C-c C-g") 'magit-status)
 
 (provide 'init-magit)
 ;;; init-magit ends here

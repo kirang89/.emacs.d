@@ -1,11 +1,14 @@
 
 (use-package projectile
   :ensure t
-  :diminish projectile-mode
+  ;;:diminish projectile-mode
+  :init
+  (add-hook 'prog-mode-hook #'projectile-mode)
   :config
-  (add-hook 'prog-mode-hook 'projectile-mode)
   ;; asks for file to open when project is switched
   (setq projectile-switch-project-action 'helm-projectile-find-file)
+  (setq-default projectile-enable-caching t)
+  (setq-default projectile-mode-line '(:eval (projectile-project-name)))
 
   (use-package helm-projectile
     :ensure t
