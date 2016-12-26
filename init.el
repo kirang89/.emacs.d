@@ -6,15 +6,13 @@
 ;;
 ;;; Code:
 
-
-; =================================== TODOS ===============================
-;
-; - Completely migrate to using use-package
-; - Read
-;   - http://www.lunaryorn.com/2015/01/06/my-emacs-configuration-with-use-package.html
-;   - http://writequit.org/eos/eos.html
-;
-; ========================================= ===============================
+;; ======================= TODOS ===============================
+;;
+;; - Completely migrate to using use-package
+;; - Read
+;;   - http://writequit.org/eos/eos
+;;
+;; ========================================================================
 
 ;; Record the start time
 
@@ -87,7 +85,7 @@
 (require 'init-shell)
 (require 'efuns)
 (require 'init-magit)
-(require 'init-projectile)
+;;(require 'init-projectile)
 ;;(require 'init-solarized)
 ;;(require 'init-mu4e)
 (eval-after-load 'markdown-mode '(require 'init-markdown))
@@ -190,26 +188,33 @@
   ;; (local-set-key (kbd "M-<down>") 'neotree-select-down-node)
   (global-set-key [f9] 'neotree-toggle))
 
-;;; =====================================
-;;; Experimental Stuff
-;;; =====================================
 
 (use-package flycheck
   :ensure t
   :diminish flycheck-mode
+  :init
+  (add-hook 'prog-mode-hook #'flycheck-mode)
+  (remove-hook 'python-mode-hook #'flycheck-mode)
   :config
-  (add-hook 'prog-mode-hook #'flycheck-mode))
-
-(remove-hook 'python-mode-hook #'flycheck-mode)
-
-;; Use spotlight instead of locate
-(setq locate-command "mdfind")
+  (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
 
 (use-package aggressive-indent
   :commands (aggressive-indent-mode)
   :config
-  (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
+  ;;(add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
   (add-hook 'clojure-mode-hook #'aggressive-indent-mode))
+
+(use-package paradox
+  :config
+  (setq-default paradox-github-token nil
+                paradox-execute-asynchronously t))
+
+;;; =====================================
+;;; Experimental Stuff
+;;; =====================================
+
+;; Use spotlight instead of locate
+(setq locate-command "mdfind")
 
 ;; (use-package google-this
 ;;   :ensure t
@@ -221,43 +226,94 @@
 ;;              google-this-search
 ;;              google-this-cpp-reference))
 
-;;(setq-default cursor-type 'bar)
+(setq-default cursor-type '(bar . 2))
 
 ;; Allow pasting selection outside of Emacs
 (setq x-select-enable-clipboard t
       save-interprogram-paste-before-kill t)
 
-(use-package paradox
-  :config
-  (setq-default paradox-github-token nil
-                paradox-execute-asynchronously t))
-
 ;; Learn about HTTP headers, media-types, methods, relations and status codes
-(use-package know-your-http-well)
+;;(use-package know-your-http-well)
 
 ;;(use-package fancy-narrow)
 
-(use-package swiper-helm
-  :config
-  ;; (global-unset-key (kbd "C-s"))
-  ;; (global-unset-key (kbd "C-r"))
-  ;; (global-set-key (kbd "C-s") 'swiper-helm)
-  ;; (global-set-key (kbd "C-r") 'swiper-helm)
-  )
+;; (use-package swiper-helm
+;;   :config
+;;   (global-unset-key (kbd "C-s"))
+;;   (global-unset-key (kbd "C-r"))
+;;   (global-set-key (kbd "C-s") 'swiper-helm)
+;;   (global-set-key (kbd "C-r") 'swiper-helm))
 
-(set-default 'cursor-type 'box)
+;; (set-default 'cursor-type 'box)
+;; (add-hook 'after-init-hook (lambda () (setq cursor-type '(bar . 2))))
 
+;; Display a tip from the Pragmatic Programmer!
+;; Based on https://github.com/sfrapoport/daily-pragmatic-tip
+;;
+;; (defun pc/be-pragmatic ()
+;;   "Display a tip from the Pragmatic Prvogrammer!"
+;;   (let* ((revert-without-query '("pragmatic.*\\.org"))
+;;          (url "http://tinyurl.com/q4tbobl")
+;;          (buffer (url-retrieve-synchronously url))
+;;          n text)
+;;     (switch-to-buffer buffer)
+;;     (re-search-forward "^$" nil t 1)
+;;     (forward-line)
+;;     (delete-region (point) (point-min))
+;;     (setq n (count-lines (point-min) (point-max)))
+;;     (forward-line (random 70))
+;;     (setq text (buffer-substring-no-properties
+;;                 (line-beginning-position)
+;;                 (line-end-position)))
+;;     (delete-non-matching-lines text (point-min) (point-max))
+;;     (write-file (make-temp-file "pragmatic" nil ".org"))
+;;     (revert-buffer-with-coding-system 'utf-8-hfs-dos t)
+;;     (fill-paragraph)
+;;     (save-buffer)))
+
+;; Hook it up to be called on an idle timer, every day
+;;(pc/run-with-timer-when-idle 1 120 86400 'pc/be-pragmatic)
 
 (setenv "PATH" (concat "/Library/TeX/texbin" (getenv "PATH")))
 (setq exec-path (cons "/Library/TeX/texbin"  exec-path))
 
-(use-package auto-dim-other-buffers
-  :ensure t)
+(global-auto-revert-mode t)
 
-(add-hook 'after-init-hook
-          (lambda ()
-            (when (fboundp 'auto-dim-other-buffers-mode)
-              (auto-dim-other-buffers-mode t))))
+;; Hide cursor in inactive windows
+(setq cursor-in-non-selected-windows t)
+
+;; Don't blink the cursor
+(blink-cursor-mode 0)
+
+;; Focus on help windows
+(setq help-window-select t)
+
+;; ====== Don't GC when in minibuffer =======
+(defun my-minibuffer-setup-hook ()
+  (setq gc-cons-threshold most-positive-fixnum))
+
+(defun my-minibuffer-exit-hook ()
+  (setq gc-cons-threshold 800000))
+
+(add-hook 'minibuffer-setup-hook #'my-minibuffer-setup-hook)
+(add-hook 'minibuffer-exit-hook #'my-minibuffer-exit-hook)
+;; ==========================================
+
+;; Add path to sml binary
+;; (setenv "PATH" (concat
+;;                 "/usr/local/smlnj/bin:" (getenv "PATH")))
+;; (setq exec-path (cons "/usr/local/smlnj/bin"  exec-path))
+
+
+;; (use-package auto-dim-other-buffers
+;;   :ensure t)
+
+;; (add-hook 'after-init-hook
+;;           (lambda ()
+;;             (when (fboundp 'auto-dim-other-buffers-mode)
+;;               (auto-dim-other-buffers-mode t))))
+
+;; (setq org-latex-create-formula-image-program 'convert)
 
 ;;; =================================================================
 
