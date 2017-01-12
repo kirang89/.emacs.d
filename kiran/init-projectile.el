@@ -1,7 +1,7 @@
 
 (use-package projectile
-  :ensure t
   ;;:diminish projectile-mode
+  :defer t
   :init
   (add-hook 'prog-mode-hook #'projectile-mode)
   :config

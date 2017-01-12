@@ -22,20 +22,22 @@
 ;; Good font sizes
 ;; ===============
 ;;(set-frame-font "Meslo LG S-13")
-;;(set-frame-font "DejaVu Sans Mono-13")
-;;(set-frame-font "AkkuratMonoMono-13.0:weight=regular")
-;;(set-frame-font "Oxygen Mono-14")
-;;(set-frame-font "Panic Sans-13")
+;;(set-frame-font "DejaVu Sans Mono-15")
+;;(set-frame-font "AkkuratMonoMono-16.0:weight=regular")
+;;(set-frame-font "Oxygen Mono-15")
+;;(set-frame-font "Panic Sans-15")
 ;;(set-frame-font "Fira Mono-14.0:weight=regular:spacing=m")
+;;(set-frame-font "Fira Code-16.0:weight=regular:spacing=m")
 ;;(set-frame-font "Inconsolata-dz-15")
-;;(set-frame-font "Consolas-14")
-(set-frame-font "Source Code Pro-15.58:weight=semibold")
+;;(set-frame-font "Consolas-16")
+(set-frame-font "Source Code Pro-13:weight=regular")
 ;;(set-frame-font "Noto Mono-15.0")
 ;;(set-frame-font "Operator Mono-16.0")
 ;;(set-frame-font "Ubuntu Mono-17.0")
+;;(set-frame-font "AHAMONO-17.0")
 
 ;; Set default line spacing (relative)
-(setq-default line-spacing 0.2)
+(setq-default line-spacing 0.05)
 
 ; don't show the tool bar
 (require 'tool-bar)
@@ -99,7 +101,7 @@
 (defun kg/reset-linum ()
   "Reset formatting of line numbers."
   (interactive)
-  (let ((font "Source Code Pro-15:weight=light"))
+  (let ((font "Source Code Pro-13:weight=light"))
     (require 'linum)
     (set-face-attribute 'linum nil :font font)))
 
@@ -110,10 +112,10 @@
 
 ;; Smoother scrolling behavior when using keyboard navigation
 (setq redisplay-dont-pause t
-      scroll-margin 3
+      scroll-margin 1
       scroll-step 0
       scroll-conservatively 100000
-      scroll-preserve-screen-position 0)
+      scroll-preserve-screen-position t)
 
 (add-hook 'after-init-hook #'kg/reset-linum)
 

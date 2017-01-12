@@ -168,3 +168,6 @@ PWD is not in a git repo (or the git command is not found)."
 
 (provide 'init-shell)
 ;;; init-shell.el ends here
+;; Local Variables:
+;; byte-compile-warnings: (not free-vars)
+;; End:

@@ -51,7 +51,6 @@
 ;;;;
 
 (use-package cider
-  :ensure t
   :defer t
   :config
   (setq cider-repl-pop-to-buffer-on-connect t

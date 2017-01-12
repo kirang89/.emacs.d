@@ -20,7 +20,10 @@
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
+;;(setq package-enable-at-startup nil)
 (package-initialize)
+
+(byte-recompile-directory (expand-file-name "~/.emacs.d") 0)
 
 (setq *emacs-load-start* (current-time))
 
@@ -77,7 +80,7 @@
 (require 'init-keychord)
 (require 'init-parens)
 (require 'init-python)
-(require 'init-clojure)
+(eval-after-load 'clojure-mode '(require 'init-clojure))
 (require 'init-elisp)
 (require 'init-org)
 (require 'init-yasnippet)
@@ -85,7 +88,7 @@
 (require 'init-shell)
 (require 'efuns)
 (require 'init-magit)
-;;(require 'init-projectile)
+(require 'init-projectile)
 ;;(require 'init-solarized)
 ;;(require 'init-mu4e)
 (eval-after-load 'markdown-mode '(require 'init-markdown))
@@ -190,13 +193,13 @@
 
 
 (use-package flycheck
-  :ensure t
-  :diminish flycheck-mode
-  :init
-  (add-hook 'prog-mode-hook #'flycheck-mode)
-  (remove-hook 'python-mode-hook #'flycheck-mode)
-  :config
-  (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
+ :diminish flycheck-mode
+ :init
+ ;; (add-hook 'prog-mode-hook #'flycheck-mode)
+ ;;(add-hook 'python-mode-hook #'flycheck-mode)
+ :config
+ (add-hook 'after-init-hook #'global-flycheck-mode)
+ (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
 
 (use-package aggressive-indent
   :commands (aggressive-indent-mode)
@@ -277,7 +280,7 @@
 (setenv "PATH" (concat "/Library/TeX/texbin" (getenv "PATH")))
 (setq exec-path (cons "/Library/TeX/texbin"  exec-path))
 
-(global-auto-revert-mode t)
+(global-auto-revert-mode)
 
 ;; Hide cursor in inactive windows
 (setq cursor-in-non-selected-windows t)
@@ -315,10 +318,18 @@
 
 ;; (setq org-latex-create-formula-image-program 'convert)
 
+(remove-hook 'python-mode-hook 'outline-mode)
+(remove-hook 'python-mode-hook 'diff-auto-refine-mode)
+(remove-hook 'python-mode-hook 'dired-omit-mode)
+
+
 ;;; =================================================================
 
 ;; Start emacs server
 (server-start)
+
+(add-to-list 'default-frame-alist '(height . 41))
+(add-to-list 'default-frame-alist '(width . 120))
 
 ;; Write out a message indicating how long it took to process the init script
 (require 'cl)
@@ -331,3 +342,6 @@
 (provide `.emacs)
 
 ;;; init.el ends here
+;; Local Variables:
+;; byte-compile-warnings: (not free-vars)
+;; End:

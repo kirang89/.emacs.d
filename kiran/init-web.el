@@ -14,11 +14,9 @@
 (setq web-mode-enable-css-colorization t)
 
 (use-package web-mode
-  :ensure t
   :mode ("\\.html$" . web-mode))
 
 (use-package web-beautify
-  :ensure t
   :commands (web-beautify-css
              web-beautify-css-buffer
              web-beautify-html
@@ -30,13 +28,11 @@
 ;;   :ensure t
 ;;   :mode ("\\.js$" . js3-mode))
 
-(use-package impatient-mode
-  :ensure t
-  :diminish (impatient-mode . "ι")
-  :commands (impatient-mode))
+;; (use-package impatient-mode
+;;   :diminish (impatient-mode . "ι")
+;;   :commands (impatient-mode))
 
 (use-package emmet-mode
-  :ensure t
   :diminish (emmet-mode . "ε")
   :bind* (("C-)" . emmet-next-edit-point)
           ("C-(" . emmet-prev-edit-point))

@@ -8,6 +8,7 @@ tramp
 url
 
 .mc-lists.el
+*.elc
 .python-environments
 .cask
 

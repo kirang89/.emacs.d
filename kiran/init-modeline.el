@@ -33,7 +33,7 @@
 (eval-after-load "projectile" '(diminish 'projectile-mode))
 (eval-after-load "flyspell" '(diminish 'flyspell-mode))
 (eval-after-load "sphinx-doc" '(diminish 'sphinx-doc-mode))
-(eval-after-load "elpy" '(diminish 'elpy-mode))
+;; (eval-after-load "elpy" '(diminish 'elpy-mode))
 (eval-after-load "org-indent" '(diminish 'org-indent-mode))
 (eval-after-load "smartparens" '(diminish 'smartparens-mode))
 (eval-after-load "flycheck" '(diminish 'flycheck-mode))
