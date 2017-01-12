@@ -38,6 +38,13 @@ brew install aspell --with-lang-en
 brew install the_silver_searcher
 ```
 
+## Profiling
+
+To profile this setup, run the following in your terminal:
+```bash
+emacs -Q -l ~/.emacs.d/profile-dotemacs.el -f profile-dotemacs
+```
+
 ## Contributing
 If you have any suggestions, feel free to create an issue to start a
 discussion.
