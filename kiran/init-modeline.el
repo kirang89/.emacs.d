@@ -5,6 +5,11 @@
 (column-number-mode -1)
 (size-indication-mode -1)
 
+
+(require 'spaceline-config)
+(spaceline-emacs-theme)
+
+
 ;; Set default font for different modeline modes
 (defun kg/set-modeline-face ()
   "Set the above font in modeline face."
