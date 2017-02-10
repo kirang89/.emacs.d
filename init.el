@@ -6,15 +6,6 @@
 ;;
 ;;; Code:
 
-;; ======================= TODOS ===============================
-;;
-;; - Completely migrate to using use-package
-;; - Read
-;;   - http://writequit.org/eos/eos
-;;
-;; ========================================================================
-
-;; Record the start time
 
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
