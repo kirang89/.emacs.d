@@ -27,8 +27,8 @@
 
   (add-hook 'after-init-hook 'kg/set-modeline-face))
 
+
 (require 'diminish)
-(diminish 'helm-mode)
 (diminish 'auto-revert-mode)
 (diminish 'auto-fill-mode)
 (eval-after-load "abbrev" '(diminish 'abbrev-mode))
@@ -38,7 +38,6 @@
 (eval-after-load "projectile" '(diminish 'projectile-mode))
 (eval-after-load "flyspell" '(diminish 'flyspell-mode))
 (eval-after-load "sphinx-doc" '(diminish 'sphinx-doc-mode))
-;; (eval-after-load "elpy" '(diminish 'elpy-mode))
 (eval-after-load "org-indent" '(diminish 'org-indent-mode))
 (eval-after-load "smartparens" '(diminish 'smartparens-mode))
 (eval-after-load "flycheck" '(diminish 'flycheck-mode))
@@ -46,6 +45,8 @@
 (eval-after-load "subword" '(diminish 'subword-mode))
 (eval-after-load "indent-guide" '(diminish 'indent-guide-mode))
 (eval-after-load "paredit" '(diminish 'paredit-mode))
+(eval-after-load "helm" '(diminish 'helm-mode))
+(eval-after-load "outline" '(diminish 'outline-minor-mode))
 
 (defadvice emacs-lisp-mode (after elisp-rename-modeline activate)
   (setq mode-name "ELisp"))
@@ -56,8 +57,7 @@
     (hi-lock-mode . "")
     (python-mode . "Py")
     (clojure-mode . "λ")
-    (markdown-mode . "Md")
-    (abbrev-mode . ""))
+    (markdown-mode . "Md"))
   "Alist for `clean-mode-line'.
 
 When you add a new element to the alist, keep in mind that you
