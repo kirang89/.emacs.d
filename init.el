@@ -23,24 +23,27 @@
 ;;(setq package-enable-at-startup nil)
 (package-initialize)
 
-(byte-recompile-directory (expand-file-name "~/.emacs.d") 0)
+;; Recompile .el file(s) if changes occur
+(byte-recompile-directory (expand-file-name "~/.emacs.d/kiran") 0)
 
+;; Record the start time
 (setq *emacs-load-start* (current-time))
+
+(global-auto-revert-mode 1)
 
 ;; Disable VC hooks
 ;; http://stackoverflow.com/questions/6724471/git-slows-down-emacs-to-death-how-to-fix-this
 (setq vc-handled-backends nil)
 
 ;; Turn off mouse interface early in startup to avoid momentary display
-(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
 
 ;; language
 (setq current-language-environment "English")
 
 ;; UTF-8 UTF-8 everywhere!
-
 (setq default-file-name-coding-system 'utf-8)
 (setq buffer-file-coding-system 'utf-8)
 
@@ -80,7 +83,7 @@
 (require 'init-keychord)
 (require 'init-parens)
 (require 'init-python)
-(eval-after-load 'clojure-mode '(require 'init-clojure))
+(require 'init-clojure)
 (require 'init-elisp)
 (require 'init-org)
 (require 'init-yasnippet)
@@ -88,18 +91,20 @@
 (require 'init-shell)
 (require 'efuns)
 (require 'init-magit)
-(require 'init-projectile)
+;;(require 'init-projectile)
 ;;(require 'init-solarized)
 ;;(require 'init-mu4e)
 (eval-after-load 'markdown-mode '(require 'init-markdown))
-(eval-after-load 'c-mode '(require 'init-c))
-(eval-after-load 'web-mode '(require 'init-web))
-(eval-after-load 'prolog-mode '(require 'init-prolog))
-(eval-after-load 'sml-mode '(require 'init-sml))
+;;(eval-after-load 'c-mode '(require 'init-c))
+;;(eval-after-load 'web-mode '(require 'init-web))
+;;(eval-after-load 'prolog-mode '(require 'init-prolog))
+;;(eval-after-load 'sml-mode '(require 'init-sml))
 
 ;; Custom configuration set by Emacs
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
+
+(fringe-mode 15)
 
 ;; set exec-path according to the system's PATH
 ;; This is primarily for OS X, where starting Emacs in GUI mode
@@ -110,6 +115,7 @@
 ;;   (when (memq window-system '(mac ns))
 ;;     (exec-path-from-shell-initialize)))
 
+(require 'exec-path-from-shell)
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
@@ -177,10 +183,11 @@
 
 ;; Comment a line from anywhere in that line
 ;; (use-package smart-comment
-;;   :ensure t
-;;   :bind ("M-;" . smart-comment))
+;;   :config
+;;   (global-set-key (kbd "M-;") 'smart-comment-line))
 
 (use-package neotree
+  :defer t
   :init
   (setq neo-smart-open t)
   (setq-default neo-dont-be-alone t)
@@ -191,15 +198,11 @@
   ;; (local-set-key (kbd "M-<down>") 'neotree-select-down-node)
   (global-set-key [f9] 'neotree-toggle))
 
-
 (use-package flycheck
- :diminish flycheck-mode
- :init
- ;; (add-hook 'prog-mode-hook #'flycheck-mode)
- ;;(add-hook 'python-mode-hook #'flycheck-mode)
- :config
- (add-hook 'after-init-hook #'global-flycheck-mode)
- (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
+  :diminish flycheck-mode
+  :config
+  (add-hook 'after-init-hook 'global-flycheck-mode)
+  (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
 
 (use-package aggressive-indent
   :commands (aggressive-indent-mode)
@@ -218,18 +221,6 @@
 
 ;; Use spotlight instead of locate
 (setq locate-command "mdfind")
-
-;; (use-package google-this
-;;   :ensure t
-;;   :commands (google-this-word
-;;              google-this-region
-;;              google-this-symbol
-;;              google-this-clean-error-string
-;;              google-this-line
-;;              google-this-search
-;;              google-this-cpp-reference))
-
-(setq-default cursor-type '(bar . 2))
 
 ;; Allow pasting selection outside of Emacs
 (setq x-select-enable-clipboard t
@@ -280,16 +271,17 @@
 (setenv "PATH" (concat "/Library/TeX/texbin" (getenv "PATH")))
 (setq exec-path (cons "/Library/TeX/texbin"  exec-path))
 
-(global-auto-revert-mode)
-
 ;; Hide cursor in inactive windows
 (setq cursor-in-non-selected-windows t)
 
-;; Don't blink the cursor
-(blink-cursor-mode 0)
-
 ;; Focus on help windows
 (setq help-window-select t)
+
+(defalias 'find-grep 'ag)
+
+;; (use-package github-pullrequest)
+
+;;(set-cursor-color "ff0000")
 
 ;; ====== Don't GC when in minibuffer =======
 (defun my-minibuffer-setup-hook ()
@@ -302,34 +294,18 @@
 (add-hook 'minibuffer-exit-hook #'my-minibuffer-exit-hook)
 ;; ==========================================
 
-;; Add path to sml binary
-;; (setenv "PATH" (concat
-;;                 "/usr/local/smlnj/bin:" (getenv "PATH")))
-;; (setq exec-path (cons "/usr/local/smlnj/bin"  exec-path))
-
-
-;; (use-package auto-dim-other-buffers
-;;   :ensure t)
-
-;; (add-hook 'after-init-hook
-;;           (lambda ()
-;;             (when (fboundp 'auto-dim-other-buffers-mode)
-;;               (auto-dim-other-buffers-mode t))))
-
 ;; (setq org-latex-create-formula-image-program 'convert)
-
-(remove-hook 'python-mode-hook 'outline-mode)
-(remove-hook 'python-mode-hook 'diff-auto-refine-mode)
-(remove-hook 'python-mode-hook 'dired-omit-mode)
-
 
 ;;; =================================================================
 
 ;; Start emacs server
 (server-start)
 
-(add-to-list 'default-frame-alist '(height . 41))
-(add-to-list 'default-frame-alist '(width . 120))
+;; (add-to-list 'default-frame-alist '(height . 41))
+;; (add-to-list 'default-frame-alist '(width . 120))
+
+(add-to-list 'default-frame-alist '(height . 38))
+(add-to-list 'default-frame-alist '(width . 85))
 
 ;; Write out a message indicating how long it took to process the init script
 (require 'cl)

@@ -17,27 +17,29 @@
 
 ;;(setq-default cursor-type 'bar)
 
-(setq ns-use-srgb-colorspace t)
+;;(setq ns-use-srgb-colorspace nil)
 
 ;; Good font sizes
 ;; ===============
 ;;(set-frame-font "Meslo LG S-13")
-;;(set-frame-font "DejaVu Sans Mono-15")
-;;(set-frame-font "AkkuratMonoMono-16.0:weight=regular")
-;;(set-frame-font "Oxygen Mono-15")
-;;(set-frame-font "Panic Sans-15")
-;;(set-frame-font "Fira Mono-14.0:weight=regular:spacing=m")
-;;(set-frame-font "Fira Code-16.0:weight=regular:spacing=m")
-;;(set-frame-font "Inconsolata-dz-15")
-;;(set-frame-font "Consolas-16")
-(set-frame-font "Source Code Pro-13:weight=regular")
-;;(set-frame-font "Noto Mono-15.0")
+;;(set-frame-font "AkkuratMonoMono-15.0:weight=regular")
+;;(set-frame-font "Oxygen Mono-14")
+(set-frame-font "Fira Mono-15.0:weight=regular:spacing=m")
+;;(set-frame-font "Fira Code-15.0:weight=regular:spacing=m")
+;;(set-frame-font "Inconsolata-17")
+;;(set-frame-font "Consolas-14")
+;;(set-frame-font "Source Code Pro-12.55:weight=light")
+;;(set-frame-font "Hasklig-15.5:weight=light")
+;;(set-frame-font "Input Mono Condensed-14.5:weight=light")
+;;(set-frame-font "PragmataPro-13.5:weight=regular")
+;;(set-frame-font "Code New Roman-16:weight=light")
+;;(set-frame-font "Noto Mono-13.0")
 ;;(set-frame-font "Operator Mono-16.0")
 ;;(set-frame-font "Ubuntu Mono-17.0")
-;;(set-frame-font "AHAMONO-17.0")
+;;(set-frame-font "Panic Sans-13.0")
 
 ;; Set default line spacing (relative)
-(setq-default line-spacing 0.05)
+(setq-default line-spacing 0.4)
 
 ; don't show the tool bar
 (require 'tool-bar)
@@ -65,8 +67,6 @@
       mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 
 ;; Minimal fringe
-;; (fringe-mode 15)
-
 (add-hook 'after-init-hook (lambda () (fringe-mode 15)))
 
 ;; Experimental

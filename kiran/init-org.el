@@ -177,16 +177,16 @@
 ;;
 ;; Tex->Pdf - C-c C-v
 ;; Pdf->Tex - Cmd-Shift-Click
-(setq TeX-view-program-list
-      '(("Preview.app" "open -a Preview.app %o")
-        ("Skim" "open -a Skim.app %o")
-        ("displayline" "/Applications/Skim.app/Contents/SharedSupport/displayline -b %n %o %b")
-        ("open" "open %o"))
-      ;; Select the viewers for each file type.
-      TeX-view-program-selection
-      '((output-dvi "open")
-        (output-pdf "displayline")
-        (output-html "open")))
+;; (setq TeX-view-program-list
+;;       '(("Preview.app" "open -a Preview.app %o")
+;;         ("Skim" "open -a Skim.app %o")
+;;         ("displayline" "/Applications/Skim.app/Contents/SharedSupport/displayline -b %n %o %b")
+;;         ("open" "open %o"))
+;;       ;; Select the viewers for each file type.
+;;       TeX-view-program-selection
+;;       '((output-dvi "open")
+;;         (output-pdf "displayline")
+;;         (output-html "open")))
 
 (provide 'init-org)
 ;;; init-org ends here

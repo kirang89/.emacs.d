@@ -4,6 +4,7 @@
 
 (use-package helm
   :defer t
+  :diminish helm-mode
   :init
   ;; Make Helm look nice.
   (setq-default helm-M-x-fuzzy-match t
@@ -27,8 +28,8 @@
   (global-set-key (kbd "C-c C-s") #'helm-do-grep-ag)
 
   :config
-  (require 'helm-config)
-  (require 'helm)
+  ;;(require 'helm-config)
+  ;;(require 'helm)
 
   ;; Activate Helm.
   (helm-mode 1)
