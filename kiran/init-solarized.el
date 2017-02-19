@@ -30,5 +30,8 @@
 ;; for solarized theme
  (setq solarized-broken-srgb nil)
 
+;; Deal with the weird underlining in the modeline
+(setq x-underline-at-descent-line t)
+
 (provide 'init-solarized)
 ;;; init-solarized.el ends here

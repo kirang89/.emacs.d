@@ -16,22 +16,12 @@
 ;; Only ask for confirmation if buffer has been modified
 (global-set-key [(control x) (k)] 'kill-this-buffer)
 
-;; navigation
-;; (global-set-key (kbd "C-c ;") 'next-buffer)
-;; (global-set-key (kbd "C-c :") 'previous-buffer)
-
-;; (set-face-background 'hl-line "#9998aa")
-;; (require 'highlight-current-line)
-;; (highlight-current-line-on t)
-;; (set-face-background 'highlight-current-line-face "#3D3D3D")
-
 ; keybindings for increasing/decreasing window height
 (global-set-key (kbd "C--") 'shrink-window)
 (global-set-key (kbd "C-=") 'enlarge-window)
 (global-set-key (kbd "C-9") 'shrink-window-horizontally)
 (global-set-key (kbd "C-0") 'enlarge-window-horizontally)
 (global-set-key (kbd "<f5>") 'fullscreen-mode-fullscreen-toggle)
-
 
 ;; keybindings for dictionary
 (add-hook 'text-mode-hook
@@ -48,7 +38,15 @@
                 (lambda () (interactive) (join-line -1)))
 
 (global-set-key (kbd "<f2>") 'helm-ag)
+
 (global-set-key (kbd "<f6>") 'helm-projectile-ag)
+
+;; Toggle frame split (see efuns.el)
+(global-set-key (kbd "C-x |") 'toggle-frame-split)
+
+;; Clean view of major mode keybindings
+(global-set-key (kbd "C-h C-m") 'discover-my-major)
+
 
 (provide 'init-kbd)
 ;;; init-kbd.el ends here

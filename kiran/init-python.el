@@ -50,5 +50,10 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 
+;; Start/Stop jedi on env activation/deactivation
+(add-hook 'pyvenv-post-activate-hooks 'jedi:start-server)
+(add-hook 'pyvenv-post-deactivate-hooks 'jedi:stop-server)
+
+
 (provide 'init-python)
 ;;; init-python.el ends here

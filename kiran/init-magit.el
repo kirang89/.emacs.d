@@ -1,3 +1,6 @@
+;; Disable VC hooks
+;; http://stackoverflow.com/questions/6724471/git-slows-down-emacs-to-death-how-to-fix-this
+(setq vc-handled-backends nil)
 
 (remove-hook 'find-file-hooks 'vc-find-file-hook)
 

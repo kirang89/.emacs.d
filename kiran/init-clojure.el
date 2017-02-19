@@ -4,22 +4,12 @@
 (require 'clojure-mode-extra-font-locking)
 
 (use-package clj-refactor
-  :ensure t
-  :init
-  (add-hook 'clojure-mode-hook 'clj-refactor-mode)
-  ;;:config
-  ;; Configure the Clojure Refactoring prefix:
-  ;;(cljr-add-keybindings-with-prefix "C-c .")
-  :diminish clj-refactor-mode)
+  :config
+  (add-hook 'clojure-mode-hook
+            (lambda ()
+              (clj-refactor-mode 1)
+              (cljr-add-keybindings-with-prefix "C-c ."))))
 
-;; Enable paredit for Clojure
-(add-hook 'clojure-mode-hook 'enable-paredit-mode)
-
-;; This is useful for working with camel-case tokens, like names of
-;; Java classes (e.g. JavaClassName)
-(add-hook 'clojure-mode-hook 'subword-mode)
-
-;; (add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
 
 ;; syntax highlighting in repl
 (add-hook 'clojure-mode-hook
@@ -34,11 +24,15 @@
             (define-clojure-indent (fact 1))
             (define-clojure-indent (facts 1))
             'linum-mode))
-
-;;(add-hook 'clojure-mode-hook 'flycheck-mode)
+;; (add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'clojure-mode-hook 'kg/set-pretty-symbols)
 (add-hook 'clojure-mode-hook 'paren-face-mode)
-(add-hook 'clojure-mode-hook 'paredit-mode)
+;; (add-hook 'clojure-mode-hook 'paredit-mode)
+;; Enable paredit for Clojure
+(add-hook 'clojure-mode-hook 'enable-paredit-mode)
+;; This is useful for working with camel-case tokens, like names of
+;; Java classes (e.g. JavaClassName)
+(add-hook 'clojure-mode-hook 'subword-mode)
 (add-hook 'clojure-mode-hook
           (lambda ()
             (local-set-key (kbd "C-c C-s") 'paredit-wrap-round)))
@@ -102,15 +96,15 @@ activated as if nothing happened."
 
   (bind-key "C-c C-v" 'cider-send-and-evaluate-sexp))
 
-;; (defun kg/clj-src-file-name-from-test (name)
-;;   (s-with name
-;;     (s-replace "/test/" "/src/")
-;;     (s-replace "_test.clj" ".clj")))
+(defun kg/clj-src-file-name-from-test (name)
+  (s-with name
+    (s-replace "/test/" "/src/")
+    (s-replace "_test.clj" ".clj")))
 
-;; (defun kg/clj-test-file-name-from-src (name)
-;;   (s-with name
-;;     (s-replace "/src/" "/test/")
-;;     (s-replace ".clj" "_test.clj")))
+(defun kg/clj-test-file-name-from-src (name)
+  (s-with name
+    (s-replace "/src/" "/test/")
+    (s-replace ".clj" "_test.clj")))
 
 (defun kg/set-pretty-symbols ()
   "Make some word or string show as pretty Unicode symbols."
@@ -137,4 +131,4 @@ activated as if nothing happened."
   (cider-interactive-eval "(user/reset)"))
 
 (provide 'init-clojure)
-;;; init-clojure.el ends here
+;; init-clojure.el ends here

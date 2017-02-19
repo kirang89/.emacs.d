@@ -1,9 +1,15 @@
 
+(add-to-list 'default-frame-alist '(height . 38))
+(add-to-list 'default-frame-alist '(width . 85))
+
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 
 ;; inhibit welcome screen
 (setq inhibit-splash-screen t)
 (setq inhibit-startup-message t)
+
+;; Start emacs with text-mode
+(setq initial-major-mode 'text-mode)
 
 ;; Set a better frame title
 (setq frame-title-format '("%b (%m)"))
@@ -15,38 +21,34 @@
 (when (not window-system)
   (menu-bar-mode -1))
 
-;;(setq-default cursor-type 'bar)
+;; (setq-default cursor-type '(bar . 2))
+(setq-default cursor-type 'box)
+
+;; Don't blink the cursor
+(blink-cursor-mode 1)
+
+;; Hide cursor in inactive windows
+(setq cursor-in-non-selected-windows nil)
+
+;; Focus on help windows
+(setq help-window-select t)
 
 ;;(setq ns-use-srgb-colorspace nil)
 
 ;; Good font sizes
 ;; ===============
-;;(set-frame-font "Meslo LG S-13")
-;;(set-frame-font "AkkuratMonoMono-15.0:weight=regular")
-;;(set-frame-font "Oxygen Mono-14")
-(set-frame-font "Fira Mono-15.0:weight=regular:spacing=m")
-;;(set-frame-font "Fira Code-15.0:weight=regular:spacing=m")
-;;(set-frame-font "Inconsolata-17")
-;;(set-frame-font "Consolas-14")
-;;(set-frame-font "Source Code Pro-12.55:weight=light")
-;;(set-frame-font "Hasklig-15.5:weight=light")
-;;(set-frame-font "Input Mono Condensed-14.5:weight=light")
-;;(set-frame-font "PragmataPro-13.5:weight=regular")
-;;(set-frame-font "Code New Roman-16:weight=light")
-;;(set-frame-font "Noto Mono-13.0")
-;;(set-frame-font "Operator Mono-16.0")
-;;(set-frame-font "Ubuntu Mono-17.0")
-;;(set-frame-font "Panic Sans-13.0")
+;;(set-frame-font "Fira Mono-15.0:weight=regular:spacing=m")
+(set-frame-font "Inconsolata-17")
 
 ;; Set default line spacing (relative)
-(setq-default line-spacing 0.4)
+(setq-default line-spacing 0.15)
 
 ; don't show the tool bar
 (require 'tool-bar)
 (tool-bar-mode nil)
 
-; don't show the scroll bar
-(scroll-bar-mode -1)
+; show the scroll bar
+(scroll-bar-mode t)
 
 ;; ;; Scroll one line at a time (less "jumpy" than defaults)
 ;; (setq mouse-wheel-scroll-amount '(2 ((shift) . 2))) ;; two lines at a time
@@ -55,16 +57,23 @@
 ;; (setq scroll-step 1) ;; keyboard scroll one line at a time
 
 ;; Smoother scrolling behavior when using keyboard navigation
-(setq redisplay-dont-pause t
-      scroll-margin 0
-      ;;scroll-step 5
-      scroll-conservatively 10000
-      ;; Make C-v and M-v undo each other
-      scroll-preserve-screen-position 'always
-      mouse-wheel-follow-mouse 't
-      ;; Scroll in one line increments
-      ;; Gives a smoother mouse scroll
-      mouse-wheel-scroll-amount '(1 ((shift) . 1)))
+;; (setq redisplay-dont-pause t
+;;       scroll-margin 0
+;;       ;;scroll-step 5
+;;       scroll-conservatively 10000
+;;       ;; Make C-v and M-v undo each other
+;;       scroll-preserve-screen-position 'always
+;;       mouse-wheel-follow-mouse 't
+;;       ;; Scroll in one line increments
+;;       ;; Gives a smoother mouse scroll
+;;       mouse-wheel-scroll-amount '(1 ((shift) . 1)))
+
+;; (use-package smooth-scroll
+;;   :config
+;;   (smooth-scroll-mode 1)
+;;   (setq smooth-scroll/vscroll-step-size 5))
+
+(smooth-scrolling-mode 1)
 
 ;; Minimal fringe
 (add-hook 'after-init-hook (lambda () (fringe-mode 15)))
@@ -111,11 +120,11 @@
 ;; (set-face-attribute 'region nil :background "#666")
 
 ;; Smoother scrolling behavior when using keyboard navigation
-(setq redisplay-dont-pause t
-      scroll-margin 1
-      scroll-step 0
-      scroll-conservatively 100000
-      scroll-preserve-screen-position t)
+;; (setq redisplay-dont-pause t
+;;       scroll-margin 1
+;;       scroll-step 0
+;;       scroll-conservatively 100000
+;;       scroll-preserve-screen-position t)
 
 (add-hook 'after-init-hook #'kg/reset-linum)
 

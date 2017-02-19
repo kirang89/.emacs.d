@@ -1,9 +1,11 @@
 (require 'eshell)
+
 (set-terminal-coding-system 'utf-8)
-;; set zsh as shell in emacs
-;;(setenv "ESHELL" "/bin/zsh")
-;;(setenv "SHELL" "/bin/zsh")
 (setenv "PAGER" "cat")
+
+(require 'exec-path-from-shell)
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
 
 (add-hook 'eshell-mode-hook
           (lambda ()

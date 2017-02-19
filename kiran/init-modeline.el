@@ -5,6 +5,8 @@
 (column-number-mode -1)
 (size-indication-mode -1)
 
+;; Fix for broken seperator colors on the modeline
+(setq ns-use-srgb-colorspace nil)
 
 (require 'spaceline-config)
 (spaceline-emacs-theme)
@@ -21,7 +23,7 @@
                  mode-line-inactive)))
     (mapc (lambda (face)
             (set-face-attribute face nil
-                                :font "Source Code Pro-12.55"
+                                :font "Inconsolata-15"
                                 :weight 'light))
           faces))
 
@@ -91,5 +93,48 @@ want to use in the modeline *in lieu of* the original.")
 ;;   (use-package spaceline-config)
 ;;   (spaceline-emacs-theme))
 
+;; ======================================
+;; (setq mode-line-format
+;;       (list
+;;        "%e" mode-line-front-space
+;;        mode-line-modified
+;;        "%e" mode-line-front-space
+;;        ;; the buffer name; the file name as a tool tip
+;;        '(:eval (propertize "%b " 'face 'font-lock-keyword-face
+;;                            'help-echo (buffer-file-name)))
+
+;;        "["
+;;        ;; line and column
+;;        ;; '%02' to set to 2 chars at least; prevents flickering
+;;        (propertize "%02l" 'face 'font-lock-type-face)
+;;        ", "
+;;        ;; relative position, size of file
+;;        (propertize "%p" 'face 'font-lock-constant-face) ;; % above top
+;;        "] "
+
+;;        " "
+;;        ;; the current major mode for the buffer.
+;;        "["
+
+;;        '(:eval (propertize "%m" 'face 'font-lock-string-face
+;;                            'help-echo buffer-file-coding-system))
+;;        "] "
+
+;;        " "
+;;        "[" ;; insert vs overwrite mode, input-method in a tooltip
+
+;;        ;; is this buffer read-only?
+;;        '(:eval (when buffer-read-only
+;;                  (concat ","  (propertize "RO"
+;;                                           'face 'font-lock-type-face
+;;                                           'help-echo "Buffer is read-only"))))
+;;        "] "
+
+;;        " --"
+;;        ;; i don't want to see minor-modes; but if you want, uncomment this:
+;;        minor-mode-alist  ;; list of minor modes
+;;        "%-" ;; fill with '-'
+;;        ))
+;; ======================================
 (provide 'init-modeline)
 ;;; init-modeline.el ends here
