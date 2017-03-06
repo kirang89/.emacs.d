@@ -1,15 +1,7 @@
-(require 'cider)
+;;(require 'cider)
 
 ;; A little more syntax highlighting
 (require 'clojure-mode-extra-font-locking)
-
-(use-package clj-refactor
-  :config
-  (add-hook 'clojure-mode-hook
-            (lambda ()
-              (clj-refactor-mode 1)
-              (cljr-add-keybindings-with-prefix "C-c ."))))
-
 
 ;; syntax highlighting in repl
 (add-hook 'clojure-mode-hook
@@ -23,30 +15,33 @@
                 (1 font-lock-keyword-face))))
             (define-clojure-indent (fact 1))
             (define-clojure-indent (facts 1))
-            'linum-mode))
-;; (add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
+            (define-clojure-indent (clojure.spec/fdef 1))))
+
+(add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
+
 (add-hook 'clojure-mode-hook 'kg/set-pretty-symbols)
+
 (add-hook 'clojure-mode-hook 'paren-face-mode)
-;; (add-hook 'clojure-mode-hook 'paredit-mode)
+
+(add-hook 'clojure-mode-hook 'paredit-mode)
+
 ;; Enable paredit for Clojure
-(add-hook 'clojure-mode-hook 'enable-paredit-mode)
-;; This is useful for working with camel-case tokens, like names of
-;; Java classes (e.g. JavaClassName)
+;;(add-hook 'clojure-mode-hook 'enable-paredit-mode)
+
 (add-hook 'clojure-mode-hook 'subword-mode)
+
 (add-hook 'clojure-mode-hook
           (lambda ()
-            (local-set-key (kbd "C-c C-s") 'paredit-wrap-round)))
-(add-hook 'clojure-mode-hook
-          (lambda ()
-            (local-set-key (kbd "C-c r") 'cider-eval-region)))
+            (local-set-key (kbd "C-c r") 'cider-eval-region)
+            (local-set-key (kbd "C-c C-s") 'paredit-wrap-round)
+            (local-set-key (kbd "<C-return>") 'cider-eval-last-sexp)))
 
 ;;;;
 ;; Cider
 ;;;;
 
 (use-package cider
-  :defer t
-  :config
+  :init
   (setq cider-repl-pop-to-buffer-on-connect t
         cider-mode-line nil
         cider-show-error-buffer t
@@ -67,18 +62,30 @@
         cider-repl-result-prefix ";; => "
         cider-show-error-buffer nil)
 
-  ;; provides minibuffer documentation for the code you're typing into the repl
+  :config
   (add-hook 'cider-mode-hook #'eldoc-mode)
-  ;; enable paredit in REPL
   (add-hook 'cider-repl-mode-hook #'paredit-mode)
   (add-hook 'cider-repl-mode-hook #'paren-face-mode)
   (add-hook 'cider-repl-mode-hook #'subword-mode)
   (add-hook 'cider-repl-mode-hook #'company-mode)
   (add-hook 'cider-mode-hook #'company-mode)
   (add-hook 'cider-mode-hook
-            (local-set-key (kbd "<C-return>") 'cider-eval-defun-at-point))
+            (local-set-key (kbd "<C-return>") 'cider-eval-defun-at-point)))
 
-  (defun cider-send-and-evaluate-sexp ()
+
+(use-package clj-refactor
+  :config
+  (add-hook 'clojure-mode-hook
+            (lambda ()
+              (clj-refactor-mode 1)
+              (cljr-add-keybindings-with-prefix "C-c ."))))
+
+
+;; Look up packages in Clojars
+(use-package clojars)
+
+
+(defun cider-send-and-evaluate-sexp ()
     "Send and eval expression in REPL.
 
 Sends the s-expression located before the point or the active
@@ -94,17 +101,19 @@ activated as if nothing happened."
     (cider-switch-to-last-clojure-buffer)
     (message ""))
 
-  (bind-key "C-c C-v" 'cider-send-and-evaluate-sexp))
+(bind-key "C-c C-v" 'cider-send-and-evaluate-sexp)
 
 (defun kg/clj-src-file-name-from-test (name)
   (s-with name
     (s-replace "/test/" "/src/")
     (s-replace "_test.clj" ".clj")))
 
+
 (defun kg/clj-test-file-name-from-src (name)
   (s-with name
     (s-replace "/src/" "/test/")
     (s-replace ".clj" "_test.clj")))
+
 
 (defun kg/set-pretty-symbols ()
   "Make some word or string show as pretty Unicode symbols."
@@ -116,6 +125,7 @@ activated as if nothing happened."
           ("map" . 8614)    ; ↦
           )))
 
+
 (defun kg/helm-clojure-headlines ()
   "Display headlines for the current Clojure file."
   (interactive)
@@ -124,11 +134,13 @@ activated as if nothing happened."
                     (volatile)
                     (headline "^[;(]")))))
 
+
 (defun kg/ns-reset ()
   "Refreshes the cider repl."
   (interactive)
   (save-some-buffers)
   (cider-interactive-eval "(user/reset)"))
 
+
 (provide 'init-clojure)
-;; init-clojure.el ends here
+;; init-clojure.el ends here.
