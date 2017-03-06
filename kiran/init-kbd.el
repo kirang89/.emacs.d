@@ -47,6 +47,7 @@
 ;; Clean view of major mode keybindings
 (global-set-key (kbd "C-h C-m") 'discover-my-major)
 
+(global-set-key (kbd "<f7>") 'swiper-helm)
 
 (provide 'init-kbd)
 ;;; init-kbd.el ends here
