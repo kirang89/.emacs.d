@@ -69,6 +69,7 @@
     (add-hook 'after-init-hook 'company-statistics-mode))
 
   (use-package company-ansible
+    :defer t
     :config
     (add-to-list 'company-backends 'company-ansible)))
 

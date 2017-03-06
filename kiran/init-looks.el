@@ -18,10 +18,9 @@
 (setq initial-scratch-message "")
 
 ;; Remove menu bar when running Emacs from terminal
-(when (not window-system)
-  (menu-bar-mode -1))
+;; (when (not window-system)
+;;   (menu-bar-mode -1))
 
-;; (setq-default cursor-type '(bar . 2))
 (setq-default cursor-type 'box)
 
 ;; Don't blink the cursor
@@ -33,22 +32,17 @@
 ;; Focus on help windows
 (setq help-window-select t)
 
-;;(setq ns-use-srgb-colorspace nil)
-
-;; Good font sizes
-;; ===============
-;;(set-frame-font "Fira Mono-15.0:weight=regular:spacing=m")
-(set-frame-font "Inconsolata-17")
+(set-frame-font "SF Mono-14:weight=regular")
 
 ;; Set default line spacing (relative)
-(setq-default line-spacing 0.15)
+(setq-default line-spacing 0.14)
 
-; don't show the tool bar
-(require 'tool-bar)
-(tool-bar-mode nil)
+;; don't show the tool bar
+;; (require 'tool-bar)
+;; (tool-bar-mode nil)
 
-; show the scroll bar
-(scroll-bar-mode t)
+;; don't show the scroll bar
+(scroll-bar-mode -1)
 
 ;; ;; Scroll one line at a time (less "jumpy" than defaults)
 ;; (setq mouse-wheel-scroll-amount '(2 ((shift) . 2))) ;; two lines at a time
@@ -73,7 +67,7 @@
 ;;   (smooth-scroll-mode 1)
 ;;   (setq smooth-scroll/vscroll-step-size 5))
 
-(smooth-scrolling-mode 1)
+;; (smooth-scrolling-mode -1)
 
 ;; Minimal fringe
 (add-hook 'after-init-hook (lambda () (fringe-mode 15)))
@@ -101,20 +95,20 @@
 ;;(setq linum-format "%5d ")
 ;;(custom-set-variables '(linum-format 'dynamic))
 
-(defadvice linum-update-window (around linum-dynamic activate)
-  (let* ((w (length (number-to-string
-                     (count-lines (point-min) (point-max)))))
-         (linum-format (concat "  %" (number-to-string w) "d")))
-    ad-do-it))
+;; (defadvice linum-update-window (around linum-dynamic activate)
+;;   (let* ((w (length (number-to-string
+;;                      (count-lines (point-min) (point-max)))))
+;;          (linum-format (concat "  %" (number-to-string w) "d")))
+;;     ad-do-it))
 
-(defun kg/reset-linum ()
-  "Reset formatting of line numbers."
-  (interactive)
-  (let ((font "Source Code Pro-13:weight=light"))
-    (require 'linum)
-    (set-face-attribute 'linum nil :font font)))
+;; (defun kg/reset-linum ()
+;;   "Reset formatting of line numbers."
+;;   (interactive)
+;;   (let ((font "Source Code Pro-13:weight=light"))
+;;     (require 'linum)
+;;     (set-face-attribute 'linum nil :font font)))
 
-(add-hook 'prog-mode-hook 'linum-mode)
+;;(add-hook 'prog-mode-hook 'linum-mode)
 
 ;; set color for selection
 ;; (set-face-attribute 'region nil :background "#666")
@@ -126,7 +120,7 @@
 ;;       scroll-conservatively 100000
 ;;       scroll-preserve-screen-position t)
 
-(add-hook 'after-init-hook #'kg/reset-linum)
+;;(add-hook 'after-init-hook #'kg/reset-linum)
 
 ;; set unique names for two similar buffers
 (require 'uniquify)
@@ -142,9 +136,9 @@
 (require 'ansi-color)
 (defun colorize-compilation-buffer ()
   "Show some love for the compilation buffers."
-  (toggle-read-only)
+  (read-only-mode -1)
   (ansi-color-apply-on-region (point-min) (point-max))
-  (toggle-read-only))
+  (read-only-mode))
 
 (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
