@@ -308,5 +308,14 @@ C-u C-u COMMAND -> Open/switch to a scratch buffer in `emacs-elisp-mode'"
 
 (add-hook 'after-init-hook (disable-mouse-mode 1))
 
+
+(defun kg/file-reopen-as-root ()
+  (interactive)
+  (when buffer-file-name
+    (find-alternate-file
+     (concat "/sudo:root@localhost:"
+             buffer-file-name))))
+
+
 (provide 'efuns)
 ;;; efuns.el ends here
