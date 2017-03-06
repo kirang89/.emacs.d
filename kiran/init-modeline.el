@@ -1,9 +1,6 @@
-;; Modeline Configuration
-;; Author: Kiran Gangadharan
-
-(line-number-mode t)
-(column-number-mode -1)
-(size-indication-mode -1)
+;; (line-number-mode t)
+;; (column-number-mode -1)
+;; (size-indication-mode -1)
 
 ;; Fix for broken seperator colors on the modeline
 (setq ns-use-srgb-colorspace nil)
@@ -23,11 +20,11 @@
                  mode-line-inactive)))
     (mapc (lambda (face)
             (set-face-attribute face nil
-                                :font "Inconsolata-15"
-                                :weight 'light))
-          faces))
+                                :font "Hasklig-13"
+                                :weight 'bold))
+          faces)))
 
-  (add-hook 'after-init-hook 'kg/set-modeline-face))
+(add-hook 'after-init-hook #'kg/set-modeline-face)
 
 
 (require 'diminish)
@@ -38,17 +35,21 @@
 (eval-after-load "eldoc" '(diminish 'eldoc-mode))
 (eval-after-load "company" '(diminish 'company-mode))
 (eval-after-load "projectile" '(diminish 'projectile-mode))
-(eval-after-load "flyspell" '(diminish 'flyspell-mode))
+;; (eval-after-load "flyspell" '(diminish 'flyspell-mode))
 (eval-after-load "sphinx-doc" '(diminish 'sphinx-doc-mode))
 (eval-after-load "org-indent" '(diminish 'org-indent-mode))
 (eval-after-load "smartparens" '(diminish 'smartparens-mode))
 (eval-after-load "flycheck" '(diminish 'flycheck-mode))
-(eval-after-load "cider" '(diminish 'cider-mode "Cdr"))
+(eval-after-load "cider" '(diminish 'cider-mode "Cider"))
 (eval-after-load "subword" '(diminish 'subword-mode))
 (eval-after-load "indent-guide" '(diminish 'indent-guide-mode))
-(eval-after-load "paredit" '(diminish 'paredit-mode))
+(eval-after-load "paredit" '(diminish 'paredit-mode "Par"))
 (eval-after-load "helm" '(diminish 'helm-mode))
 (eval-after-load "outline" '(diminish 'outline-minor-mode))
+(eval-after-load "ivy" '(diminish 'ivy-mode))
+(eval-after-load "google-this" '(diminish 'google-this-mode))
+(eval-after-load "aggressive-indent" '(diminish 'aggressive-indent-mode "Ai"))
+(eval-after-load "clj-refactor" '(diminish 'clj-refactor-mode))
 
 (defadvice emacs-lisp-mode (after elisp-rename-modeline activate)
   (setq mode-name "ELisp"))
@@ -58,7 +59,7 @@
     ;; Major modes
     (hi-lock-mode . "")
     (python-mode . "Py")
-    (clojure-mode . "λ")
+    (clojure-mode . "Clj") ;; λ
     (markdown-mode . "Md"))
   "Alist for `clean-mode-line'.
 
@@ -80,9 +81,6 @@ want to use in the modeline *in lieu of* the original.")
 
 (add-hook 'after-change-major-mode-hook 'clean-mode-line)
 
-;; Fix for broken seperator colors in modeline as shown in
-;; https://imgur.com/7Ldxa97
-;; (setq ns-use-srgb-colorspace t)
 
 ;; To remove the underline below text in modeline for certain
 ;; themes do:
