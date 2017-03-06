@@ -88,52 +88,11 @@ want to use in the modeline *in lieu of* the original.")
 (add-hook 'after-change-major-mode-hook 'clean-mode-line)
 
 
+=========
 ;; To remove the underline below text in modeline for certain
 ;; themes do:
 ;; M-x customize-face mode-line and remove the underline.
+=========
 
-;; ======================================
-;; (setq mode-line-format
-;;       (list
-;;        "%e" mode-line-front-space
-;;        mode-line-modified
-;;        "%e" mode-line-front-space
-;;        ;; the buffer name; the file name as a tool tip
-;;        '(:eval (propertize "%b " 'face 'font-lock-keyword-face
-;;                            'help-echo (buffer-file-name)))
-
-;;        "["
-;;        ;; line and column
-;;        ;; '%02' to set to 2 chars at least; prevents flickering
-;;        (propertize "%02l" 'face 'font-lock-type-face)
-;;        ", "
-;;        ;; relative position, size of file
-;;        (propertize "%p" 'face 'font-lock-constant-face) ;; % above top
-;;        "] "
-
-;;        " "
-;;        ;; the current major mode for the buffer.
-;;        "["
-
-;;        '(:eval (propertize "%m" 'face 'font-lock-string-face
-;;                            'help-echo buffer-file-coding-system))
-;;        "] "
-
-;;        " "
-;;        "[" ;; insert vs overwrite mode, input-method in a tooltip
-
-;;        ;; is this buffer read-only?
-;;        '(:eval (when buffer-read-only
-;;                  (concat ","  (propertize "RO"
-;;                                           'face 'font-lock-type-face
-;;                                           'help-echo "Buffer is read-only"))))
-;;        "] "
-
-;;        " --"
-;;        ;; i don't want to see minor-modes; but if you want, uncomment this:
-;;        minor-mode-alist  ;; list of minor modes
-;;        "%-" ;; fill with '-'
-;;        ))
-;; ======================================
 (provide 'init-modeline)
-;;; init-modeline.el ends here
+;;; init-modeline.el ends here.
