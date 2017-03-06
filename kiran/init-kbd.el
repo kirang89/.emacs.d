@@ -47,6 +47,10 @@
 ;; Clean view of major mode keybindings
 (global-set-key (kbd "C-h C-m") 'discover-my-major)
 
+(require 'visual-regexp-steroids)
+(global-set-key (kbd "C-c r") 'vr/replace)
+(global-set-key (kbd "C-c q") 'vr/query-replace)
+
 (global-set-key (kbd "<f7>") 'swiper-helm)
 
 (provide 'init-kbd)
