@@ -25,7 +25,7 @@
 ;; Experiment: Turn off mouse interface early in startup to avoid momentary display
 (menu-bar-mode -1)
 (tool-bar-mode -1)
-(scroll-bar-mode t)
+(scroll-bar-mode -1)
 
 ;; language
 (setq current-language-environment "English")
@@ -104,6 +104,9 @@
 
 ;;(use-package fancy-narrow)
 
+(use-package google-this
+  :config (google-this-mode t))
+
 ;; Start emacs server
 (server-start)
 
@@ -115,9 +118,13 @@
               (+ (first *emacs-load-start*)
                  (second *emacs-load-start*)))))
 
-(provide `.emacs)
 
+;; ======= TODOs ===========
+;; - Checkout stuff in https://github.com/bbatsov/crux
+;; - https://github.com/abo-abo/hydra
+;; - https://github.com/kiwanami/emacs-calfw
+;; - https://github.com/ilya-babanov/emacs-bpr
+
+
+(provide `.emacs)
 ;;; init.el ends here
-;; Local Variables:
-;; byte-compile-warnings: (not free-vars)
-;; End:
