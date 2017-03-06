@@ -15,12 +15,10 @@
                         "/bin/ls")))
               (eshell/alias "ll" (concat ls " -AlohG --color=always")))))
 
-(global-set-key (kbd "C-c e") 'eshell)
-
 (setq eshell-cmpl-cycle-completions nil
       eshell-history-size 1024
       eshell-save-history-on-exit t
-      eshell-cmpl-dir-ignore "\\`\\(\\.\\.?\\|CVS\\|\\.svn\\|\\.git\\)/\\'"
+      eshell-cmpl-dir-ignore "\\`\\(\\.\\.?\\|CVS\\|\\.svn\\|\\.git\\|\\.DS_Store\\)/\\'"
       eshell-hist-ignoredups t
       eshell-scroll-to-bottom-on-output nil
       eshell-scroll-show-maximum-output t)
@@ -49,7 +47,8 @@
     (insert (concat "ls"))
     (eshell-send-input)))
 
-(global-set-key (kbd "C-!") 'eshell-here)
+;;(global-set-key (kbd "C-!") 'eshell-here)
+(global-set-key (kbd "C-c e") 'eshell-here)
 
 ;; ============================= CUSTOM PROMPT ======================================
 (defun curr-dir-git-branch-string (pwd)
@@ -106,21 +105,21 @@ PWD is not in a git repo (or the git command is not found)."
 
           (if (eq 'dark (frame-parameter nil 'background-mode))
               (concat   ;; Prompt for Dark Themes
-               (propertize parent 'face `(:foreground "#8888FF"))
-               (propertize name   'face `(:foreground "#8888FF" :weight bold))
-               (propertize branch 'face `(:foreground "green"))
-               (propertize " λ"   'face `(:weight ultra-bold))
+               (propertize parent 'face `(:foreground "#268bd2"))
+               (propertize name   'face `(:foreground "#268bd2" :weight bold))
+               (propertize branch 'face `(:foreground "#2aa198" :weight light))
+               (propertize " =>"   'face `(:weight ultra-bold :foreground "#b58900"))
                (propertize " "    'face `(:weight bold)))
 
             (concat    ;; Prompt for Light Themes
              (propertize parent 'face `(:foreground "blue"))
              (propertize name   'face `(:foreground "blue" :weight bold))
              (propertize branch 'face `(:foreground "dark green"))
-             (propertize " λ"   'face `(:weight ultra-bold))
+             (propertize " =>"   'face `(:weight ultra-bold))
              (propertize " "    'face `(:weight bold)))))))
 
 ;; Set this to match eshell-prompt-function
-(setq eshell-prompt-regexp " λ ")
+(setq eshell-prompt-regexp " => ")
 
 ;; Make C-a go to beginning of command instead of line
 (add-hook 'eshell-mode-hook '(lambda ()
@@ -144,20 +143,22 @@ PWD is not in a git repo (or the git command is not found)."
 (defalias 'ee 'find-file-other-window)
 
 ;; git status
-(defun eshell/gst (&rest args)
-  "Make git status use Magit."
-    (magit-status (pop args) nil)
-    (eshell/echo))
+;; (defun eshell/gst (&rest args)
+;;   "Make git status use Magit."
+;;     (magit-status (pop args) nil)
+;;     (eshell/echo))
 
 ;; git diff
 (defalias 'gd 'magit-diff-unstaged)
 (defalias 'gds 'magit-diff-staged)
+(defalias 'gst 'magit-status-internal)
 
-(defun eshell/ef (filename &optional dir)
-  "Search for the first matching FILENAME (in a DIR) and load it into a file to edit."
-  (let* ((files (eshell/f filename dir))
-         (file (car (s-split "\n" files))))
-    (find-file file)))
+;; (defun eshell/ef (filename &optional dir)
+;;   "Search for the first matching FILENAME (in a DIR) and load it into a file to edit."
+;;   (let* ((files (eshell/f filename dir))
+;;          (file (car (s-split "\n" files))))
+;;     (find-file file)))
+
 
 (defun eshell/clear ()
     "Clear the eshell buffer."
