@@ -5,8 +5,14 @@
 ;; Fix for broken seperator colors on the modeline
 (setq ns-use-srgb-colorspace nil)
 
-(require 'spaceline-config)
-(spaceline-emacs-theme)
+(use-package spaceline
+  :init
+  (progn
+    (require 'spaceline-config)
+    (setq powerline-default-separator 'utf-8)
+    (setq spaceline-highlight-face-func 'spaceline-highlight-face-modified)
+    (spaceline-toggle-hud-on)
+    (spaceline-emacs-theme)))
 
 
 ;; Set default font for different modeline modes
@@ -85,11 +91,6 @@ want to use in the modeline *in lieu of* the original.")
 ;; To remove the underline below text in modeline for certain
 ;; themes do:
 ;; M-x customize-face mode-line and remove the underline.
-
-;; (use-package spaceline
-;;   :config
-;;   (use-package spaceline-config)
-;;   (spaceline-emacs-theme))
 
 ;; ======================================
 ;; (setq mode-line-format
