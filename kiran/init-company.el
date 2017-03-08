@@ -19,7 +19,7 @@
   (setq company-tooltip-limit 20)
   (setq company-idle-delay 0.1)
   (setq company-echo-delay 0)
-  (setq company-minimum-prefix-length 3)
+  (setq company-minimum-prefix-length 2)
   (setq company-require-match nil)
   (setq company-selection-wrap-around t)
   (setq company-tooltip-align-annotations t)
@@ -68,10 +68,11 @@
     :config
     (add-hook 'after-init-hook 'company-statistics-mode))
 
-  (use-package company-ansible
-    :defer t
-    :config
-    (add-to-list 'company-backends 'company-ansible)))
+  ;; (use-package company-ansible
+  ;;   :defer t
+  ;;   :config
+  ;;   (add-to-list 'company-backends 'company-ansible))
+  )
 
 ;;(company-quickhelp-mode 1)
 
