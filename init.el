@@ -89,7 +89,7 @@
 ;; Save minibuffer history
 (setq savehist-file "~/.emacs.d/savehist")
 (savehist-mode 1)
-(setq history-length t)
+(setq history-length 150)
 (setq history-delete-duplicates t)
 (setq savehist-save-minibuffer-history 1)
 
