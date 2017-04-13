@@ -119,6 +119,15 @@
 ;;                         "Programming Videos Watchlist"))
 ;;         ))
 
+(setq org-capture-templates
+      '(
+        ("w" "Work" checkitem
+         (file+headline (concat org-directory "/work.org") "Self")
+         " - [ ] %?")
+
+        ))
+
+
 ;;(global-set-key (kbd "C-c C-a") 'org-agenda)
 
 (defun org-archive-tasks ()
