@@ -72,6 +72,7 @@
 ;;(require 'init-solarized)
 ;;(require 'init-latex)
 ;;(require 'init-news)
+(require 'init-experimental)
 
 ;;(require 'init-mu4e)
 ;;(eval-after-load 'c-mode '(require 'init-c))
@@ -98,13 +99,11 @@
 ;; Follow compiler ouput
 (setq compilation-scroll-output t)
 
-;; Learn about HTTP headers, media-types, methods, relations and status codes
-;;(use-package know-your-http-well)
+;; highlight current line
+;;(hl-line-mode)
 
-;;(use-package fancy-narrow)
+(remove-hook 'org-mode-hook 'linum-mode)
 
-(use-package google-this
-  :config (google-this-mode t))
 
 ;; Start emacs server
 (server-start)
@@ -117,13 +116,12 @@
               (+ (first *emacs-load-start*)
                  (second *emacs-load-start*)))))
 
+(provide `.emacs)
+;;; init.el ends here
+
 
 ;; ======= TODOs ===========
 ;; - Checkout stuff in https://github.com/bbatsov/crux
 ;; - https://github.com/abo-abo/hydra
 ;; - https://github.com/kiwanami/emacs-calfw
 ;; - https://github.com/ilya-babanov/emacs-bpr
-
-
-(provide `.emacs)
-;;; init.el ends here
