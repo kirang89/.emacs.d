@@ -44,7 +44,7 @@
 (add-to-list 'load-path "~/.emacs.d/kiran/")
 
 (require 'init-packages)
-(require 'init-looks)
+(require 'init-ui)
 (require 'init-editing)
 (require 'init-dired)
 (require 'init-kbd)

@@ -32,17 +32,27 @@
 ;; Focus on help windows
 (setq help-window-select t)
 
-(set-frame-font "SF Mono-14:weight=regular")
+;;(set-frame-font "SF Mono:weight=light:pixelsize=11")
+(set-frame-font "Iosevka Type:weight=light:pixelsize=15")
+;;(set-frame-font "AkkuratMonoMono:weight=light:pixelsize=13")
+;;(set-frame-font "Source Code Pro:weight=regular:pixelsize=14")
+;;(set-frame-font "DejaVu Sans Mono:weight=regular:pixelsize=15")
+;;(set-frame-font "Fira Code:weight=regular:pixelsize=15")
+;;(set-frame-font "Maax:weight=regular:pixelsize=15")
+;;(set-frame-font "Courier Prime Code:weight=regular:pixelsize=16")
 
 ;; Set default line spacing (relative)
-(setq-default line-spacing 0.14)
+(setq-default line-spacing 0.3)
 
 ;; don't show the tool bar
-;; (require 'tool-bar)
-;; (tool-bar-mode nil)
+(tool-bar-mode -1)
 
 ;; don't show the scroll bar
 (scroll-bar-mode -1)
+
+(setq scroll-margin 0
+      scroll-conservatively 10000
+      scroll-preserve-screen-position t)
 
 ;; ;; Scroll one line at a time (less "jumpy" than defaults)
 ;; (setq mouse-wheel-scroll-amount '(2 ((shift) . 2))) ;; two lines at a time
@@ -70,7 +80,7 @@
 ;; (smooth-scrolling-mode -1)
 
 ;; Minimal fringe
-(add-hook 'after-init-hook (lambda () (fringe-mode 15)))
+;; (add-hook 'after-init-hook (lambda () (fringe-mode 15)))
 
 ;; Experimental
 (defun kg/set-fringe-background ()
@@ -92,28 +102,25 @@
 ;; M-q should fill at 80 chars, not 70
 (setq-default fill-column 80)
 
-;;(setq linum-format "%5d ")
-;;(custom-set-variables '(linum-format 'dynamic))
+(setq linum-format "%5d ")
+(add-hook 'prog-mode-hook 'linum-mode)
 
-;; (defadvice linum-update-window (around linum-dynamic activate)
-;;   (let* ((w (length (number-to-string
-;;                      (count-lines (point-min) (point-max)))))
-;;          (linum-format (concat "  %" (number-to-string w) "d")))
-;;     ad-do-it))
-
-;; (defun kg/reset-linum ()
-;;   "Reset formatting of line numbers."
-;;   (interactive)
-;;   (let ((font "Source Code Pro-13:weight=light"))
-;;     (require 'linum)
-;;     (set-face-attribute 'linum nil :font font)))
-
-;;(add-hook 'prog-mode-hook 'linum-mode)
+(defun kg/reset-linum ()
+  "Reset formatting of line numbers."
+  (interactive)
+  (let ((font "Iosevka Type:weight=regular:pixelsize=13"))
+    (require 'linum)
+    (set-face-attribute 'linum nil :font font)))
 
 ;; set color for selection
 ;; (set-face-attribute 'region nil :background "#666")
 
 ;; Smoother scrolling behavior when using keyboard navigation
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
+(setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
+(setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
+(setq scroll-step 1) ;; keyboard scroll one line at a time
+
 ;; (setq redisplay-dont-pause t
 ;;       scroll-margin 1
 ;;       scroll-step 0
