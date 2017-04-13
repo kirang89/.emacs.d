@@ -61,5 +61,9 @@
 ;;     (add-hook 'scss-mode-hook 'turn-on-css-eldoc)
 ;;     (add-hook 'less-css-mode-hook 'turn-on-css-eldoc)))
 
+;; reduce the frequency of garbage collection by making it happen on
+;; each 50MB of allocated data (the default is on every 0.76MB)
+(setq gc-cons-threshold 50000000)
+
 (provide 'init-web)
 ;;; init-web.el ends here
