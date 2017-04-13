@@ -27,7 +27,7 @@
     (mapc (lambda (face)
             (set-face-attribute face nil
                                 :font "Hasklig-13"
-                                :weight 'bold))
+                                :weight 'regular))
           faces)))
 
 (add-hook 'after-init-hook #'kg/set-modeline-face)

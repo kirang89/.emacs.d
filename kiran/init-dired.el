@@ -1,5 +1,4 @@
 (use-package dired
-  :ensure nil
   :config
   (setq dired-recursive-deletes 'always
         dired-recursive-copies 'always

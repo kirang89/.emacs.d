@@ -19,7 +19,7 @@
 
 (require 'use-package)
 (use-package paradox
-  :config
+  :init
   (setq-default paradox-github-token t
                 paradox-execute-asynchronously t))
 

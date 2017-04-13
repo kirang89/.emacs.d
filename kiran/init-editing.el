@@ -55,6 +55,9 @@
 ;; Rewrite selected text
 (delete-selection-mode 1)
 
+;; When middle-clicking dont't adjust point and paste at the then adjusted point.
+(setq mouse-yank-at-point t)
+
 ;; Use M-w to copy line containing cursor if no region
 ;; is selected.
 (defadvice kill-ring-save
@@ -117,10 +120,7 @@
 
 ;; Mode for distraction free writing
 (use-package darkroom
-  :defer t
   :diminish "DkR")
-;;(autoload 'darkroom "darkroom" "Darkroom mode" t)
-
 
 ;; Allow pasting selection outside of Emacs
 (setq select-enable-clipboard t
@@ -130,7 +130,7 @@
 (use-package aggressive-indent
   :commands (aggressive-indent-mode)
   :config
-  ;;(add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
+  (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
   (add-hook 'clojure-mode-hook #'aggressive-indent-mode))
 
 
