@@ -1,5 +1,3 @@
-
-
 (add-hook 'python-mode-hook 'subword-mode)
 
 (use-package elpy
@@ -19,7 +17,7 @@
         py-shell-switch-buffers-on-execute-p t
         py-smart-indentation t
         python-shell-completion-native nil
-        python-shell-interpreter "python3")
+        python-shell-interpreter "python2")
   (let ((disabled-modules '(elpy-module-flymake
                             elpy-module-highlight-indentation)))
     (setq elpy-modules (-difference elpy-modules disabled-modules))))
