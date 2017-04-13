@@ -20,7 +20,6 @@
 
 ;; Checkout http://danmidwood.com/content/2014/11/21/animated-paredit.html
 (use-package paredit
-  :diminish " π"
   :init
   (add-hook 'clojure-mode-hook 'enable-paredit-mode)
   (add-hook 'cider-repl-mode-hook 'enable-paredit-mode)

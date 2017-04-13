@@ -1,19 +1,26 @@
-
 (use-package projectile
-  ;;:diminish projectile-mode
-  :defer t
   :init
   (add-hook 'prog-mode-hook #'projectile-mode)
   :config
+
+  (projectile-mode)
   ;; asks for file to open when project is switched
+
   (setq projectile-switch-project-action 'helm-projectile-find-file)
+
   (setq-default projectile-enable-caching t)
+
   (setq-default projectile-mode-line '(:eval (projectile-project-name)))
 
-  (use-package helm-projectile
-    :ensure t
-    :init
-    (setq projectile-completion-system 'helm)))
+  (use-package counsel-projectile
+	  :config
+	  (counsel-projectile-on))
+
+  ;; (use-package helm-projectile
+  ;;   :ensure t
+  ;;   :init
+  ;;   (setq projectile-completion-system 'helm))
+  )
 
 
 (defun kg/smart-find-file ()
