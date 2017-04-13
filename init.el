@@ -24,7 +24,6 @@
 
 ;; Experiment: Turn off mouse interface early in startup to avoid momentary display
 (menu-bar-mode -1)
-(tool-bar-mode -1)
 (scroll-bar-mode -1)
 
 ;; language
@@ -62,15 +61,15 @@
 (require 'init-org)
 (require 'init-yasnippet)
 (require 'init-modeline)
-(require 'init-shell)
+;;(require 'init-shell)
 (require 'efuns)
 (require 'init-magit)
 (require 'init-markdown)
 (require 'init-gc)
 (require 'init-flycheck)
-(require 'init-neotree)
-;;(require 'init-projectile)
-(require 'init-solarized)
+;;(require 'init-neotree)
+(require 'init-projectile)
+;;(require 'init-solarized)
 ;;(require 'init-latex)
 ;;(require 'init-news)
 
@@ -84,7 +83,7 @@
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
 
-(fringe-mode 15)
+(fringe-mode 10)
 
 ;; Save minibuffer history
 (setq savehist-file "~/.emacs.d/savehist")
