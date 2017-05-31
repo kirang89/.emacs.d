@@ -3,15 +3,7 @@
 (setq mac-option-key-is-meta nil)
 (setq mac-command-key-is-meta t)
 
-;; Remap C-w to backward kill word instead of kill region
-;;(global-set-key "\C-w" 'kill-region)
-(global-set-key "\C-w" 'backward-kill-word)
-(global-set-key "\C-x\C-k" 'kill-region)
-;;(global-set-key "\C-c\C-k" 'kill-region)
-(global-set-key (kbd "C-c l") 'kill-whole-line)
-
-(require 'efuns)
-(global-set-key (kbd "C-c C-k") 'kg/quick-copy-line)
+(global-set-key (kbd "M-x") 'execute-extended-command)
 
 ;; Only ask for confirmation if buffer has been modified
 (global-set-key [(control x) (k)] 'kill-this-buffer)
@@ -21,7 +13,7 @@
 (global-set-key (kbd "C-=") 'enlarge-window)
 (global-set-key (kbd "C-9") 'shrink-window-horizontally)
 (global-set-key (kbd "C-0") 'enlarge-window-horizontally)
-(global-set-key (kbd "<f5>") 'fullscreen-mode-fullscreen-toggle)
+;;(global-set-key (kbd "<f5>") 'fullscreen-mode-fullscreen-toggle)
 
 ;; keybindings for dictionary
 (add-hook 'text-mode-hook
@@ -29,29 +21,13 @@
 (add-hook 'org-mode-hook
           (lambda () (local-set-key (kbd "C-c d") 'dictionary-lookup-definition)))
 
-(global-set-key (kbd "C-x f") 'find-file-in-repository)
-
-(global-set-key (kbd "C-c }") 'mc/mark-next-like-this)
-
-;; Join current line to previous and fix whitespace at join
-(global-set-key (kbd "M-j")
-                (lambda () (interactive) (join-line -1)))
-
-(global-set-key (kbd "<f2>") 'helm-ag)
-
-(global-set-key (kbd "<f6>") 'helm-projectile-ag)
+;;(global-set-key (kbd "C-c }") 'mc/mark-next-like-this)
 
 ;; Toggle frame split (see efuns.el)
-(global-set-key (kbd "C-x |") 'toggle-frame-split)
+;;(global-set-key (kbd "C-x |") 'toggle-frame-split)
 
 ;; Clean view of major mode keybindings
 (global-set-key (kbd "C-h C-m") 'discover-my-major)
-
-(require 'visual-regexp-steroids)
-(global-set-key (kbd "C-c r") 'vr/replace)
-(global-set-key (kbd "C-c q") 'vr/query-replace)
-
-(global-set-key (kbd "<f7>") 'swiper-helm)
 
 (provide 'init-kbd)
 ;;; init-kbd.el ends here

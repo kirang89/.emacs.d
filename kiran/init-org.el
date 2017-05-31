@@ -1,4 +1,5 @@
 (use-package org
+  :ensure t
   :defer t
   :init
   (setq org-directory "~/Box Sync/org-notes"
@@ -42,15 +43,15 @@
                              (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
 
   (setq TeX-view-program-list
-      '(("Preview.app" "open -a Preview.app %o")
-        ("Skim" "open -a Skim.app %o")
-        ("displayline" "/Applications/Skim.app/Contents/SharedSupport/displayline -b %n %o %b")
-        ("open" "open %o"))
-      ;; Select the viewers for each file type.
-      TeX-view-program-selection
-      '((output-dvi "open")
-        (output-pdf "displayline")
-        (output-html "open")))
+        '(("Preview.app" "open -a Preview.app %o")
+          ("Skim" "open -a Skim.app %o")
+          ("displayline" "/Applications/Skim.app/Contents/SharedSupport/displayline -b %n %o %b")
+          ("open" "open %o"))
+        ;; Select the viewers for each file type.
+        TeX-view-program-selection
+        '((output-dvi "open")
+          (output-pdf "displayline")
+          (output-html "open")))
 
   (setq org-babel-sh-command "bash")
 
@@ -59,13 +60,13 @@
 
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
   (add-hook 'org-mode-hook
-          (lambda ()
-            (local-set-key (kbd "C-x p")
-                           'org-mac-chrome-insert-frontmost-url)))
+            (lambda ()
+              (local-set-key (kbd "C-x p")
+                             'org-mac-chrome-insert-frontmost-url)))
 
   ;; Use unicode chars instead of regular bullets
   (use-package org-bullets
-    :defer t
+    :ensure t
     :commands org-bullets-mode
     ;; :config (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
     )
@@ -84,9 +85,9 @@
     :init
     (add-to-list 'org-latex-packages-alist '("" "minted"))
     (setq org-latex-pdf-process
-      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f")))
+          '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+            "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+            "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f")))
 
   (use-package ox-md
     :defer t))

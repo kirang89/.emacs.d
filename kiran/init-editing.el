@@ -6,7 +6,9 @@
 (setq default-file-name-coding-system 'utf-8)
 (setq buffer-file-coding-system 'utf-8)
 
-(setq ns-command-modifier 'meta)
+(when (eq system-type 'darwin)
+  (setq-default exec-path (append exec-path '("/usr/local/bin"))
+                ns-command-modifier 'meta))
 
 ;; Disable bypassing certain (ex: M-h) to system
 (setq mac-pass-command-to-system nil)
@@ -17,15 +19,9 @@
 ;; Always newline-and-indent
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
-;; Remove autocomplete (and use company-mode instead)
-(require 'auto-complete)
-(global-auto-complete-mode -1)
-
 ;; disable backup
-(setq backup-inhibited t)
-
-;; do not make backup files
-(setq make-backup-files nil)
+(setq backup-inhibited t
+      make-backup-files nil)
 
 ;; turn auto-save off
 (setq-default auto-save-default nil)
@@ -34,11 +30,9 @@
 (setq-default show-trailing-whitespace nil)
 
 ;; indents 4 chars
-(setq c-basic-offset 4)
-(setq standard-indent 4)
-
-;; and 4 char wide for TAB
-(setq tab-width 4)
+(setq standard-indent 4
+      c-basic-offset 4
+      tab-width 4)
 
 ;; use spaces instead of tabs
 (setq-default indent-tabs-mode nil)
@@ -46,14 +40,29 @@
 ;; update the buffer if a file has change on disk
 (global-auto-revert-mode 1)
 
+(global-subword-mode 1)
+
 ;; delete trailing whitespace on file save
 (add-hook 'before-save-hook (lambda () (delete-trailing-whitespace)))
 
 ;; auto fill for text mode
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
+;; Remap C-w to backward kill word instead of kill region
+;;(global-set-key "\C-w" 'kill-region)
+(global-set-key "\C-w" 'backward-kill-word)
+(global-set-key "\C-x\C-k" 'kill-region)
+(global-set-key (kbd "C-c l") 'kill-whole-line)
+
+;; Join current line to previous and fix whitespace at join
+(global-set-key (kbd "M-j")
+                (lambda () (interactive) (join-line -1)))
+
 ;; Rewrite selected text
 (delete-selection-mode 1)
+
+(put 'downcase-region 'disabled nil)    ; Enable downcase-region
+(put 'upcase-region 'disabled nil)      ; Enable upcase-region
 
 ;; When middle-clicking dont't adjust point and paste at the then adjusted point.
 (setq mouse-yank-at-point t)
@@ -73,15 +82,12 @@
 
 ;; expand-region
 (use-package expand-region
+  :ensure t
   :config (global-set-key (kbd "C-;") 'er/expand-region))
-
-;; avy
-(use-package avy
-  :config (define-key global-map (kbd "C-`") 'avy-goto-word-or-subword-1))
-
 
 ;; move buffers around
 (use-package buffer-move
+  :ensure t
   :config
   (global-set-key (kbd "C-c <up>")     'buf-move-up)
   (global-set-key (kbd "C-c <down>")   'buf-move-down)
@@ -100,7 +106,10 @@
 
 
 (use-package multiple-cursors
+  :ensure t
   :config
+  (setq-default mc/edit-lines-empty-lines 'ignore
+                mc/insert-numbers-default 1)
   (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
   (global-set-key (kbd "C->") 'mc/mark-next-like-this)
   (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
@@ -119,25 +128,21 @@
 
 
 ;; Mode for distraction free writing
-(use-package darkroom
-  :diminish "DkR")
+;; (use-package darkroom
+;;   :ensure t
+;;   :diminish "DkR")
 
-;; Allow pasting selection outside of Emacs
-(setq select-enable-clipboard t
-      save-interprogram-paste-before-kill t)
+(setq select-enable-clipboard t             ; Merge system's and emacs' clipboard
+      save-interprogram-paste-before-kill t ; Allow pasting selection outside of Emacs
+      )
 
 
 (use-package aggressive-indent
+  :ensure t
   :commands (aggressive-indent-mode)
   :config
-  (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
-  (add-hook 'clojure-mode-hook #'aggressive-indent-mode))
-
-
-;; Comment a line from anywhere in that line
-;; (use-package smart-comment
-;;   :config
-;;   (global-set-key (kbd "M-;") 'smart-comment-line))
+  (add-hook 'emacs-lisp-mode-hook 'aggressive-indent-mode)
+  (add-hook 'clojure-mode-hook 'aggressive-indent-mode))
 
 
 (provide 'init-editing)

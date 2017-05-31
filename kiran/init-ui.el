@@ -1,4 +1,3 @@
-
 (add-to-list 'default-frame-alist '(height . 38))
 (add-to-list 'default-frame-alist '(width . 85))
 
@@ -7,6 +6,9 @@
 ;; inhibit welcome screen
 (setq inhibit-splash-screen t)
 (setq inhibit-startup-message t)
+
+;; Resize windows proportionally
+(setq-default window-combination-resize t)
 
 ;; Start emacs with text-mode
 (setq initial-major-mode 'text-mode)
@@ -27,22 +29,22 @@
 (blink-cursor-mode 1)
 
 ;; Hide cursor in inactive windows
-(setq cursor-in-non-selected-windows nil)
+(setq-default cursor-in-non-selected-windows nil)
+
+;; Remove line highlight
+(global-hl-line-mode -1)
 
 ;; Focus on help windows
-(setq help-window-select t)
+(setq-default help-window-select t)
 
-;;(set-frame-font "SF Mono:weight=light:pixelsize=11")
-(set-frame-font "Iosevka Type:weight=light:pixelsize=15")
-;;(set-frame-font "AkkuratMonoMono:weight=light:pixelsize=13")
-;;(set-frame-font "Source Code Pro:weight=regular:pixelsize=14")
-;;(set-frame-font "DejaVu Sans Mono:weight=regular:pixelsize=15")
-;;(set-frame-font "Fira Code:weight=regular:pixelsize=15")
-;;(set-frame-font "Maax:weight=regular:pixelsize=15")
-;;(set-frame-font "Courier Prime Code:weight=regular:pixelsize=16")
+(set-frame-font "Source Code Pro:weight=regular:pixelsize=16")
+
+;; Italics for comments
+(set-face-attribute 'font-lock-comment-face nil :italic t)
+(set-face-attribute 'font-lock-doc-face nil :italic t)
 
 ;; Set default line spacing (relative)
-(setq-default line-spacing 0.3)
+(setq-default line-spacing 0.15)
 
 ;; don't show the tool bar
 (tool-bar-mode -1)
@@ -60,29 +62,6 @@
 ;; (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
 ;; (setq scroll-step 1) ;; keyboard scroll one line at a time
 
-;; Smoother scrolling behavior when using keyboard navigation
-;; (setq redisplay-dont-pause t
-;;       scroll-margin 0
-;;       ;;scroll-step 5
-;;       scroll-conservatively 10000
-;;       ;; Make C-v and M-v undo each other
-;;       scroll-preserve-screen-position 'always
-;;       mouse-wheel-follow-mouse 't
-;;       ;; Scroll in one line increments
-;;       ;; Gives a smoother mouse scroll
-;;       mouse-wheel-scroll-amount '(1 ((shift) . 1)))
-
-;; (use-package smooth-scroll
-;;   :config
-;;   (smooth-scroll-mode 1)
-;;   (setq smooth-scroll/vscroll-step-size 5))
-
-;; (smooth-scrolling-mode -1)
-
-;; Minimal fringe
-;; (add-hook 'after-init-hook (lambda () (fringe-mode 15)))
-
-;; Experimental
 (defun kg/set-fringe-background ()
   "Set the fringe background to the same color as the regular background."
   (interactive)
@@ -91,8 +70,8 @@
 
 (add-hook 'after-init-hook #'kg/set-fringe-background)
 
-;; remove highlight current line
-(global-hl-line-mode -1)
+;; highlight current line
+(global-hl-line-mode t)
 
 ;; Syntax Highlighting
 (require 'font-lock)
@@ -102,18 +81,16 @@
 ;; M-q should fill at 80 chars, not 70
 (setq-default fill-column 80)
 
-(setq linum-format "%5d ")
-(add-hook 'prog-mode-hook 'linum-mode)
+;;(setq linum-format "%5d ")
+;;(add-hook 'prog-mode-hook 'linum-mode)
 
-(defun kg/reset-linum ()
-  "Reset formatting of line numbers."
-  (interactive)
-  (let ((font "Iosevka Type:weight=regular:pixelsize=13"))
-    (require 'linum)
-    (set-face-attribute 'linum nil :font font)))
-
-;; set color for selection
-;; (set-face-attribute 'region nil :background "#666")
+;; (defun kg/reset-linum ()
+;;   "Reset formatting of line numbers."
+;;   (interactive)
+;;   (let ((font "Source Code Pro:weight=regular:pixelsize=13"))
+;;     (setq linum-format "%5d ")
+;;     (require 'linum)
+;;     (set-face-attribute 'linum nil :font font)))
 
 ;; Smoother scrolling behavior when using keyboard navigation
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
@@ -121,20 +98,13 @@
 (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
 (setq scroll-step 1) ;; keyboard scroll one line at a time
 
-;; (setq redisplay-dont-pause t
-;;       scroll-margin 1
-;;       scroll-step 0
-;;       scroll-conservatively 100000
-;;       scroll-preserve-screen-position t)
-
-;;(add-hook 'after-init-hook #'kg/reset-linum)
-
 ;; set unique names for two similar buffers
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
 
 ;; Number each buffer for easy switching with M-<no>
 (use-package window-numbering
+  :ensure t
   :config (window-numbering-mode t))
 
 (global-prettify-symbols-mode 1)
@@ -159,5 +129,12 @@
 ;; Use this for github theme
 ;;(set-face-attribute 'helm-selection nil :background "#A7C6E3")
 
-(provide 'init-looks)
-;;; init-looks.el ends here
+;; turn off auto revert messages
+(setq auto-revert-verbose nil)
+
+;; (use-package auto-dim-other-buffers
+;;   :ensure t
+;;   :init (auto-dim-other-buffers-mode 1))
+
+(provide 'init-ui)
+;;; init-ui.el ends here

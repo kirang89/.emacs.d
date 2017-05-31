@@ -3,9 +3,10 @@
 (set-terminal-coding-system 'utf-8)
 (setenv "PAGER" "cat")
 
-(require 'exec-path-from-shell)
-(when (memq window-system '(mac ns))
-  (exec-path-from-shell-initialize))
+(use-package exec-path-from-shell
+  :if (memq window-system '(mac ns))
+  :defer 1
+  :config (exec-path-from-shell-initialize))
 
 (add-hook 'eshell-mode-hook
           (lambda ()
@@ -168,6 +169,7 @@ PWD is not in a git repo (or the git command is not found)."
 ;; =================================================================================
 
 (add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode))
+(add-to-list 'auto-mode-alist '("\\.bashrc\\'" . sh-mode))
 
 (provide 'init-shell)
 ;;; init-shell.el ends here

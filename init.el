@@ -26,6 +26,9 @@
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 
+;; Cache 50MB before garbage collection
+(setq gc-cons-threshold 50000000)
+
 ;; language
 (setq current-language-environment "English")
 
@@ -42,10 +45,16 @@
 
 (add-to-list 'load-path "~/.emacs.d/kiran/")
 
+(package-initialize)
+
+;; Custom configuration set by Emacs
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file 'noerror)
+
 (require 'init-packages)
 (require 'init-ui)
 (require 'init-editing)
-(require 'init-dired)
+;;(require 'init-dired)
 (require 'init-kbd)
 (require 'init-ido)
 (require 'init-ivy)
@@ -61,30 +70,25 @@
 (require 'init-org)
 (require 'init-yasnippet)
 (require 'init-modeline)
-;;(require 'init-shell)
-(require 'efuns)
+(require 'init-shell)
+(require 'init-efuns)
 (require 'init-magit)
-(require 'init-markdown)
-(require 'init-gc)
+;;(require 'init-markdown)
+;; (require 'init-gc)
 (require 'init-flycheck)
-;;(require 'init-neotree)
+;; (require 'init-neotree)
 (require 'init-projectile)
 ;;(require 'init-solarized)
 ;;(require 'init-latex)
 ;;(require 'init-news)
 (require 'init-experimental)
 
-;;(require 'init-mu4e)
 ;;(eval-after-load 'c-mode '(require 'init-c))
 ;;(eval-after-load 'web-mode '(require 'init-web))
 ;;(eval-after-load 'prolog-mode '(require 'init-prolog))
 ;;(eval-after-load 'sml-mode '(require 'init-sml))
 
-;; Custom configuration set by Emacs
-(setq custom-file "~/.emacs.d/custom.el")
-(load custom-file 'noerror)
-
-(fringe-mode 10)
+(fringe-mode 25)
 
 ;; Save minibuffer history
 (setq savehist-file "~/.emacs.d/savehist")
@@ -99,11 +103,11 @@
 ;; Follow compiler ouput
 (setq compilation-scroll-output t)
 
-;; highlight current line
-;;(hl-line-mode)
-
 (remove-hook 'org-mode-hook 'linum-mode)
+(remove-hook 'compilation-minor-mode-hook 'linum-mode)
+(remove-hook 'custom-theme-choose-mode-hook 'linum-mode)
 
+;;(setq-default cursor-type '(bar . 3))
 
 ;; Start emacs server
 (server-start)
@@ -118,7 +122,6 @@
 
 (provide `.emacs)
 ;;; init.el ends here
-
 
 ;; ======= TODOs ===========
 ;; - Checkout stuff in https://github.com/bbatsov/crux

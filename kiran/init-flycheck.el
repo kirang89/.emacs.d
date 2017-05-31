@@ -1,8 +1,11 @@
 (use-package flycheck
+  :ensure t
   :diminish flycheck-mode
   :config
-  (add-hook 'after-init-hook 'global-flycheck-mode)
-  (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
+  (setq-default flycheck-check-syntax-automatically '(save mode-enabled)
+                flycheck-disabled-checkers '(emacs-lisp-checkdoc)
+                flycheck-display-errors-delay .3)
+  (add-hook 'after-init-hook 'global-flycheck-mode))
 
 (provide 'init-flycheck)
 ;; init-flycheck.el ends here

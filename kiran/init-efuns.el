@@ -40,7 +40,7 @@
 
 
 ;; Search for symbol at point
-(define-key isearch-mode-map (kbd "C-d") 'kg/isearch-yank-symbol)
+;; (define-key isearch-mode-map (kbd "C-d") 'kg/isearch-yank-symbol)
 
 
 (defun kg/isearch-yank-symbol ()
@@ -57,12 +57,15 @@ symbol, not word, as I need this for programming the most."
        (goto-char isearch-other-end))
      (thing-at-point 'symbol))))
 
-
-(defun kg/timestamp ()
-  "Spit out the current time."
+(defun kg/date-iso ()
+  "Insert the current date, ISO format, eg. 2016-12-09."
   (interactive)
-  (insert (format-time-string "%Y-%m-%d")))
+  (insert (format-time-string "%F")))
 
+(defun kg/date-iso-with-time ()
+  "Insert the current date, ISO format with time, eg. 2016-12-09T14:34:54+0100."
+  (interactive)
+  (insert (format-time-string "%FT%T%z")))
 
 (defun kg/toggle-frame-split ()
   "If the frame is split vertically, split it horizontally or vice versa.
@@ -70,10 +73,10 @@ Assumes that the frame is only split into two."
   (interactive)
   (unless (= (length (window-list)) 2) (error "Can only toggle a frame split in two"))
   (let ((split-vertically-p (window-combined-p)))
-    (delete-window) ; closes current window
+    (delete-window)                     ; closes current window
     (if split-vertically-p
         (split-window-horizontally)
-      (split-window-vertically)) ; gives us a split with the other window twice
+      (split-window-vertically))  ; gives us a split with the other window twice
     (switch-to-buffer nil))) ; restore the original window in this part of the frame
 
 
@@ -86,33 +89,22 @@ Assumes that the frame is only split into two."
     (message "Opening %s done" file)))
 
 
-(defun kg/lisp-table-to-org-table (table &optional function)
-  "Convert a lisp table to `org-mode' syntax, applying FUNCTION to each of its elements.
-The elements should not have any more newlines in them after
-applying FUNCTION ; the default converts them to spaces. Return
-value is a string containg the unaligned `org-mode' table."
-  (unless (functionp function)
-    (setq function (lambda (x) (replace-regexp-in-string "\n" " " x))))
-  (mapconcat (lambda (x)                ; x is a line.
-               (concat "| " (mapconcat function x " | ") " |"))
-             table "\n"))
+;; (defun kg/csv-to-table (beg end)
+;;   "Convert a csv file to an `org-mode' table.
+;; Requires 'pcsv' package to be installed."
+;;   (interactive "r")
+;;   (require 'pcsv)
+;;   (insert (yf/lisp-table-to-org-table (pcsv-parse-region beg end)))
+;;   (delete-region beg end)
+;;   (org-table-align))
 
-
-(defun kg/csv-to-table (beg end)
-"Convert a csv file to an `org-mode' table.
-Requires 'pcsv' package to be installed."
-  (interactive "r")
-  (require 'pcsv)
-  (insert (yf/lisp-table-to-org-table (pcsv-parse-region beg end)))
-  (delete-region beg end)
-  (org-table-align))
-
-(defun kg/toggle-line-spacing ()
-  "Toggle line spacing between no extra space to extra half line height."
-  (interactive)
-  (if (eq line-spacing nil)
-      (setq-default line-spacing 0.5) ; add 0.5 height between lines
-    (setq-default line-spacing nil)))   ; no extra heigh between lines
+;; (defun kg/toggle-line-spacing ()
+;;   "Toggle line spacing between no extra space to extra half line height."
+;;   (interactive)
+;;   (if (eq line-spacing nil)
+;;       (setq-default line-spacing 0.5) ; add 0.5 height between lines
+;;     (setq-default line-spacing nil)))
+                                        ; no extra heigh between lines
 
 ;; Source: http://www.emacswiki.org/emacs/DuplicateStartOfLineOrRegion
 (defun kg/duplicate-start-of-line-or-region ()
@@ -155,7 +147,7 @@ Consecutive calls to this command append each line to the kill-ring."
           (kill-new (buffer-substring beg end))))
       (beginning-of-line 2))
 
-(defun beginning-of-line-dwim ()
+(defun kg/beginning-of-line-dwim ()
   "Toggle between moving point to the first non-whitespace character, and the start of the line."
   (interactive)
   (let ((start-position (point)))
@@ -166,44 +158,44 @@ Consecutive calls to this command append each line to the kill-ring."
     (when (= (point) start-position)
       (move-beginning-of-line nil))))
 
-(global-set-key (kbd "C-a") 'beginning-of-line-dwim)
+(global-set-key (kbd "C-a") 'kg/beginning-of-line-dwim)
 
-(defun kg/drag-n-drop (event)
-  "Drag files onto org-mode and insert a link to them"
-  (interactive "e")
-  (goto-char (nth 1 (event-start event)))
-  (x-focus-frame nil)
-  (let* ((payload (car (last event)))
-         (type (car payload))
-         (fname (cadr payload))
-         (img-regexp "\\(png\\|jp[e]?g\\)\\>"))
-    (cond
-     ;; insert image link
-     ((and  (eq 'drag-n-drop (car event))
-            (eq 'file type)
-            (string-match img-regexp fname))
-      (insert (format "[[%s]]" fname))
-      (org-display-inline-images t t))
-     ;; insert image link with caption
-     ((and  (eq 'C-drag-n-drop (car event))
-            (eq 'file type)
-            (string-match img-regexp fname))
-      (insert "#+ATTR_ORG: :width 300\n")
-      (insert (concat  "#+CAPTION: " (read-input "Caption: ") "\n"))
-      (insert (format "[[%s]]" fname))
-      (org-display-inline-images t t))
-     ;; C-drag-n-drop to open a file
-     ((and  (eq 'C-drag-n-drop (car event))
-            (eq 'file type))
-      (find-file fname))
-     ((and (eq 'M-drag-n-drop (car event))
-           (eq 'file type))
-      (insert (format "[[attachfile:%s]]" fname)))
-     ;; regular drag and drop on file
-     ((eq 'file type)
-      (insert (format "[[%s]]\n" fname)))
-     (t
-      (error "I am not equipped for dnd on %s" payload)))))
+;; (defun kg/drag-n-drop (event)
+;;   "Drag files onto org-mode and insert a link to them"
+;;   (interactive "e")
+;;   (goto-char (nth 1 (event-start event)))
+;;   (x-focus-frame nil)
+;;   (let* ((payload (car (last event)))
+;;          (type (car payload))
+;;          (fname (cadr payload))
+;;          (img-regexp "\\(png\\|jp[e]?g\\)\\>"))
+;;     (cond
+;;      ;; insert image link
+;;      ((and  (eq 'drag-n-drop (car event))
+;;             (eq 'file type)
+;;             (string-match img-regexp fname))
+;;       (insert (format "[[%s]]" fname))
+;;       (org-display-inline-images t t))
+;;      ;; insert image link with caption
+;;      ((and  (eq 'C-drag-n-drop (car event))
+;;             (eq 'file type)
+;;             (string-match img-regexp fname))
+;;       (insert "#+ATTR_ORG: :width 300\n")
+;;       (insert (concat  "#+CAPTION: " (read-input "Caption: ") "\n"))
+;;       (insert (format "[[%s]]" fname))
+;;       (org-display-inline-images t t))
+;;      ;; C-drag-n-drop to open a file
+;;      ((and  (eq 'C-drag-n-drop (car event))
+;;             (eq 'file type))
+;;       (find-file fname))
+;;      ((and (eq 'M-drag-n-drop (car event))
+;;            (eq 'file type))
+;;       (insert (format "[[attachfile:%s]]" fname)))
+;;      ;; regular drag and drop on file
+;;      ((eq 'file type)
+;;       (insert (format "[[%s]]\n" fname)))
+;;      (t
+;;       (error "I am not equipped for dnd on %s" payload)))))
 
 ;; (define-key org-mode-map (kbd "<drag-n-drop>") 'kg/drag-n-drop)
 ;; (define-key org-mode-map (kbd "<C-drag-n-drop>") 'kg/drag-n-drop)
@@ -212,8 +204,8 @@ Consecutive calls to this command append each line to the kill-ring."
 (defun kg/add-watchwords ()
   "Highlight FIXME, TODO, and NOCOMMIT in code TODO"
   (font-lock-add-keywords nil
-   '(("\\<\\(FIXME:?\\|TODO:?\\|NOCOMMIT:?\\)\\>"
-      1 font-lock-warning-face t))))
+                          '(("\\<\\(FIXME:?\\|TODO:?\\|NOCOMMIT:?\\)\\>"
+                             1 font-lock-warning-face t))))
 
 (add-hook 'prog-mode-hook #'kg/add-watchwords)
 
@@ -235,24 +227,26 @@ Source: http://demonastery.org/2013/04/emacs-narrow-to-region-indirect/"
 (defun kg/reset-ui ()
   "Reset some UI components after changing a theme."
   (interactive)
+  (fringe-mode 25)
   (kg/set-fringe-background)
-  (kg/set-modeline-face)
-  (kg/reset-linum))
+  ;; (kg/set-modeline-face)
+  ;; (kg/reset-linum)
+  )
 
-(defun kg/lispy-parens ()
-  "Setup parens display for Lisp modes."
-  (interactive)
-  (setq show-paren-delay 0)
-  (setq show-paren-style 'parenthesis)
-  (make-variable-buffer-local 'show-paren-mode)
-  (show-paren-mode 1)
-  (set-face-background 'show-paren-match-face (face-background 'default))
-  (if (boundp 'font-lock-comment-face)
-      (set-face-foreground 'show-paren-match-face
-     			   (face-foreground 'font-lock-comment-face))
-    (set-face-foreground 'show-paren-match-face
-     			 (face-foreground 'default)))
-  (set-face-attribute 'show-paren-match-face nil :weight 'extra-bold))
+;; (defun kg/lispy-parens ()
+;;   "Setup parens display for Lisp modes."
+;;   (interactive)
+;;   (setq show-paren-delay 0)
+;;   (setq show-paren-style 'parenthesis)
+;;   (make-variable-buffer-local 'show-paren-mode)
+;;   (show-paren-mode 1)
+;;   (set-face-background 'show-paren-match-face (face-background 'default))
+;;   (if (boundp 'font-lock-comment-face)
+;;       (set-face-foreground 'show-paren-match-face
+;;      			   (face-foreground 'font-lock-comment-face))
+;;     (set-face-foreground 'show-paren-match-face
+;;      			 (face-foreground 'default)))
+;;   (set-face-attribute 'show-paren-match-face nil :weight 'extra-bold))
 
 
 ;; http://emacs.stackexchange.com/a/81
@@ -289,33 +283,26 @@ C-u C-u COMMAND -> Open/switch to a scratch buffer in `emacs-elisp-mode'"
 
 (global-set-key (kbd "M-RET") 'kg/newline-for-code)
 
-;; Define minor mode to disable mouse interactions in emacs buffer
-;; Source: http://endlessparentheses.com/disable-mouse-only-inside-emacs.html
-(define-minor-mode disable-mouse-mode
-  "A minor-mode that disables all mouse keybinds."
-  :global t
-  :lighter " 🐭"
-  :keymap (make-sparse-keymap))
-
-(dolist (type '(mouse down-mouse drag-mouse
-                      double-mouse triple-mouse))
-  (dolist (prefix '("" C- M- S- M-S- C-M- C-S- C-M-S-))
-    ;; Yes, I actually HAD to go up to 7 here.
-    (dotimes (n 7)
-      (let ((k (format "%s%s-%s" prefix type n)))
-        (define-key disable-mouse-mode-map
-          (vector (intern k)) #'ignore)))))
-
-(add-hook 'after-init-hook (disable-mouse-mode 1))
-
-
 (defun kg/file-reopen-as-root ()
+  "Reopen current file as root."
   (interactive)
   (when buffer-file-name
     (find-alternate-file
      (concat "/sudo:root@localhost:"
              buffer-file-name))))
 
+;; Allow repeated use of ← and → when using previous-buffer and next-buffer.
+(defun me/switch-to-buffer-continue ()
+  "Activate a sparse keymap:
+  <left>   `previous-buffer'
+  <right>  `next-buffer'"
+  (set-transient-map
+   (let ((map (make-sparse-keymap)))
+     (define-key map (kbd "<left>") #'previous-buffer)
+     (define-key map (kbd "<right>") #'next-buffer)
+     map)))
+(advice-add 'previous-buffer :after #'me/switch-to-buffer-continue)
+(advice-add 'next-buffer :after #'me/switch-to-buffer-continue)
 
-(provide 'efuns)
-;;; efuns.el ends here
+(provide 'init-efuns)
+;;; init-efuns.el ends here.

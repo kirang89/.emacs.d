@@ -1,26 +1,15 @@
 (use-package projectile
+  :ensure t
   :init
+  (setq-default projectile-cache-file
+                (expand-file-name ".projectile-cache" user-emacs-directory))
   (add-hook 'prog-mode-hook #'projectile-mode)
   :config
-
   (projectile-mode)
   ;; asks for file to open when project is switched
-
   (setq projectile-switch-project-action 'helm-projectile-find-file)
-
-  (setq-default projectile-enable-caching t)
-
-  (setq-default projectile-mode-line '(:eval (projectile-project-name)))
-
-  (use-package counsel-projectile
-	  :config
-	  (counsel-projectile-on))
-
-  ;; (use-package helm-projectile
-  ;;   :ensure t
-  ;;   :init
-  ;;   (setq projectile-completion-system 'helm))
-  )
+  (setq-default projectile-enable-caching t
+                projectile-mode-line '(:eval (projectile-project-name))))
 
 
 (defun kg/smart-find-file ()
@@ -31,7 +20,6 @@
     (ido-find-file)))
 
 (bind-key "C-x C-f" 'kg/smart-find-file)
-
 
 (provide 'init-projectile)
 ;;; init-projectile.el ends here

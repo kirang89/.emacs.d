@@ -4,7 +4,7 @@
 (remove-hook 'find-file-hooks 'vc-find-file-hook)
 
 (use-package magit
-  :defer t
+  :ensure t
   :init
   (global-set-key (kbd "C-c C-g") 'magit-status)
   :config
