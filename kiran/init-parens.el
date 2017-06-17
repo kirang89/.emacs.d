@@ -1,7 +1,6 @@
 
 ;; highlight matching parentheses
 (require 'paren)
-;; (add-hook 'prog-mode-hook #'show-paren-mode)
 (show-paren-mode 1)
 (setq show-paren-delay 1)
 (set-face-background 'show-paren-match (face-background 'default))
@@ -19,6 +18,9 @@
 ;;   (define-key smartparens-mode-map (kbd "M-s") 'sp-splice-sexp)
 ;;   ;; (foo bar) -> [foo bar]
 ;;   (define-key smartparens-mode-map (kbd "M-S") 'sp-rewrap-sexp))
+
+(use-package smartparens
+  :ensure t)
 
 (use-package rainbow-delimiters
   :ensure t
