@@ -107,6 +107,9 @@
 (remove-hook 'compilation-minor-mode-hook 'linum-mode)
 (remove-hook 'custom-theme-choose-mode-hook 'linum-mode)
 
+(use-package discover-my-major
+  :ensure t)
+
 ;;(setq-default cursor-type '(bar . 3))
 
 ;; Start emacs server
