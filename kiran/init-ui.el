@@ -37,7 +37,8 @@
 ;; Focus on help windows
 (setq-default help-window-select t)
 
-(set-frame-font "Source Code Pro:weight=regular:pixelsize=16")
+;; (set-frame-font "Source Code Pro:weight=regular:pixelsize=16")
+(set-frame-font "Inconsolata:weight=regular:pixelsize=17")
 
 ;; Italics for comments
 (set-face-attribute 'font-lock-comment-face nil :italic t)
