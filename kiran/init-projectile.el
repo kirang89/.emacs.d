@@ -19,7 +19,7 @@
       (projectile-find-file)
     (ido-find-file)))
 
-(bind-key "C-x C-f" 'kg/smart-find-file)
+(bind-key "M-t" 'kg/smart-find-file)
 
 (provide 'init-projectile)
 ;;; init-projectile.el ends here
