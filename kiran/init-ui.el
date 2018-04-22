@@ -14,18 +14,19 @@
 (setq initial-major-mode 'text-mode)
 
 ;; Set a better frame title
-(setq frame-title-format '("%b (%m)"))
+;; (setq frame-title-format '("%b (%m)"))
+(setq
+ frame-title-format
+ '((:eval (if (buffer-file-name)
+              (abbreviate-file-name (buffer-file-name))
+            "%b"))))
 
 ;; Remove scratch buffer message
 (setq initial-scratch-message "")
 
-;; Remove menu bar when running Emacs from terminal
-;; (when (not window-system)
-;;   (menu-bar-mode -1))
-
 (setq-default cursor-type 'box)
 
-;; Don't blink the cursor
+;; blink the cursor
 (blink-cursor-mode 1)
 
 ;; Hide cursor in inactive windows
@@ -37,15 +38,17 @@
 ;; Focus on help windows
 (setq-default help-window-select t)
 
-;; (set-frame-font "Source Code Pro:weight=regular:pixelsize=16")
-(set-frame-font "Inconsolata:weight=regular:pixelsize=17")
+(set-frame-font "SF Mono:weight=light:pixelsize=12")
+
+;; TODO: Setup as per https://github.com/bleadof/emacs.d/blob/f5eded385b1a1fcdcb6af15d875a230d26fe53ff/conf/fundamentals/company-emoji-conf.el
+;;(set-fontset-font t 'symbol (font-spec :family "Apple Color Emoji") nil 'prepend)
+
+;; Set default line spacing (relative)
+(setq-default line-spacing 0.45)
 
 ;; Italics for comments
 (set-face-attribute 'font-lock-comment-face nil :italic t)
 (set-face-attribute 'font-lock-doc-face nil :italic t)
-
-;; Set default line spacing (relative)
-(setq-default line-spacing 0.15)
 
 ;; don't show the tool bar
 (tool-bar-mode -1)
@@ -57,12 +60,6 @@
       scroll-conservatively 10000
       scroll-preserve-screen-position t)
 
-;; ;; Scroll one line at a time (less "jumpy" than defaults)
-;; (setq mouse-wheel-scroll-amount '(2 ((shift) . 2))) ;; two lines at a time
-;; (setq mouse-wheel-progressive-speed 't) ;; don't accelerate scrolling
-;; (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
-;; (setq scroll-step 1) ;; keyboard scroll one line at a time
-
 (defun kg/set-fringe-background ()
   "Set the fringe background to the same color as the regular background."
   (interactive)
@@ -71,33 +68,16 @@
 
 (add-hook 'after-init-hook #'kg/set-fringe-background)
 
-;; highlight current line
-(global-hl-line-mode t)
-
 ;; Syntax Highlighting
 (require 'font-lock)
 (setq font-lock-maximum-decoration t)
 (global-font-lock-mode 1)
 
-;; M-q should fill at 80 chars, not 70
-(setq-default fill-column 80)
+;; M-q should fill at 85 chars, not 70
+(setq-default fill-column 85)
 
-;;(setq linum-format "%5d ")
-;;(add-hook 'prog-mode-hook 'linum-mode)
-
-;; (defun kg/reset-linum ()
-;;   "Reset formatting of line numbers."
-;;   (interactive)
-;;   (let ((font "Source Code Pro:weight=regular:pixelsize=13"))
-;;     (setq linum-format "%5d ")
-;;     (require 'linum)
-;;     (set-face-attribute 'linum nil :font font)))
-
-;; Smoother scrolling behavior when using keyboard navigation
-(setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
-(setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
-(setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
-(setq scroll-step 1) ;; keyboard scroll one line at a time
+(setq linum-format "%5d ")
+(add-hook 'prog-mode-hook 'linum-mode)
 
 ;; set unique names for two similar buffers
 (require 'uniquify)
@@ -108,7 +88,8 @@
   :ensure t
   :config (window-numbering-mode t))
 
-(global-prettify-symbols-mode 1)
+;; Use pretty symbols for common keywords
+;; (global-prettify-symbols-mode 1)
 
 ;; Turn on ansi color interpretation in a compilation buffer
 (require 'ansi-color)
@@ -127,15 +108,11 @@
                                     '(("\\<\\(FIX\\|FIXME\\|TODO\\|BUG\\|HACK\\):"
                                        1 font-lock-warning-face t)))))
 
-;; Use this for github theme
-;;(set-face-attribute 'helm-selection nil :background "#A7C6E3")
-
 ;; turn off auto revert messages
 (setq auto-revert-verbose nil)
 
-;; (use-package auto-dim-other-buffers
-;;   :ensure t
-;;   :init (auto-dim-other-buffers-mode 1))
+;; Use this with bubbleberry theme
+;; (set-face-attribute 'region nil :background "#363636")
 
 (provide 'init-ui)
 ;;; init-ui.el ends here

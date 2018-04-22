@@ -227,8 +227,9 @@ Source: http://demonastery.org/2013/04/emacs-narrow-to-region-indirect/"
 (defun kg/reset-ui ()
   "Reset some UI components after changing a theme."
   (interactive)
-  (fringe-mode 25)
+  (fringe-mode 10)
   (kg/set-fringe-background)
+  (setq linum-format "%5d ")
   ;; (kg/set-modeline-face)
   ;; (kg/reset-linum)
   )
