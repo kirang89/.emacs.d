@@ -217,7 +217,7 @@ Source: http://demonastery.org/2013/04/emacs-narrow-to-region-indirect/"
   (let ((buf (clone-indirect-buffer nil nil)))
     (with-current-buffer buf
       (narrow-to-region start end))
-      (switch-to-buffer buf)))
+    (switch-to-buffer buf)))
 
 ;; (defun kg/iterm-here ()
 ;;   "Open current file location in iTerm."

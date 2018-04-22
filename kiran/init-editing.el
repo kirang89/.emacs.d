@@ -37,7 +37,7 @@
 ;; use spaces instead of tabs
 (setq-default indent-tabs-mode nil)
 
-;; update the buffer if a file has change on disk
+;; revert buffers automatically when underlying files are changed externally
 (global-auto-revert-mode 1)
 
 (global-subword-mode 1)

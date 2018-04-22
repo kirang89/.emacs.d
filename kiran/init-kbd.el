@@ -21,8 +21,6 @@
 (add-hook 'org-mode-hook
           (lambda () (local-set-key (kbd "C-c d") 'dictionary-lookup-definition)))
 
-;;(global-set-key (kbd "C-c }") 'mc/mark-next-like-this)
-
 ;; Toggle frame split (see efuns.el)
 ;;(global-set-key (kbd "C-x |") 'toggle-frame-split)
 

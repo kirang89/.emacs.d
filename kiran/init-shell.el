@@ -3,11 +3,6 @@
 (set-terminal-coding-system 'utf-8)
 (setenv "PAGER" "cat")
 
-(use-package exec-path-from-shell
-  :if (memq window-system '(mac ns))
-  :defer 1
-  :config (exec-path-from-shell-initialize))
-
 (add-hook 'eshell-mode-hook
           (lambda ()
             ;; The 'ls' executable requires the Gnu version on the Mac

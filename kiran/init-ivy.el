@@ -26,16 +26,9 @@
   (global-set-key (kbd "C-c a") 'counsel-ag)
   (global-set-key (kbd "C-c g") 'counsel-git-grep)
   (global-set-key (kbd "M-y") 'counsel-yank-pop)
-  ;;(global-set-key (kbd "M-x") 'counsel-M-x)
   (setq recentf-max-saved-items 50)
   (setq recentf-auto-cleanup (* 24 60 60))
-  (global-set-key (kbd "C-x C-r") 'counsel-recentf)
-
-  ;; (use-package counsel-projectile
-  ;;   :ensure t
-  ;;   :config
-  ;;   (counsel-projectile-on))
-  )
+  (global-set-key (kbd "C-x C-r") 'counsel-recentf))
 
 ;; (use-package swiper
 ;;   :ensure t

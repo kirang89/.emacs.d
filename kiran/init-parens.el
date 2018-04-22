@@ -19,8 +19,8 @@
 ;;   ;; (foo bar) -> [foo bar]
 ;;   (define-key smartparens-mode-map (kbd "M-S") 'sp-rewrap-sexp))
 
-(use-package smartparens
-  :ensure t)
+;; (use-package smartparens
+;;   :ensure t)
 
 (use-package rainbow-delimiters
   :ensure t
