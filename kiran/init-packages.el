@@ -1,14 +1,22 @@
 (require 'package)
 
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+;;(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
+                    (not (gnutls-available-p))))
+       (url (concat (if no-ssl "http" "https") "://melpa.org/packages/")))
+  (add-to-list 'package-archives (cons "melpa" url) t))
+(when (< emacs-major-version 24)
+  ;; For important compatibility libraries like cl-lib
+  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+
 (add-to-list 'package-archives
              '("melpa-stable" . "https://stable.melpa.org/packages/"))
 (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/"))
+(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
 
-;; (unless (and (file-exists-p (concat init-dir "elpa/archives/gnu"))
-;;              (file-exists-p (concat init-dir "elpa/archives/melpa"))
-;;              (file-exists-p (concat init-dir "elpa/archives/melpa-stable")))
-;;   (package-refresh-contents))
+(setq load-prefer-newer t
+      ;; package--init-file-ensured t
+      package-enable-at-startup nil)
 
 ;; Install use-package
 (unless (package-installed-p 'use-package)
