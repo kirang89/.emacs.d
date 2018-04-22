@@ -1,6 +1,6 @@
 
 ;; IBuffer
-(global-set-key (kbd "C-x C-b") #'ibuffer)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
 
 ;; Gnus style grouping for ibuffer
 ;; Check http://www.emacswiki.org/emacs/IbufferMode
@@ -16,6 +16,7 @@
                            (name . ".cljc$")
                            (name . "^\\*cider")
                            (name . "^\\*nrepl")))
+               ("CLOJURESCRIPT" (name . ".cljs$"))
                ("ORG" (or
                        (mode . org-mode)
                        (name . "^\\*Deft\\*$")))
@@ -33,6 +34,7 @@
                ("EMACS" (or
                          (name . "^\\*scratch\\*$")
                          (name . "^\\*Messages\\*$")))
+               ("ELISP" (name . ".el$"))
                ("HELM" (or
                         (mode . helm-mode)
                         (name . "^\\*helm")))))))
