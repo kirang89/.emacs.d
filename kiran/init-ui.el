@@ -83,10 +83,9 @@
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
 
-;; Number each buffer for easy switching with M-<no>
-(use-package window-numbering
-  :ensure t
-  :config (window-numbering-mode t))
+;; Navigate windows using Shift + arrow key
+(when (fboundp 'windmove-default-keybindings)
+  (windmove-default-keybindings))
 
 ;; Use pretty symbols for common keywords
 ;; (global-prettify-symbols-mode 1)
