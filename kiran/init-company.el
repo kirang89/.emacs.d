@@ -12,13 +12,14 @@
   :config
   (global-company-mode)
   (setq company-tooltip-limit 10)
-  (setq company-idle-delay 0.2)
+  (setq company-dabbrev-downcase 0)
+  (setq company-idle-delay 0)
   (setq company-echo-delay 0)
-  (setq company-minimum-prefix-length 3)
+  (setq company-minimum-prefix-length 2)
   (setq company-require-match nil)
   (setq company-selection-wrap-around t)
   (setq company-tooltip-align-annotations t)
-  (setq company-tooltip-flip-when-above t)
+  ;; (setq company-tooltip-flip-when-above t)
   (setq company-transformers '(company-sort-by-occurrence)) ; weight by frequency
   (define-key company-active-map (kbd "M-n") nil)
   (define-key company-active-map (kbd "M-p") nil)
@@ -41,7 +42,7 @@
 
   ;; Python auto completion
   (use-package company-jedi
-    :ensure t
+    :defer t
     :init
     (setq company-jedi-python-bin "python2")
     :config
