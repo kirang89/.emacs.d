@@ -1,6 +1,5 @@
 (use-package org
   :ensure t
-  :defer t
   :init
   (setq org-directory "~/Box Sync/org-notes"
         org-default-notes-file (concat org-directory "/notes.txt")
@@ -8,7 +7,6 @@
         ;; Prefer UTF-8
         org-export-coding-system 'utf-8
         org-startup-indented t
-        org-indent-mode t
         ;; Make code pretty
         org-src-fontify-natively t
         ;; change behavior of TAB as per the appropriate major mode
@@ -25,8 +23,11 @@
         org-use-speed-commands t
         ;; Syntax highlighting for org-export
         org-latex-listings 'minted
-        org-hide-emphasis-markers t
-        org-ellipsis "•••")
+        org-hide-emphasis-markers t)
+
+  (setq ;;org-ellipsis " ▼ "
+        org-ellipsis "..."
+        )
 
   ;; The directory where images should be downloaded to, when dragged into
   ;; an org buffer
@@ -57,10 +58,9 @@
 
   :config
   (global-set-key (kbd "C-x c") 'org-capture)
-
-  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
   (add-hook 'org-mode-hook
             (lambda ()
+              (setq org-indent-mode t)
               (local-set-key (kbd "C-x p")
                              'org-mac-chrome-insert-frontmost-url)))
 
@@ -68,29 +68,24 @@
   (use-package org-bullets
     :ensure t
     :commands org-bullets-mode
-    ;; :config (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-    )
+    :config
+    (add-hook 'org-mode-hook
+              (lambda ()
+                (org-bullets-mode 1))))
 
   (org-babel-do-load-languages
    'org-babel-load-languages
-   '((python . t)
-     (clojure . t)
-     (sh . t)
-     ;; (latex . t)
-     ))
+   '((clojure . t)))
 
-
-  (use-package ox-latex
-    :defer t
-    :init
-    (add-to-list 'org-latex-packages-alist '("" "minted"))
-    (setq org-latex-pdf-process
-          '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-            "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-            "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f")))
-
-  (use-package ox-md
-    :defer t))
+  ;; (use-package ox-latex
+  ;;   :defer t
+  ;;   :init
+  ;;   (add-to-list 'org-latex-packages-alist '("" "minted"))
+  ;;   (setq org-latex-pdf-process
+  ;;         '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+  ;;           "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+  ;;           "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f")))
+  )
 
 ;; ===========
 
@@ -121,15 +116,11 @@
 ;;         ))
 
 (setq org-capture-templates
-      '(
-        ("w" "Work" checkitem
-         (file+headline (concat org-directory "/work.org") "Self")
-         " - [ ] %?")
+      '(("w" "Work" entry
+         (file+headline (concat org-directory "/agenda.org") "Work")
+         "** TODO %?")))
 
-        ))
-
-
-;;(global-set-key (kbd "C-c C-a") 'org-agenda)
+(global-set-key (kbd "C-c C-a") 'org-agenda)
 
 (defun org-archive-tasks ()
   "Archive DONE tasks in org-mode."
