@@ -144,6 +144,7 @@
   (add-hook 'emacs-lisp-mode-hook 'aggressive-indent-mode)
   (add-hook 'clojure-mode-hook 'aggressive-indent-mode))
 
+(global-set-key (kbd "C-x l") 'goto-line)
 
 (provide 'init-editing)
 ;;; init-editing.el ends here

@@ -16,6 +16,7 @@
 
 ;; Recompile .el file(s) if changes occur
 (byte-recompile-directory (expand-file-name "~/.emacs.d/kiran") 0)
+
 ;; Prevent loading of outdated .elc files
 (setq load-prefer-newer t)
 
@@ -88,7 +89,10 @@
 ;;(eval-after-load 'prolog-mode '(require 'init-prolog))
 ;;(eval-after-load 'sml-mode '(require 'init-sml))
 
-(fringe-mode 25)
+(load-theme 'darkokai)
+(set-face-attribute 'region nil :background "#3a3a3a")
+
+(fringe-mode 10)
 
 ;; Save minibuffer history
 (setq savehist-file "~/.emacs.d/savehist")
@@ -107,10 +111,11 @@
 (remove-hook 'compilation-minor-mode-hook 'linum-mode)
 (remove-hook 'custom-theme-choose-mode-hook 'linum-mode)
 
+;; don't disable narrow-to-region command
+(put 'narrow-to-region 'disabled nil)
+
 (use-package discover-my-major
   :ensure t)
-
-;;(setq-default cursor-type '(bar . 3))
 
 ;; Start emacs server
 (server-start)
