@@ -31,6 +31,8 @@
 ;;                           (projects . 5)
 ;;                           (agenda . 5))))
 
+(global-set-key (kbd "M-s") (save-buffer))
+
 ;; window manager
 (use-package eyebrowse
   :ensure t
@@ -70,6 +72,10 @@
   :ensure t
   :config
   (global-set-key (kbd "M-;") 'comment-dwim-2))
+
+(global-set-key (kbd "M-c") 'kill-ring-save)
+(global-set-key (kbd "M-v") 'yank)
+(global-set-key (kbd "M-S-z") 'redo)
 
 ;; Edit multiple regions in the same way simultaneously
 ;; (use-package iedit
