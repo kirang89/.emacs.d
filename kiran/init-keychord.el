@@ -8,7 +8,7 @@
 			                 (find-file "~/Box Sync/org-notes/work.org")))
   ;;(key-chord-define-global "bb" #'helm-mini)
   (key-chord-define-global "bb" 'ivy-switch-buffer)
-  (key-chord-define-global "ff" 'counsel-find-file)
+  (key-chord-define-global "ff" 'kg/smart-find-file)
   (key-chord-define-global "jj" 'avy-goto-word-or-subword-1)
   (key-chord-define-global "``"
                            (lambda ()

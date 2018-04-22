@@ -23,8 +23,9 @@
 (use-package counsel
   :ensure t
   :config
-  (global-set-key (kbd "C-c a") 'counsel-ag)
-  (global-set-key (kbd "C-c g") 'counsel-git-grep)
+  (global-set-key (kbd "C-c g") 'counsel-ag)
+  ;;(global-set-key (kbd "M-g") 'counsel-git-grep)
+  (global-set-key (kbd "M-g") 'counsel-rg)
   (global-set-key (kbd "M-y") 'counsel-yank-pop)
   (setq recentf-max-saved-items 50)
   (setq recentf-auto-cleanup (* 24 60 60))
@@ -33,7 +34,7 @@
 ;; (use-package swiper
 ;;   :ensure t
 ;;   :config
-;;   (global-set-key (kbd "C-c s") 'swiper))
+;;   (global-set-key (kbd "C-s") 'swiper))
 
 (provide 'init-ivy)
 ;; init-ivy.el ends here
