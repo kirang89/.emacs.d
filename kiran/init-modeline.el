@@ -49,7 +49,7 @@
   (eval-after-load "subword" '(diminish 'subword-mode))
   (eval-after-load "indent-guide" '(diminish 'indent-guide-mode))
   (eval-after-load "paredit" '(diminish 'paredit-mode "Par"))
-  (eval-after-load "helm" '(diminish 'helm-mode))
+  ;; (eval-after-load "helm" '(diminish 'helm-mode))
   (eval-after-load "outline" '(diminish 'outline-minor-mode))
   (eval-after-load "ivy" '(diminish 'ivy-mode))
   (eval-after-load "google-this" '(diminish 'google-this-mode))

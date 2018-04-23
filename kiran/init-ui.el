@@ -111,7 +111,7 @@
 (setq auto-revert-verbose nil)
 
 ;; Use this with bubbleberry theme
-;; (set-face-attribute 'region nil :background "#363636")
+(set-face-attribute 'region nil :background "#3e3e3e")
 
 (provide 'init-ui)
 ;;; init-ui.el ends here

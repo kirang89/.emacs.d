@@ -5,13 +5,7 @@
 ;; avy
 (use-package avy
   :ensure t
-  :config (define-key global-map (kbd "C-`") 'avy-goto-word-or-subword-1))
-
-(use-package visual-regexp-steroids
-  :ensure t
-  :config
-  (global-set-key (kbd "C-c r") 'vr/replace)
-  (global-set-key (kbd "C-c q") 'vr/query-replace))
+  :config (define-key global-map (kbd "C-.") 'avy-goto-word-or-subword-1))
 
 ;; Search string in org-mode files using OS X Spotlight
 (defun locate-org-files (search-string)
@@ -26,13 +20,6 @@
 (global-set-key (kbd "<f6>") 'helm-projectile-ag)
 
 (defalias 'find-grep 'ag)
-
-;; (use-package swiper-helm
-;;   :config
-;;   (global-unset-key (kbd "C-s"))
-;;   (global-unset-key (kbd "C-r"))
-;;   (global-set-key (kbd "C-s") 'swiper-helm)
-;;   (global-set-key (kbd "C-r") 'swiper-helm))
 
 (provide 'init-search)
 ;;; init-search.el ends here
