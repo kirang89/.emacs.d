@@ -17,5 +17,10 @@
 
 (defalias 'find-grep 'rg)
 
+(use-package swiper
+  :ensure t
+  :config
+  (global-set-key (kbd "<f6>") 'swiper))
+
 (provide 'init-search)
 ;;; init-search.el ends here

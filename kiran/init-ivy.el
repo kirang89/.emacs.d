@@ -31,10 +31,5 @@
   (setq recentf-auto-cleanup (* 24 60 60))
   (global-set-key (kbd "C-x C-r") 'counsel-recentf))
 
-;; (use-package swiper
-;;   :ensure t
-;;   :config
-;;   (global-set-key (kbd "C-s") 'swiper))
-
 (provide 'init-ivy)
 ;; init-ivy.el ends here
