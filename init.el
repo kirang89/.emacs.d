@@ -52,7 +52,7 @@
 ;; the shell. Let's fix that:
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns))
-  :defer 1
+  :ensure t
   :config (exec-path-from-shell-initialize))
 
 ;; Custom configuration set by Emacs
