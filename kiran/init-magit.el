@@ -8,8 +8,8 @@
   :init
   (global-set-key (kbd "C-c C-g") 'magit-status)
   :config
-  ;; Open magit in a new buffer
-  ;; (setq magit-status-buffer-switch-function 'switch-to-buffer)
+  ;; Make magit status buffer fill the entire frame
+  (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
 
   (defun disable-magit-highlight-in-buffer ()
     (face-remap-add-relative 'magit-item-highlight '()))
