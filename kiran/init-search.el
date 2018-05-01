@@ -10,16 +10,12 @@
 ;; Search string in org-mode files using OS X Spotlight
 (defun locate-org-files (search-string)
   "Adjust `locate-with-filter' to only search `org-mode' files with SEARCH-STRING."
-  (interactive "sSearch string: ")
+  (interactive "Search string: ")
   (locate-with-filter search-string ".org$"))
 
-(global-set-key (kbd "C-x f") 'find-file-in-repository)
 (global-set-key (kbd "C-c f o") 'locate-org-files)
-(global-set-key (kbd "<f7>") 'swiper-helm)
-(global-set-key (kbd "<f2>") 'helm-ag)
-(global-set-key (kbd "<f6>") 'helm-projectile-ag)
 
-(defalias 'find-grep 'ag)
+(defalias 'find-grep 'rg)
 
 (provide 'init-search)
 ;;; init-search.el ends here

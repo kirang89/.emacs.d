@@ -87,26 +87,6 @@
 (global-set-key (kbd "M-v") 'yank)
 (global-set-key (kbd "M-S-z") 'redo)
 
-;; Edit multiple regions in the same way simultaneously
-;; (use-package iedit
-;;   :config
-;;   (global-set-key (kbd "C-") iedit-mode)
-;;   (defun iedit-dwim (arg)
-;;     "Starts iedit but uses \\[narrow-to-defun] to limit its scope."
-;;     (interactive "P")
-;;     (if arg
-;;         (iedit-mode)
-;;       (save-excursion
-;;         (save-restriction
-;;           (widen)
-;;           ;; this function determines the scope of `iedit-start'.
-;;           (if iedit-mode
-;;               (iedit-done)
-;;             ;; `current-word' can of course be replaced by other
-;;             ;; functions.
-;;             (narrow-to-defun)
-;;             (iedit-start (current-word) (point-min) (point-max))))))))
-
 (use-package neotree
   :config
   (global-set-key (kbd "<f5>") 'neotree-toggle)
