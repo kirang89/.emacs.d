@@ -87,6 +87,7 @@
 (require 'init-projectile)
 ;;(require 'init-solarized)
 ;;(require 'init-latex)
+(require 'init-docker)
 (require 'init-experimental)
 (eval-after-load 'web-mode '(require 'init-web))
 
