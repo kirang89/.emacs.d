@@ -34,8 +34,8 @@ brew install aspell --with-lang-en
 
 ## Search
 ```bash
-# For search using Ag
-brew install the_silver_searcher
+# For search using Ripgrep
+brew install ripgrep
 ```
 
 ## Profiling
