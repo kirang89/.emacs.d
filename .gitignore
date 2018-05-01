@@ -18,8 +18,9 @@ bookmarks
 cider-history
 recentf
 projectile-bookmarks.eld
-projectile.cache
+.projectile-cache
 var
+request
 
 company-statistics-cache.el
 emms
