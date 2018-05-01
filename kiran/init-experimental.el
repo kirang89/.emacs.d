@@ -90,7 +90,20 @@
 (use-package neotree
   :config
   (global-set-key (kbd "<f5>") 'neotree-toggle)
-  (setq neo-theme 'nerd))
+
+  (setq-default neo-smart-open t)
+  (setq neo-theme 'nerd)
+  (setq neo-show-hidden-files t)
+  ;; Scale the text down a notch when in a neotree buffer
+  (defun kg/text-scale-down ()
+    (interactive)
+    (progn
+      (text-scale-adjust 0)
+      (text-scale-decrease 1)))
+
+  (add-hook 'neo-after-create-hook
+            (lambda (_)
+              (call-interactively #'kg/text-scale-down))))
 
 (provide 'init-experimental)
 ;;; init-experimental.el ends here.
