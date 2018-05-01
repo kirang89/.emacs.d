@@ -33,11 +33,21 @@
 
 (global-set-key (kbd "M-s") (save-buffer))
 
+;; unset C- and M- digit keys to create useful keybindings for them
+(dotimes (n 10)
+  ;;(global-unset-key (kbd (format "C-%d" n)))
+  (global-unset-key (kbd (format "M-%d" n))))
+
 ;; window manager
 (use-package eyebrowse
   :ensure t
   :config
-  (eyebrowse-mode t))
+  (define-key eyebrowse-mode-map (kbd "M-1") 'eyebrowse-switch-to-window-config-1)
+  (define-key eyebrowse-mode-map (kbd "M-2") 'eyebrowse-switch-to-window-config-2)
+  (define-key eyebrowse-mode-map (kbd "M-3") 'eyebrowse-switch-to-window-config-3)
+  (define-key eyebrowse-mode-map (kbd "M-4") 'eyebrowse-switch-to-window-config-4)
+  (eyebrowse-mode t)
+  (setq eyebrowse-new-workspace t))
 
 ;; undo history as a branching tree of changes
 (use-package undo-tree
