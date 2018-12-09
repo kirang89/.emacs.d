@@ -86,7 +86,11 @@
 (require 'init-efuns)
 (require 'init-experimental)
 
-(load-theme 'gruvbox-dark-medium)
+(use-package gruvbox-theme
+  :ensure t
+  :config
+  (load-theme 'gruvbox-dark-medium))
+
 (set-face-attribute 'region nil :background "#3a3a3a")
 
 (fringe-mode 10)
