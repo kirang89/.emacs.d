@@ -28,3 +28,6 @@ games
 image-dired
 irony
 savehist
+
+ido.last
+.cache
