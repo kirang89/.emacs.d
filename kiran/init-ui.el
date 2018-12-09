@@ -38,13 +38,13 @@
 ;; Focus on help windows
 (setq-default help-window-select t)
 
-(set-frame-font "SF Mono:weight=light:pixelsize=12")
+(set-frame-font "Fira Code Retina:weight=regular:pixelsize=12")
 
 ;; TODO: Setup as per https://github.com/bleadof/emacs.d/blob/f5eded385b1a1fcdcb6af15d875a230d26fe53ff/conf/fundamentals/company-emoji-conf.el
 ;;(set-fontset-font t 'symbol (font-spec :family "Apple Color Emoji") nil 'prepend)
 
 ;; Set default line spacing (relative)
-(setq-default line-spacing 0.45)
+(setq-default line-spacing 0.2) ;; 0.45
 
 ;; Italics for comments
 (set-face-attribute 'font-lock-comment-face nil :italic t)

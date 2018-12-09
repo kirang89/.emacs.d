@@ -7,10 +7,11 @@
   :config
   (projectile-mode)
   ;; asks for file to open when project is switched
-  (setq projectile-switch-project-action 'helm-projectile-find-file)
+  ;; (setq projectile-switch-project-action 'helm-projectile-find-file)
   (setq-default projectile-enable-caching t
-                projectile-mode-line '(:eval
-                                       (format " [%s]" (projectile-project-name)))))
+                projectile-mode-line '(:eval (propertize
+                                              (format " %s" (projectile-project-name))
+                                              'face 'alert-high-face))))
 
 (defun kg/smart-find-file ()
   "Find files using projectile if within a project, or fall-back to ido."
@@ -22,6 +23,10 @@
 (bind-key "M-t" 'kg/smart-find-file)
 
 (bind-key "C-x C-f" 'find-file)
+
+(setq projectile-mode-line
+        '(:eval (propertize (format " %s" (projectile-project-name))
+                            'face 'alert-high-face)))
 
 (provide 'init-projectile)
 ;;; init-projectile.el ends here

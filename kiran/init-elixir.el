@@ -15,6 +15,8 @@
 ;;             ;; (global-unset-key (kbd "M -"))
 ;;             (add-hook 'before-save-hook #'elixir-format-before-save)))
 
+(add-to-list 'auto-mode-alist '("\\.eex\\'" . web-mode))
+
 (provide 'init-elixir)
 ;; init-clojure.el ends here.
 ;; Local Variables:

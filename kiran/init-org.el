@@ -34,8 +34,9 @@
   (setq-default org-download-image-dir "~/Box Sync/org-notes/resources")
 
   (setq org-todo-keyword-faces
-        '(("TODO" :foreground "red" :weight bold)
+        '(("TODO" :foreground "blue" :weight bold)
           ("DOING" :foreground "magenta" :weight bold)
+          ("HOLD" :foreground "red" :weight bold)
           ("DONE" :foreground "green" :weight bold)))
 
   ;; Better bullets
@@ -62,7 +63,7 @@
             (lambda ()
               (setq org-indent-mode t)
               (local-set-key (kbd "C-x p")
-                             'org-mac-chrome-insert-frontmost-url)))
+                             'org-mac-firefox-insert-frontmost-url)))
 
   ;; Use unicode chars instead of regular bullets
   (use-package org-bullets

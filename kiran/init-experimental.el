@@ -1,6 +1,3 @@
-;; Consider whether or not to keep this
-;; (setq echo-keystrokes 0.5)
-
 ;; open a new line above or below the current one, even if the cursor is midsentence
 (defun open-line-below ()
   (interactive)
@@ -76,11 +73,14 @@
 (global-set-key (kbd "M-S-z") 'redo)
 
 (use-package neotree
+  :init
+  (use-package all-the-icons)
+
   :config
   (global-set-key (kbd "<f5>") 'neotree-toggle)
 
   (setq-default neo-smart-open t)
-  (setq neo-theme 'nerd)
+  (setq neo-theme (if (display-graphic-p) 'icons 'nerd))
   (setq neo-show-hidden-files t)
   ;; Scale the text down a notch when in a neotree buffer
   (defun kg/text-scale-down ()

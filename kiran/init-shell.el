@@ -22,10 +22,17 @@
 ;; (add-to-list 'eshell-output-filter-functions
 ;;              'eshell-postoutput-scroll-to-bottom)
 
+;;; Turn off command echo in shell
+(defun my-shell-turn-echo-off ()
+  (setq comint-process-echoes t))
+
+(add-hook 'shell-mode-hook 'my-shell-turn-echo-off)
+
 (add-hook 'eshell-mode-hook
           (lambda ()
             (local-set-key (kbd "<up>") 'eshell-previous-input)
             (local-set-key (kbd "<down>") 'eshell-next-input)))
+
 
 (defun eshell-here ()
   "Opens up a new shell in the directory associated with the current buffer's file.  The eshell is renamed to match that directory to make multiple eshell windows easier."

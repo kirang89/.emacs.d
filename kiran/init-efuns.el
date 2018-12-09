@@ -282,7 +282,8 @@ C-u C-u COMMAND -> Open/switch to a scratch buffer in `emacs-elisp-mode'"
   (move-end-of-line 1)
   (newline-and-indent))
 
-(global-set-key (kbd "M-RET") 'kg/newline-for-code)
+(global-set-key (kbd "M-<return>") 'kg/newline-for-code)
+(global-set-key (kbd "M-S-<return>") 'open-line-above)
 
 (defun kg/file-reopen-as-root ()
   "Reopen current file as root."
