@@ -16,6 +16,10 @@
                            (name . ".cljc$")
                            (name . "^\\*cider")
                            (name . "^\\*nrepl")))
+               ("ELIXIR" (or
+                          (mode . alchemist-mode)
+                          (name . ".ex$")
+                          (name . ".exs$")))
                ("CLOJURESCRIPT" (name . ".cljs$"))
                ("ORG" (or
                        (mode . org-mode)
@@ -23,7 +27,9 @@
                ("DIRED" (mode . dired-mode))
                ("SHELL" (mode . eshell-mode))
                ("MARKDOWN" (mode . markdown-mode))
-               ("WEBDEV" (mode . web-mode))
+               ("WEBDEV" (or
+                          (mode . web-mode)
+                          (name . ".ts$")))
                ("MAGIT" (or
                          (mode . magit-mode)
                          (name . "^\\*magit")))
@@ -34,10 +40,7 @@
                ("EMACS" (or
                          (name . "^\\*scratch\\*$")
                          (name . "^\\*Messages\\*$")))
-               ("ELISP" (name . ".el$"))
-               ("HELM" (or
-                        (mode . helm-mode)
-                        (name . "^\\*helm")))))))
+               ("ELISP" (name . ".el$"))))))
 
 (add-hook 'ibuffer-mode-hook
               (lambda ()
