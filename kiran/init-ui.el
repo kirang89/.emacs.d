@@ -7,6 +7,10 @@
 (setq inhibit-splash-screen t)
 (setq inhibit-startup-message t)
 
+;; Set a natural title bar that adapts to the theme
+(add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+(add-to-list 'default-frame-alist '(ns-appearance . dark))
+
 ;; Resize windows proportionally
 (setq-default window-combination-resize t)
 
