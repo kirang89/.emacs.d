@@ -64,7 +64,6 @@
 (require 'init-editing)
 (require 'init-dired)
 (require 'init-kbd)
-;;(require 'init-ido)
 (require 'init-smex)
 (require 'init-ivy)
 (require 'init-ibuffer)

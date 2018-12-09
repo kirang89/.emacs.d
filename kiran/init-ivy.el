@@ -1,3 +1,7 @@
+(use-package ido-vertical-mode
+  :ensure t
+  :config (ido-vertical-mode 1))
+
 (use-package ivy
   :ensure t
   :config
