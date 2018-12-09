@@ -306,5 +306,10 @@ C-u C-u COMMAND -> Open/switch to a scratch buffer in `emacs-elisp-mode'"
 (advice-add 'previous-buffer :after #'me/switch-to-buffer-continue)
 (advice-add 'next-buffer :after #'me/switch-to-buffer-continue)
 
+(defun kg/current-buffer-filename ()
+    "Copy the full path of the current buffer."
+    (interactive)
+    (kill-new (buffer-file-name (window-buffer (minibuffer-selected-window)))))
+
 (provide 'init-efuns)
 ;;; init-efuns.el ends here.

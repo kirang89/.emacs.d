@@ -156,7 +156,6 @@
 (add-hook 'comint-preoutput-filter-functions
           'my-comint-preoutput-read-only)
 
-
 ;; Experiment with using Function keys to work with position registers
 
 (provide 'init-experimental)
