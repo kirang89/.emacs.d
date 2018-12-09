@@ -91,7 +91,7 @@
 (require 'init-experimental)
 (eval-after-load 'web-mode '(require 'init-web))
 
-(load-theme 'darkokai)
+(load-theme 'gruvbox-dark-medium)
 (set-face-attribute 'region nil :background "#3a3a3a")
 
 (fringe-mode 10)
