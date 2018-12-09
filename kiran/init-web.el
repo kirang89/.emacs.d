@@ -8,11 +8,11 @@
   (setq web-mode-markup-indent-offset 2)
   (setq web-mode-code-indent-offset 2)
   (setq web-mode-css-indent-offset 2)
-
+  (setq js-indent-level 2)
   (setq web-mode-enable-auto-pairing t)
   (setq web-mode-enable-auto-expanding t)
-  (setq web-mode-enable-css-colorization t))
-
+  (setq web-mode-enable-css-colorization t)
+  (add-hook 'web-mode-hook 'electric-pair-mode))
 
 (use-package web-beautify
   :commands (web-beautify-css
@@ -35,15 +35,7 @@
      (insert (format "</%s>" tag))
      (widen)))
 
-(define-key html-mode-map (kbd "C-c C-w") 'surround-html)
-
-;; (use-package js3-mode
-;;   :ensure t
-;;   :mode ("\\.js$" . js3-mode))
-
-;; (use-package impatient-mode
-;;   :diminish (impatient-mode . "ι")
-;;   :commands (impatient-mode))
+;; (define-key html-mode-map (kbd "C-c C-w") 'surround-html)
 
 (use-package emmet-mode
   :diminish (emmet-mode . "ε")
@@ -77,6 +69,7 @@
 ;;     (add-hook 'css-mode-hook 'turn-on-css-eldoc)
 ;;     (add-hook 'scss-mode-hook 'turn-on-css-eldoc)
 ;;     (add-hook 'less-css-mode-hook 'turn-on-css-eldoc)))
+
 
 (provide 'init-web)
 ;;; init-web.el ends here
