@@ -1,4 +1,3 @@
-
 ;; highlight matching parentheses
 (require 'paren)
 (show-paren-mode 1)
@@ -8,19 +7,6 @@
     (set-face-foreground 'show-paren-match "red")
   (set-face-foreground 'show-paren-match "black"))
 (set-face-attribute 'show-paren-match nil :weight 'extra-bold)
-
-;; Smart parenthesis
-;; (use-package smartparens-config
-;;   :ensure t
-;;   :config
-;;   (smartparens-global-mode)
-;;   ;; (foo bar) -> foo bar
-;;   (define-key smartparens-mode-map (kbd "M-s") 'sp-splice-sexp)
-;;   ;; (foo bar) -> [foo bar]
-;;   (define-key smartparens-mode-map (kbd "M-S") 'sp-rewrap-sexp))
-
-;; (use-package smartparens
-;;   :ensure t)
 
 (use-package rainbow-delimiters
   :ensure t
@@ -36,7 +22,6 @@
   (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
   :config
   (local-set-key (kbd "<C-right>") 'paredit-forward-slurp-sexp))
-
 
 
 (provide 'init-parens)

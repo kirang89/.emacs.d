@@ -127,11 +127,6 @@
                   (make-directory dir t))))))
 
 
-;; Mode for distraction free writing
-;; (use-package darkroom
-;;   :ensure t
-;;   :diminish "DkR")
-
 (setq select-enable-clipboard t             ; Merge system's and emacs' clipboard
       save-interprogram-paste-before-kill t ; Allow pasting selection outside of Emacs
       )

@@ -1,4 +1,3 @@
-
 ;; Use spotlight instead of locate
 (setq locate-command "mdfind")
 
@@ -16,11 +15,6 @@
 (global-set-key (kbd "C-c f o") 'locate-org-files)
 
 (defalias 'find-grep 'rg)
-
-(use-package swiper
-  :ensure t
-  :config
-  (global-set-key (kbd "<f6>") 'swiper))
 
 (provide 'init-search)
 ;;; init-search.el ends here

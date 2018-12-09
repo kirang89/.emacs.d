@@ -9,12 +9,6 @@
   :config
    (add-hook 'elixir-mode-hook 'alchemist-mode))
 
-;; (add-hook 'elixir-mode-hook
-;;           (lambda ()
-;;             (local-set-key (kbd "C-M-;") #'elixir-format)
-;;             ;; (global-unset-key (kbd "M -"))
-;;             (add-hook 'before-save-hook #'elixir-format-before-save)))
-
 (add-to-list 'auto-mode-alist '("\\.eex\\'" . web-mode))
 
 (provide 'init-elixir)

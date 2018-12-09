@@ -25,9 +25,9 @@
         org-latex-listings 'minted
         org-hide-emphasis-markers t)
 
-  (setq ;;org-ellipsis " ▼ "
-        org-ellipsis "..."
-        )
+  ;; (setq ;;org-ellipsis " ▼ "
+  ;;       org-ellipsis "..."
+  ;;       )
 
   ;; The directory where images should be downloaded to, when dragged into
   ;; an org buffer
@@ -96,32 +96,12 @@
   (let ((search-string (read-string "Search String: ")))
     (ag search-string "~/Box Sync/org-notes")))
 
-;; Capture templates
-;; (setq org-capture-templates
-;;       '(
-;;         ("t" "Todo" entry
-;;          (file+headline (concat org-directory "/agenda.org") "Personal")
-;;          "*** TODO %?")
-
-;;         ("m" "Todo" entry
-;;          (file+headline (concat org-directory "/agenda.org") "Meetups")
-;;          "*** TODO %?\n SCHEDULED: %^{SCHEDULED: }t")
-
-;;         ("l" "Link" item
-;;          (file+datetree (concat org-directory "/linklog.org")))
-
-;;         ("v" "Video (Programming)" checkitem
-;;          (file+headline (concat org-directory
-;;                                 "/programming_videos_watchlist.org")
-;;                         "Programming Videos Watchlist"))
-;;         ))
-
 (setq org-capture-templates
       '(("w" "Work" entry
          (file+headline (concat org-directory "/agenda.org") "Work")
          "** TODO %?")))
 
-(global-set-key (kbd "C-c C-a") 'org-agenda)
+;; (global-set-key (kbd "C-c C-a") 'org-agenda)
 
 (defun org-archive-tasks ()
   "Archive DONE tasks in org-mode."
@@ -152,43 +132,8 @@
 (setq org-html-head-extra (concat html-export-headers
                                   html-export-styles))
 
-;; (use-package ob-clojure
-;;   :init
-;;   (setq org-babel-clojure-backend 'cider)
-;;   (require 'cider))
-
 ;; don't run stuff automatically on export
 ;;(setq org-export-babel-evaluate nil)
-
-;; (defface org-block-begin-line
-;;   '((t (:underline "#8b5a2b" :foreground "#8b7355" :background "#8b7355")))
-;;   "Face used for the line delimiting the begin of source blocks.")
-
-;; (defface org-block-background
-;;   '((t (:background "#545454")))
-;;   "Face used for the source block background.")
-
-;; (defface org-block-end-line
-;;   '((t (:overline "#8b5a2b" :foreground "#8b7355" :background "#8b7355")))
-;;   "Face used for the line delimiting the end of source blocks.")
-
-
-;; Set the list of viewers for Mac OS X
-;; The -b displayline option highlights the current line
-;; The -g displayline option launches Skim in the background
-;;
-;; Tex->Pdf - C-c C-v
-;; Pdf->Tex - Cmd-Shift-Click
-;; (setq TeX-view-program-list
-;;       '(("Preview.app" "open -a Preview.app %o")
-;;         ("Skim" "open -a Skim.app %o")
-;;         ("displayline" "/Applications/Skim.app/Contents/SharedSupport/displayline -b %n %o %b")
-;;         ("open" "open %o"))
-;;       ;; Select the viewers for each file type.
-;;       TeX-view-program-selection
-;;       '((output-dvi "open")
-;;         (output-pdf "displayline")
-;;         (output-html "open")))
 
 (provide 'init-org)
 ;;; init-org ends here

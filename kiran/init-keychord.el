@@ -3,9 +3,9 @@
   :config
   (key-chord-mode t)
   (key-chord-define-global "bb" 'ivy-switch-buffer)
-  (key-chord-define-global "ff" 'kg/smart-find-file)
+  ;; (key-chord-define-global "ff" 'kg/smart-find-file)
   (key-chord-define-global "jj" 'avy-goto-word-or-subword-1)
-  (key-chord-define-global ",," 'goto-line)
+  ;; (key-chord-define-global ",," 'goto-line)
   (key-chord-define-global "ww"
                            (lambda ()
                              (interactive)

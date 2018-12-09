@@ -1,4 +1,3 @@
-
 (setenv "PATH" (concat "/Library/TeX/texbin" (getenv "PATH")))
 
 (setq exec-path (cons "/Library/TeX/texbin"  exec-path))
