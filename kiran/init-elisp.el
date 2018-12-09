@@ -12,7 +12,6 @@
 (add-hook 'emacs-lisp-mode-hook (lambda ()
                                   (rainbow-delimiters-mode)
                                   (local-set-key (kbd "M-.") 'find-file-at-point)))
-(add-hook 'emacs-lisp-mode-hook 'paren-face-mode)
 
 (provide 'init-elisp)
 ;;; init-elisp ends here
