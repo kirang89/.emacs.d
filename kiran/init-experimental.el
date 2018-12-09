@@ -49,18 +49,6 @@
   (eyebrowse-mode t)
   (setq eyebrowse-new-workspace t))
 
-;; undo history as a branching tree of changes
-(use-package undo-tree
-  :ensure t
-  :diminish undo-tree-mode
-  :config
-  (global-undo-tree-mode 1)
-  (global-set-key (kbd "C-/") 'undo)
-  (global-set-key (kbd "M-z") 'undo)
-  (defalias 'redo 'undo-tree-redo)
-  (global-set-key (kbd "C-S-/") 'redo)
-  (global-set-key (kbd "M-Z") 'redo))
-
 (defun kg/split-below-and-move ()
   (interactive)
   (split-window-below)

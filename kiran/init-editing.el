@@ -146,5 +146,17 @@
 
 (global-set-key (kbd "C-x l") 'goto-line)
 
+;; undo history as a branching tree of changes
+(use-package undo-tree
+  :ensure t
+  :diminish undo-tree-mode
+  :config
+  (global-undo-tree-mode 1)
+  (global-set-key (kbd "C-/") 'undo)
+  (global-set-key (kbd "M-z") 'undo)
+  (defalias 'redo 'undo-tree-redo)
+  (global-set-key (kbd "C-S-/") 'redo)
+  (global-set-key (kbd "M-Z") 'redo))
+
 (provide 'init-editing)
 ;;; init-editing.el ends here
