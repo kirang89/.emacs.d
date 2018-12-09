@@ -2,34 +2,13 @@
 (column-number-mode -1)
 (size-indication-mode -1)
 
-;; Fix for broken seperator colors on the modeline
-;;(setq ns-use-srgb-colorspace nil)
-
-;; (use-package spaceline
-;;   :init
-;;   (progn
-;;     (require 'spaceline-config)
-;;     (setq powerline-default-separator 'utf-8)
-;;     (setq spaceline-highlight-face-func 'spaceline-highlight-face-modified)
-;;     (spaceline-toggle-hud-on)
-;;     (spaceline-emacs-theme)))
-
-;; Set default font for different modeline modes
-;; (defun kg/set-modeline-face ()
-;;   "Set the above font in modeline face."
-;;   (interactive)
-;;   (let ((faces '(mode-line
-;;                  mode-line-buffer-id
-;;                  mode-line-emphasis
-;;                  mode-line-highlight
-;;                  mode-line-inactive)))
-;;     (mapc (lambda (face)
-;;             (set-face-attribute face nil
-;;                                 :font "Hasklig-13"
-;;                                 :weight 'regular))
-;;           faces)))
-
-;; (add-hook 'after-init-hook #'kg/set-modeline-face)
+(use-package doom-modeline
+  :ensure t
+  :defer t
+  :hook (after-init . doom-modeline-init)
+  :config
+  (setq doom-modeline-height 20)
+  (setq doom-modeline-buffer-file-name-style 'truncate-upto-project))
 
 (use-package diminish
   :ensure t
@@ -86,13 +65,6 @@ want to use in the modeline *in lieu of* the original.")
                (setq mode-name mode-str)))))
 
 ;; (add-hook 'after-change-major-mode-hook 'clean-mode-line)
-
-
-;;=========
-;; To remove the underline below text in modeline for certain
-;; themes do:
-;; M-x customize-face mode-line and remove the underline.
-;;=========
 
 (provide 'init-modeline)
 ;;; init-modeline.el ends here.
