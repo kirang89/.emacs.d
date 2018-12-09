@@ -47,6 +47,7 @@
 (add-to-list 'load-path "~/.emacs.d/kiran/")
 
 (package-initialize)
+(require 'init-packages)
 
 ;; On OS X Emacs doesn't use the shell PATH if it's not started from
 ;; the shell. Let's fix that:
@@ -59,7 +60,6 @@
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
 
-(require 'init-packages)
 (require 'init-ui)
 (require 'init-editing)
 (require 'init-dired)
