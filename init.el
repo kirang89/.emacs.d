@@ -15,10 +15,10 @@
 (package-initialize)
 
 ;; Recompile .el file(s) if changes occur
-(byte-recompile-directory (expand-file-name "~/.emacs.d/kiran") 0)
+;; (byte-recompile-directory (expand-file-name "~/.emacs.d/kiran") 0)
 
 ;; Prevent loading of outdated .elc files
-(setq load-prefer-newer t)
+;; (setq load-prefer-newer t)
 
 ;; Record the start time
 (setq *emacs-load-start* (current-time))
