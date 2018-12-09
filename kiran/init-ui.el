@@ -28,7 +28,7 @@
 ;; Remove scratch buffer message
 (setq initial-scratch-message "")
 
-(setq-default cursor-type 'box)
+(setq-default cursor-type 'hbar)
 
 ;; blink the cursor
 (blink-cursor-mode 1)

@@ -80,8 +80,6 @@
             (lambda (_)
               (call-interactively #'kg/text-scale-down))))
 
-(setq-default cursor-type 'hbar)
-
 ;; might improve performance when moving cursor
 ;; see https://emacs.stackexchange.com/questions/28736/emacs-pointcursor-movement-lag/28746
 (setq auto-window-vscroll nil)
